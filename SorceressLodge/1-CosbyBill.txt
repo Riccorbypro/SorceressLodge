@@ -3,7 +3,7 @@ Bill
 Cosby
 Magic Types
 02,1
-06,2
+06,1
 END
 Description
 It's Bill Cosby!!!
