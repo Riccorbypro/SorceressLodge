@@ -47,6 +47,7 @@
   <ItemGroup>
     <Compile Include="MagicType.cs" />
     <Compile Include="FileHandler.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="User.cs" />
   </ItemGroup>
