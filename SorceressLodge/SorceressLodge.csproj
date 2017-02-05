@@ -53,6 +53,12 @@
   <ItemGroup>
     <Content Include="1-CosbyBill.txt" />
     <Content Include="1-CosbyBill.jpg" />
+    <Content Include="2-RadcliffeDaniel.jpg" />
+    <Content Include="2-RadcliffeDaniel.txt" />
+    <Content Include="3-TennantDavid.png" />
+    <Content Include="3-TennantDavid.txt" />
+    <Content Include="4-HolmesSherlock.jpg" />
+    <Content Include="4-HolmesSherlock.txt" />
     <Content Include="MagicTypes.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

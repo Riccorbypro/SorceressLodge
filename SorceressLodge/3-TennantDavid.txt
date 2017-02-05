@@ -1,0 +1,21 @@
+﻿3
+David
+Tennant
+Magic Types
+01
+03
+05
+07
+09
+END
+Description
+Self proclaimed doctor with no history of tertiary education. Changes appearance frequently.
+END
+Bounty
+150000000.00
+9000000000.00
+4000.00
+END
+Location
+1961 blue British police phone box, london
+END

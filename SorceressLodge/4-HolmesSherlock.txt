@@ -1,0 +1,28 @@
+﻿4
+Sherlock
+Holmes
+Magic Types
+01
+02
+03
+04
+05
+06
+07
+08
+09
+END
+Description
+Highly functioning sociopath. Potential threat to all who approach. Must be monitored at all times. Accompanied by John H. Watson(possible lover).
+END
+Bounty
+8000.00
+400000.00
+900.00
+30000000.00
+123.82
+45000012.30
+END
+Location
+221B Baker Street, London
+END

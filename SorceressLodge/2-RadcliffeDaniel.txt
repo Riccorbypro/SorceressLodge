@@ -1,0 +1,16 @@
+﻿2
+Daniel
+Radcliffe
+Magic Types
+05
+09
+END
+Description
+an awesome steep rock face, especially at the edge of the sea named Daniel
+END
+Bounty
+780200.00
+END
+Location
+Hogwarts, schoole of witchcraft and wizardry
+END
