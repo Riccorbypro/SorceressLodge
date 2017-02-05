@@ -1,0 +1,18 @@
+﻿1
+Bill
+Cosby
+Magic Types
+02
+06
+END
+Description
+It's Bill Cosby!!!
+END
+Bounty
+20000.00
+15000.00
+31000.00
+END
+Location
+Student Bar, Downtown Abbey
+END

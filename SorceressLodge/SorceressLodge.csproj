@@ -51,6 +51,8 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="1-CosbyBill.txt" />
+    <Content Include="1-CosbyBill.jpg" />
     <Content Include="MagicTypes.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
