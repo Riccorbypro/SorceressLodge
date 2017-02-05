@@ -47,6 +47,7 @@
   <ItemGroup>
     <Compile Include="MagicType.cs" />
     <Compile Include="FileHandler.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="User.cs" />
   </ItemGroup>
@@ -54,14 +55,14 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="1-CosbyBill.txt" />
-    <Content Include="1-CosbyBill.jpg" />
-    <Content Include="2-RadcliffeDaniel.jpg" />
-    <Content Include="2-RadcliffeDaniel.txt" />
-    <Content Include="3-TennantDavid.png" />
-    <Content Include="3-TennantDavid.txt" />
-    <Content Include="4-HolmesSherlock.jpg" />
-    <Content Include="4-HolmesSherlock.txt" />
+    <Content Include="Data\1-CosbyBill.txt" />
+    <Content Include="Data\1-CosbyBill.jpg" />
+    <Content Include="Data\2-RadcliffeDaniel.jpg" />
+    <Content Include="Data\2-RadcliffeDaniel.txt" />
+    <Content Include="Data\3-TennantDavid.png" />
+    <Content Include="Data\3-TennantDavid.txt" />
+    <Content Include="Data\4-HolmesSherlock.jpg" />
+    <Content Include="Data\4-HolmesSherlock.txt" />
     <Content Include="MagicTypes.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
