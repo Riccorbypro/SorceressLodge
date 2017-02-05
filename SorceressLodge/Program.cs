@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 namespace SorceressLodge {
     class Program {
         static void Main(string[] args) {
+            Console.WriteLine("FuckButt");
         }
     }
 }
