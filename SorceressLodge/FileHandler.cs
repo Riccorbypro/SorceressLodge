@@ -35,15 +35,15 @@ namespace SorceressLodge
             }
             catch (FileNotFoundException)
             {
-                Console.WriteLine("fILE mISSING");
+                Console.WriteLine("File not Found");
             }
             catch (DirectoryNotFoundException)
             {
-                Console.WriteLine("dIRECTORY mISSING");
+                Console.WriteLine("Directory Missing");
             }
             catch (IOException)
             {
-                Console.WriteLine("cRITICAL eRROR");
+                Console.WriteLine("Critical Error");
             }
             finally
             {
@@ -68,15 +68,15 @@ namespace SorceressLodge
             }
             catch (FileNotFoundException)
             {
-                Console.WriteLine("fILE mISSING");
+                Console.WriteLine("File not Found");
             }
             catch (DirectoryNotFoundException)
             {
-                Console.WriteLine("dIRECTORY mISSING");
+                Console.WriteLine("Directory Missing");
             }
             catch (IOException)
             {
-                Console.WriteLine("cRITICAL eRROR");
+                Console.WriteLine("Critical Error");
             }
             finally
             {
@@ -101,15 +101,15 @@ namespace SorceressLodge
             }
             catch (FileNotFoundException)
             {
-                Console.WriteLine("fILE mISSING");
+                Console.WriteLine("File not Found");
             }
             catch (DirectoryNotFoundException)
             {
-                Console.WriteLine("dIRECTORY mISSING");
+                Console.WriteLine("Directory Missing");
             }
             catch (IOException)
             {
-                Console.WriteLine("cRITICAL eRROR");
+                Console.WriteLine("Critical Error");
             }
             finally
             {
