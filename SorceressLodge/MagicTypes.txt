@@ -1,9 +1,9 @@
-﻿Elemental,true
-Herbalist,true
-Summoning,true
-Nature,true
-Arcane,true
-Alchemy,true
-Blood Magic,false
-Necromancy,false
-Transmogrify,false
+﻿01,Elemental,true
+02,Herbalist,true
+03,Summoning,true
+04,Nature,true
+05,Arcane,true
+06,Alchemy,true
+07,Blood Magic,false
+08,Necromancy,false
+09,Transmogrify,false
