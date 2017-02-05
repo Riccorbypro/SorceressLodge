@@ -61,8 +61,9 @@ namespace SorceressLodge {
             }
         }
 
-        public List<List<string>> ReadData() {
+        public Dictionary<List<string>, Image> ReadData() {
             List<List<string>> dataRaw = new List<List<string>>();
+            Dictionary<List<string>, Image> finalData = new Dictionary<List<string>, Image>();
             IEnumerable<string> files = Directory.EnumerateFiles(filePath);
             foreach (string s in files) {
                 try {
@@ -99,9 +100,12 @@ namespace SorceressLodge {
                         case "jpg":
                             stream = new FileStream(s, FileMode.Open, FileAccess.Read);
                             Bitmap bitmap = new Bitmap(stream);
+                            string num = s.Split('-')[0];
 
                             foreach (List<string> sList in dataRaw) {
-                                
+                                if (sList.ToArray()[0].Equals(num)) {
+                                    finalData.Add(sList, bitmap);
+                                }
                             }
 
                             break;
@@ -120,7 +124,7 @@ namespace SorceressLodge {
                 }
             }
 
-            return dataRaw;
+            return finalData;
         }
 
     }
