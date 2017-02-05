@@ -2,11 +2,11 @@
 David
 Tennant
 Magic Types
-01
-03
-05
-07
-09
+01,3
+03,2
+05,2
+07,2
+09,1
 END
 Description
 Self proclaimed doctor with no history of tertiary education. Changes appearance frequently.

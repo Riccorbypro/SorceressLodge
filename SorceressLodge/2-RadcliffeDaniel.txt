@@ -2,8 +2,8 @@
 Daniel
 Radcliffe
 Magic Types
-05
-09
+05,2
+09,1
 END
 Description
 an awesome steep rock face, especially at the edge of the sea named Daniel

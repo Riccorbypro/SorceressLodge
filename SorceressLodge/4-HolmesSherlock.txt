@@ -2,15 +2,15 @@
 Sherlock
 Holmes
 Magic Types
-01
-02
-03
-04
-05
-06
-07
-08
-09
+01,2
+02,2
+03,1
+04,2
+05,1
+06,1
+07,1
+08,2
+09,1
 END
 Description
 Highly functioning sociopath. Potential threat to all who approach. Must be monitored at all times. Accompanied by John H. Watson(possible lover).
