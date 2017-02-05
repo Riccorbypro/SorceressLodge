@@ -56,6 +56,8 @@
     <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="DB\0-Placeholder.jpg" />
+    <Content Include="DB\0-Placeholder.txt" />
     <Content Include="DB\1-CosbyBill.txt" />
     <Content Include="DB\1-CosbyBill.jpg" />
     <Content Include="DB\2-RadcliffeDaniel.jpg" />
