@@ -1,0 +1,6 @@
+﻿Elemental,true
+Herbalist,true
+Summoning,true
+Nature,true
+Arcane,true
+Alchemy,true
