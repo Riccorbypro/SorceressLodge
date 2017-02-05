@@ -9,7 +9,7 @@ Magic Types
 09,1
 END
 Description
-caucasian male, light brown hair, brown eyes. last seen wearing light brown tweed suit and bow tie.
+caucasian male, light brown hair, brown eyes. last seen wearing light brown tweed suit and bow tie. Frequently changes appearance.
 END
 Bounty
 150000000.00
