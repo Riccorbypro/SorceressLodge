@@ -1,6 +1,6 @@
 ﻿3
-David
-Tennant
+The
+Doctor
 Magic Types
 01,3
 03,2
@@ -9,7 +9,7 @@ Magic Types
 09,1
 END
 Description
-Self proclaimed doctor with no history of tertiary education. Changes appearance frequently.
+caucasian male, light brown hair, brown eyes. last seen wearing light brown tweed suit and bow tie.
 END
 Bounty
 150000000.00

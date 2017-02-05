@@ -52,14 +52,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="1-CosbyBill.txt" />
     <Content Include="1-CosbyBill.jpg" />
     <Content Include="2-RadcliffeDaniel.jpg" />
     <Content Include="2-RadcliffeDaniel.txt" />
-    <Content Include="3-TennantDavid.png" />
-    <Content Include="3-TennantDavid.txt" />
+    <Content Include="3-DoctorThe.jpg" />
+    <Content Include="3-DoctorThe.txt" />
     <Content Include="4-HolmesSherlock.jpg" />
     <Content Include="4-HolmesSherlock.txt" />
     <Content Include="MagicTypes.txt" />

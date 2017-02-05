@@ -6,7 +6,7 @@ Magic Types
 06,1
 END
 Description
-It's Bill Cosby!!!
+African male, black hair, brown eyes. last seen wearing white button shirt, brown sweater, black suit pants and black shoes.
 END
 Bounty
 20000.00

@@ -50,16 +50,14 @@ namespace SorceressLodge {
             set { image = value; }
         }
 
-        public User(int uid, double bounty, string surname, string name, string des, string location, Image imge) {
+        public User(int uid, double bounty, string surname, string name, string description, string location, Image image) {
             this.bounty = bounty;
-            this.description = des;
+            this.description = description;
             this.location = location;
             this.name = name;
             this.surname = surname;
             this.uID = uid;
-            this.image = imge;
+            this.image = image;
         }
-
-
     }
 }
