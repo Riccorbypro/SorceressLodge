@@ -56,14 +56,14 @@
     <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="1-CosbyBill.txt" />
-    <Content Include="1-CosbyBill.jpg" />
-    <Content Include="2-RadcliffeDaniel.jpg" />
-    <Content Include="2-RadcliffeDaniel.txt" />
-    <Content Include="3-DoctorThe.jpg" />
-    <Content Include="3-DoctorThe.txt" />
-    <Content Include="4-HolmesSherlock.jpg" />
-    <Content Include="4-HolmesSherlock.txt" />
+    <Content Include="DB\1-CosbyBill.txt" />
+    <Content Include="DB\1-CosbyBill.jpg" />
+    <Content Include="DB\2-RadcliffeDaniel.jpg" />
+    <Content Include="DB\2-RadcliffeDaniel.txt" />
+    <Content Include="DB\3-DoctorThe.jpg" />
+    <Content Include="DB\3-DoctorThe.txt" />
+    <Content Include="DB\4-HolmesSherlock.jpg" />
+    <Content Include="DB\4-HolmesSherlock.txt" />
     <Content Include="MagicTypes.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
