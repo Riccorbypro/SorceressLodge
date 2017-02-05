@@ -4,3 +4,6 @@ Summoning,true
 Nature,true
 Arcane,true
 Alchemy,true
+Blood Magic,false
+Necromancy,false
+Transmogrify,false
