@@ -6,6 +6,14 @@ using System.Threading.Tasks;
 
 namespace SorceressLodge {
     class MagicType {
+
+        private int id;
+
+        public int ID {
+            get { return id; }
+            set { id = value; }
+        }
+
         private string typeName;
 
         public string Type {
@@ -19,5 +27,12 @@ namespace SorceressLodge {
             get { return isAllowed; }
             set { isAllowed = value; }
         }
+
+        public MagicType(int id, string typeName, bool isAllowed) {
+            this.id = id;
+            this.typeName = typeName;
+            this.isAllowed = isAllowed;
+        }
+
     }
 }
