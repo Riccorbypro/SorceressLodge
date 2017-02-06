@@ -8,14 +8,15 @@ using System.Threading.Tasks;
 namespace SorceressLodge {
     class User {
         int uID;
-        double bounty;
+        double[] bounty;
         string description;
         string name;
         string surname;
-        string location;
+        List<string> location;
         Image image;
+        Dictionary<MagicType, int> skills;
 
-        public double Bounty {
+        public double[] Bounty {
             get { return bounty; }
             set { bounty = value; }
         }
@@ -40,7 +41,7 @@ namespace SorceressLodge {
             set { surname = value; }
         }
 
-        public string Location {
+        public List<string> Location {
             get { return location; }
             set { location = value; }
         }
@@ -50,7 +51,12 @@ namespace SorceressLodge {
             set { image = value; }
         }
 
-        public User(int uid, double bounty, string surname, string name, string description, string location, Image image) {
+        public Dictionary<MagicType, int> Skills {
+            get { return skills; }
+            set { skills = value; }
+        }
+
+        public User(int uid, double[] bounty, string surname, string name, string description, List<string> location, Image image, Dictionary<MagicType, int> skills) {
             this.bounty = bounty;
             this.description = description;
             this.location = location;
@@ -58,6 +64,7 @@ namespace SorceressLodge {
             this.surname = surname;
             this.uID = uid;
             this.image = image;
+            this.skills = skills;
         }
     }
 }
