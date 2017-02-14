@@ -53,7 +53,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="ClassDiagram1.cd" />
+    <None Include="DB\Database" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="DB\0-Placeholder.jpg" />
