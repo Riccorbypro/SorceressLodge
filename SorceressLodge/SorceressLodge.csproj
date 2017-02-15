@@ -52,6 +52,7 @@
     <Compile Include="AdvancedSearch.Designer.cs">
       <DependentUpon>AdvancedSearch.cs</DependentUpon>
     </Compile>
+    <Compile Include="Connection.cs" />
     <Compile Include="CustomException.cs" />
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
@@ -69,7 +70,7 @@
     <Compile Include="Update.Designer.cs">
       <DependentUpon>Update.cs</DependentUpon>
     </Compile>
-    <Compile Include="User.cs" />
+    <Compile Include="MagicUser.cs" />
     <Compile Include="AdminHome.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -82,6 +83,7 @@
     <Compile Include="UserHome.Designer.cs">
       <DependentUpon>UserHome.cs</DependentUpon>
     </Compile>
+    <Compile Include="Users.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
