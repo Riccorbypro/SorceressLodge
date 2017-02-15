@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace SorceressLodge {
-    class User {
+    class MagicUser {
         int uID;
         double[] bounty;
         string description;
@@ -56,7 +56,7 @@ namespace SorceressLodge {
             set { skills = value; }
         }
 
-        public User(int uid, double[] bounty, string surname, string name, string description, List<string> location, Image image, Dictionary<MagicType, int> skills) {
+        public MagicUser(int uid, double[] bounty, string surname, string name, string description, List<string> location, Image image, Dictionary<MagicType, int> skills) {
             this.bounty = bounty;
             this.description = description;
             this.location = location;
