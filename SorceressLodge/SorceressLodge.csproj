@@ -56,7 +56,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="CreationScript.sql" />
     <Content Include="DB\0-Placeholder.jpg" />
     <Content Include="DB\0-Placeholder.txt" />
     <Content Include="DB\1-CosbyBill.txt" />
