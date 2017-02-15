@@ -100,12 +100,12 @@ namespace SorceressLodge {
                     switch (sArr[sArr.Length - 1]) {
                         case "jpg":
                             stream = new FileStream(s, FileMode.Open, FileAccess.Read);
-                            Bitmap bitmp = new Bitmap(stream);
+                            Bitmap bmp = new Bitmap(stream);
                             string num = s.Split('-')[0];
 
                             foreach (List<string> sList in dataRaw) {
                                 if (sList.ToArray()[0].Equals(num)) {
-                                    secondaryData.Add(sList, bitmp);
+                                    secondaryData.Add(sList, bmp);
                                 }
                             }
 

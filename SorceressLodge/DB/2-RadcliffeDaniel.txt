@@ -12,5 +12,5 @@ Bounty
 780200.00
 END
 Location
-Hogwarts, schoole of witchcraft and wizardry
+Hogwarts, school of witchcraft and wizardry
 END
