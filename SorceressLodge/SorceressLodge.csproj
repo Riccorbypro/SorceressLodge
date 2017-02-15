@@ -61,7 +61,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="DB\Database" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="DB\0-Placeholder.jpg" />
