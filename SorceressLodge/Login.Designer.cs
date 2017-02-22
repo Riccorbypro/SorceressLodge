@@ -92,7 +92,7 @@
             this.lblPassword.Text = "Password";
             this.lblPassword.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // LoginForm
+            // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -105,7 +105,7 @@
             this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.txtUserPassword);
             this.Controls.Add(this.txtUserName);
-            this.Name = "LoginForm";
+            this.Name = "Login";
             this.Text = "Administrator Login";
             ((System.ComponentModel.ISupportInitialize)(this.AdminPictureBox)).EndInit();
             this.ResumeLayout(false);
