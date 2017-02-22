@@ -74,7 +74,7 @@
     <Compile Include="Update.Designer.cs">
       <DependentUpon>Update.cs</DependentUpon>
     </Compile>
-    <Compile Include="MagicUser.cs" />
+    <Compile Include="MagicUsers.cs" />
     <Compile Include="AdminHome.cs">
       <SubType>Form</SubType>
     </Compile>

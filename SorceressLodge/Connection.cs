@@ -17,14 +17,20 @@ namespace SorceressLodge {
             sqlconn = new SqlConnection(conn);
         }
 
-        public List<MagicUser> ReadMagicUser() {
-            List<MagicUser> MagicUserlst = new List<MagicUser>();
+        public List<MagicUsers> ReadMagicUser() {
+            List<MagicUsers> MagicUserlst = new List<MagicUsers>();
             List<MagicType> types = ReadTypes();
             List<object[]> osLocation = ReadData("Location");
             List<Location> location = new List<Location>();
             foreach (object[] oa in osLocation) {
                 location.Add(new Location((int)oa[0], (int)oa[1], (string)oa[2], (DateTime)oa[3]));
             }
+            List<object[]> osMagicTypes = ReadData("MagicTypes");
+            List<MagicType> magictype = new List<MagicType>();
+            foreach (object[] oa in osMagicTypes) {
+                magictype.Add(new MagicType((int)oa[0],(string)oa[1],(bool)oa[2]));
+            }
+            
             return MagicUserlst;
         }
 
