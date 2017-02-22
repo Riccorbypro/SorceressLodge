@@ -53,11 +53,11 @@
             this.lstbMagicAdd = new System.Windows.Forms.ListBox();
             this.txtNameA = new System.Windows.Forms.TextBox();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.txtUserNameA = new System.Windows.Forms.TextBox();
-            this.txtUserPassword = new System.Windows.Forms.TextBox();
-            this.btnAddUser = new System.Windows.Forms.Button();
-            this.lblUserPassword = new System.Windows.Forms.Label();
             this.lblUserNameA = new System.Windows.Forms.Label();
+            this.lblUserPassword = new System.Windows.Forms.Label();
+            this.btnAddUser = new System.Windows.Forms.Button();
+            this.txtUserPassword = new System.Windows.Forms.TextBox();
+            this.txtUserNameA = new System.Windows.Forms.TextBox();
             this.tabcontrols.SuspendLayout();
             this.tabView.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -93,6 +93,7 @@
             // 
             // btnAdvancS
             // 
+            this.btnAdvancS.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnAdvancS.Location = new System.Drawing.Point(326, 24);
             this.btnAdvancS.Name = "btnAdvancS";
             this.btnAdvancS.Size = new System.Drawing.Size(140, 23);
@@ -102,6 +103,7 @@
             // 
             // btnSearch
             // 
+            this.btnSearch.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnSearch.Location = new System.Drawing.Point(245, 24);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(75, 23);
@@ -166,6 +168,7 @@
             // 
             // btnAddPicture
             // 
+            this.btnAddPicture.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnAddPicture.Location = new System.Drawing.Point(366, 300);
             this.btnAddPicture.Name = "btnAddPicture";
             this.btnAddPicture.Size = new System.Drawing.Size(101, 23);
@@ -175,6 +178,7 @@
             // 
             // btnAddAll
             // 
+            this.btnAddAll.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnAddAll.Location = new System.Drawing.Point(367, 330);
             this.btnAddAll.Name = "btnAddAll";
             this.btnAddAll.Size = new System.Drawing.Size(100, 23);
@@ -253,6 +257,7 @@
             // 
             // btnAddBounty
             // 
+            this.btnAddBounty.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnAddBounty.Location = new System.Drawing.Point(392, 122);
             this.btnAddBounty.Name = "btnAddBounty";
             this.btnAddBounty.Size = new System.Drawing.Size(75, 23);
@@ -294,6 +299,7 @@
             // 
             // btnAddMagic
             // 
+            this.btnAddMagic.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnAddMagic.Location = new System.Drawing.Point(286, 122);
             this.btnAddMagic.Name = "btnAddMagic";
             this.btnAddMagic.Size = new System.Drawing.Size(75, 23);
@@ -347,28 +353,14 @@
             this.tabPage1.Text = "Add User";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // txtUserNameA
+            // lblUserNameA
             // 
-            this.txtUserNameA.Location = new System.Drawing.Point(26, 41);
-            this.txtUserNameA.Name = "txtUserNameA";
-            this.txtUserNameA.Size = new System.Drawing.Size(250, 20);
-            this.txtUserNameA.TabIndex = 0;
-            // 
-            // txtUserPassword
-            // 
-            this.txtUserPassword.Location = new System.Drawing.Point(26, 96);
-            this.txtUserPassword.Name = "txtUserPassword";
-            this.txtUserPassword.Size = new System.Drawing.Size(250, 20);
-            this.txtUserPassword.TabIndex = 1;
-            // 
-            // btnAddUser
-            // 
-            this.btnAddUser.Location = new System.Drawing.Point(26, 147);
-            this.btnAddUser.Name = "btnAddUser";
-            this.btnAddUser.Size = new System.Drawing.Size(75, 23);
-            this.btnAddUser.TabIndex = 2;
-            this.btnAddUser.Text = "Add User";
-            this.btnAddUser.UseVisualStyleBackColor = true;
+            this.lblUserNameA.AutoSize = true;
+            this.lblUserNameA.Location = new System.Drawing.Point(23, 25);
+            this.lblUserNameA.Name = "lblUserNameA";
+            this.lblUserNameA.Size = new System.Drawing.Size(60, 13);
+            this.lblUserNameA.TabIndex = 4;
+            this.lblUserNameA.Text = "User Name";
             // 
             // lblUserPassword
             // 
@@ -379,14 +371,29 @@
             this.lblUserPassword.TabIndex = 3;
             this.lblUserPassword.Text = "Password";
             // 
-            // lblUserNameA
+            // btnAddUser
             // 
-            this.lblUserNameA.AutoSize = true;
-            this.lblUserNameA.Location = new System.Drawing.Point(23, 25);
-            this.lblUserNameA.Name = "lblUserNameA";
-            this.lblUserNameA.Size = new System.Drawing.Size(60, 13);
-            this.lblUserNameA.TabIndex = 4;
-            this.lblUserNameA.Text = "User Name";
+            this.btnAddUser.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnAddUser.Location = new System.Drawing.Point(26, 147);
+            this.btnAddUser.Name = "btnAddUser";
+            this.btnAddUser.Size = new System.Drawing.Size(75, 23);
+            this.btnAddUser.TabIndex = 2;
+            this.btnAddUser.Text = "Add User";
+            this.btnAddUser.UseVisualStyleBackColor = true;
+            // 
+            // txtUserPassword
+            // 
+            this.txtUserPassword.Location = new System.Drawing.Point(26, 96);
+            this.txtUserPassword.Name = "txtUserPassword";
+            this.txtUserPassword.Size = new System.Drawing.Size(250, 20);
+            this.txtUserPassword.TabIndex = 1;
+            // 
+            // txtUserNameA
+            // 
+            this.txtUserNameA.Location = new System.Drawing.Point(26, 41);
+            this.txtUserNameA.Name = "txtUserNameA";
+            this.txtUserNameA.Size = new System.Drawing.Size(250, 20);
+            this.txtUserNameA.TabIndex = 0;
             // 
             // AdminHome
             // 
@@ -398,6 +405,7 @@
             this.Controls.Add(this.tabcontrols);
             this.Name = "AdminHome";
             this.Text = "Admin Home";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.AdminHome_FormClosed);
             this.tabcontrols.ResumeLayout(false);
             this.tabView.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
