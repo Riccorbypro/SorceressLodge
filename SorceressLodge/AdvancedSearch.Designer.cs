@@ -120,7 +120,7 @@
             // lblBountyAS
             // 
             this.lblBountyAS.BackColor = System.Drawing.SystemColors.Window;
-            this.lblBountyAS.Location = new System.Drawing.Point(12, 101);
+            this.lblBountyAS.Location = new System.Drawing.Point(13, 101);
             this.lblBountyAS.Name = "lblBountyAS";
             this.lblBountyAS.Size = new System.Drawing.Size(100, 18);
             this.lblBountyAS.TabIndex = 11;
