@@ -112,6 +112,7 @@
             this.nameSelectCmb.Name = "nameSelectCmb";
             this.nameSelectCmb.Size = new System.Drawing.Size(220, 21);
             this.nameSelectCmb.TabIndex = 1;
+            this.nameSelectCmb.DropDownClosed += new System.EventHandler(this.btnSearch_Click);
             // 
             // usersTable
             // 
@@ -120,6 +121,7 @@
             this.usersTable.Name = "usersTable";
             this.usersTable.Size = new System.Drawing.Size(447, 270);
             this.usersTable.TabIndex = 0;
+            this.usersTable.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.usersTable_MouseDoubleClick);
             // 
             // tabAdd
             // 

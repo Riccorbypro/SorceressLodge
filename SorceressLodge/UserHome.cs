@@ -16,7 +16,9 @@ namespace SorceressLodge {
         public UserHome() {
             b = new Backend();
             InitializeComponent();
+            nameSelectCmb.DataSource = b.getNames();
             setTable();
+            nameSelectCmb.Text = "";
         }
 
         private void setTable() {
@@ -27,6 +29,7 @@ namespace SorceressLodge {
                 table = b.SearchUsers(new Dictionary<string, object>() { { "Name", nameSelectCmb.Text } });
             }
             usersTable.DataSource = table;
+            usersTable.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             usersTable.Refresh();
         }
 
@@ -41,6 +44,10 @@ namespace SorceressLodge {
         private void btnAdvancS_Click(object sender, EventArgs e) {
             AdvancedSearch ads = new AdvancedSearch(b);
             ads.Show();
+        }
+
+        private void usersTable_MouseDoubleClick(object sender, MouseEventArgs e) {
+            int id = (int)usersTable.SelectedRows[0].Cells[0].Value;
         }
     }
 }

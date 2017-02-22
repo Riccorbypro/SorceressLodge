@@ -35,7 +35,7 @@ namespace SorceressLodge {
                 foreach (KeyValuePair<string, object> searchTerm in searchTerms) {
                     if (searchTerm.Key.Equals("Name")) {
                         string val = (string)searchTerm.Value;
-                        if (!user.Name.Contains(val)) {
+                        if (!(user.Name + " " + user.Surname).Contains(val)) {
                             pass = false;
                             break;
                         }
@@ -136,6 +136,16 @@ namespace SorceressLodge {
                 }
             }
             return "Skill Level Unknown";
+        }
+
+        public List<string> getNames() {
+            List<string> names = new List<string>();
+
+            foreach (MagicUser user in users) {
+                names.Add(user.Name + " " + user.Surname);
+            }
+
+            return names;
         }
     }
 }
