@@ -49,6 +49,8 @@
             this.lblNameU = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.txtSurnameU = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pbPictureU)).BeginInit();
             this.SuspendLayout();
             // 
@@ -64,9 +66,9 @@
             // lstbLocationUpdate
             // 
             this.lstbLocationUpdate.FormattingEnabled = true;
-            this.lstbLocationUpdate.Location = new System.Drawing.Point(202, 177);
+            this.lstbLocationUpdate.Location = new System.Drawing.Point(202, 203);
             this.lstbLocationUpdate.Name = "lstbLocationUpdate";
-            this.lstbLocationUpdate.Size = new System.Drawing.Size(183, 95);
+            this.lstbLocationUpdate.Size = new System.Drawing.Size(183, 69);
             this.lstbLocationUpdate.TabIndex = 37;
             // 
             // dtpLocationU
@@ -269,6 +271,24 @@
             this.txtSurnameU.Size = new System.Drawing.Size(184, 20);
             this.txtSurnameU.TabIndex = 43;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(202, 174);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(82, 23);
+            this.button1.TabIndex = 45;
+            this.button1.Text = "Add Location";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(290, 174);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(99, 23);
+            this.button2.TabIndex = 46;
+            this.button2.Text = "Delete Location";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
             // Update
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -276,6 +296,8 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(401, 623);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtSurnameU);
             this.Controls.Add(this.btnUpdatePicture);
@@ -336,5 +358,7 @@
         private System.Windows.Forms.Label lblNameU;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtSurnameU;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
     }
 }
