@@ -48,6 +48,10 @@ namespace SorceressLodge {
 
         private void usersTable_MouseDoubleClick(object sender, MouseEventArgs e) {
             int id = (int)usersTable.SelectedRows[0].Cells[0].Value;
+            MagicUser user;
+            if ((user = b.getUser(id))!=null) {
+
+            }
         }
     }
 }

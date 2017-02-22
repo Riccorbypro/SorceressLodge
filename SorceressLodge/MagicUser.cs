@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace SorceressLodge {
-    class MagicUser {
+    public class MagicUser {
         int uID;
         List<Bounty> bounty;
         string description;
