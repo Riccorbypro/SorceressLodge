@@ -17,8 +17,8 @@ namespace SorceressLodge {
             sqlconn = new SqlConnection(conn);
         }
 
-        public List<MagicUsers> ReadMagicUser() {
-            List<MagicUsers> MagicUserlst = new List<MagicUsers>();
+        public List<MagicUser> ReadMagicUsers() {
+            List<MagicUser> MagicUserlst = new List<MagicUser>();
             List<MagicType> types = ReadTypes();
             List<object[]> osLocation = ReadData("Location");
             List<Location> location = new List<Location>();
