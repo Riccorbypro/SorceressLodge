@@ -25,5 +25,9 @@ namespace SorceressLodge {
                 MessageBox.Show(ex.Message);
             }
         }
+
+        private void Login_Load(object sender, EventArgs e) {
+
+        }
     }
 }
