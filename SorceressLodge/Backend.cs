@@ -130,19 +130,14 @@ namespace SorceressLodge {
                 switch (skill) {
                     case Skill.None:
                         return "None";
-                        break;
                     case Skill.Novice:
                         return "Novice";
-                        break;
                     case Skill.Adept:
                         return "Adept";
-                        break;
                     case Skill.Master:
                         return "Master";
-                        break;
                     default:
                         return "Skill Level Unknown";
-                        break;
                 }
             }
             return "Skill Level Unknown";
