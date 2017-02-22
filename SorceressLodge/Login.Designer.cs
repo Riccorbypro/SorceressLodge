@@ -74,7 +74,7 @@
             // lblUserName
             // 
             this.lblUserName.BackColor = System.Drawing.SystemColors.Window;
-            this.lblUserName.Location = new System.Drawing.Point(12, 127);
+            this.lblUserName.Location = new System.Drawing.Point(10, 127);
             this.lblUserName.Name = "lblUserName";
             this.lblUserName.Size = new System.Drawing.Size(114, 18);
             this.lblUserName.TabIndex = 4;
@@ -85,7 +85,7 @@
             // 
             this.lblPassword.BackColor = System.Drawing.SystemColors.Window;
             this.lblPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPassword.Location = new System.Drawing.Point(12, 153);
+            this.lblPassword.Location = new System.Drawing.Point(10, 153);
             this.lblPassword.Name = "lblPassword";
             this.lblPassword.Size = new System.Drawing.Size(114, 18);
             this.lblPassword.TabIndex = 5;
