@@ -130,7 +130,7 @@
             // 
             // btnUpdateBounty
             // 
-            this.btnUpdateBounty.Location = new System.Drawing.Point(116, 343);
+            this.btnUpdateBounty.Location = new System.Drawing.Point(105, 310);
             this.btnUpdateBounty.Name = "btnUpdateBounty";
             this.btnUpdateBounty.Size = new System.Drawing.Size(75, 23);
             this.btnUpdateBounty.TabIndex = 29;
@@ -140,9 +140,9 @@
             // lstbBountyUpdate
             // 
             this.lstbBountyUpdate.FormattingEnabled = true;
-            this.lstbBountyUpdate.Location = new System.Drawing.Point(12, 369);
+            this.lstbBountyUpdate.Location = new System.Drawing.Point(12, 343);
             this.lstbBountyUpdate.Name = "lstbBountyUpdate";
-            this.lstbBountyUpdate.Size = new System.Drawing.Size(179, 121);
+            this.lstbBountyUpdate.Size = new System.Drawing.Size(179, 147);
             this.lstbBountyUpdate.TabIndex = 28;
             // 
             // txtDescription
@@ -164,9 +164,9 @@
             // 
             // txtBountyU
             // 
-            this.txtBountyU.Location = new System.Drawing.Point(80, 289);
+            this.txtBountyU.Location = new System.Drawing.Point(16, 289);
             this.txtBountyU.Name = "txtBountyU";
-            this.txtBountyU.Size = new System.Drawing.Size(100, 20);
+            this.txtBountyU.Size = new System.Drawing.Size(164, 20);
             this.txtBountyU.TabIndex = 25;
             // 
             // btnUdateMagic
@@ -213,7 +213,7 @@
             // 
             // btnDelBounty
             // 
-            this.btnDelBounty.Location = new System.Drawing.Point(12, 343);
+            this.btnDelBounty.Location = new System.Drawing.Point(15, 310);
             this.btnDelBounty.Name = "btnDelBounty";
             this.btnDelBounty.Size = new System.Drawing.Size(84, 23);
             this.btnDelBounty.TabIndex = 40;
@@ -232,7 +232,7 @@
             // 
             this.btnUpdatePicture.Location = new System.Drawing.Point(202, 12);
             this.btnUpdatePicture.Name = "btnUpdatePicture";
-            this.btnUpdatePicture.Size = new System.Drawing.Size(75, 23);
+            this.btnUpdatePicture.Size = new System.Drawing.Size(103, 23);
             this.btnUpdatePicture.TabIndex = 42;
             this.btnUpdatePicture.Text = "Update Picture";
             this.btnUpdatePicture.UseVisualStyleBackColor = true;

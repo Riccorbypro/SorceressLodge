@@ -42,6 +42,7 @@ namespace SorceressLodge {
                 magicLst.Add(skill.Key.Type + " (" + b.getSkillLevel(skill.Value) + ")");
             }
             lstbMagicUpdate.DataSource = magicLst;
+            txtDescription.Text = user.Description;
         }
     }
 }
