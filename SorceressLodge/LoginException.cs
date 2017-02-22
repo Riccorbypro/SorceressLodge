@@ -5,14 +5,14 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace SorceressLodge {
-    class CustomException: Exception {
-        public CustomException()
+    class LoginException: Exception {
+        public LoginException()
             : base() { }
 
-        public CustomException(string message)
+        public LoginException(string message)
             : base(message) { }
 
-        public CustomException(string message, Exception inner)
+        public LoginException(string message, Exception inner)
             :base(message, inner) { }
     }
 }

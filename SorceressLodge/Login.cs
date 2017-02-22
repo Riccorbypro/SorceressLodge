@@ -13,5 +13,14 @@ namespace SorceressLodge {
         public LoginForm() {
             InitializeComponent();
         }
+
+        private void btnLogin_Click(object sender, EventArgs e) {
+            try {
+
+            } catch (LoginException ) {
+
+                throw;
+            }
+        }
     }
 }

@@ -52,8 +52,11 @@
     <Compile Include="AdvancedSearch.Designer.cs">
       <DependentUpon>AdvancedSearch.cs</DependentUpon>
     </Compile>
+    <Compile Include="Bounty.cs" />
     <Compile Include="Connection.cs" />
-    <Compile Include="CustomException.cs" />
+    <Compile Include="Location.cs" />
+    <Compile Include="LoginBackend.cs" />
+    <Compile Include="LoginException.cs" />
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -61,7 +64,6 @@
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
     <Compile Include="MagicType.cs" />
-    <Compile Include="FileHandler.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Update.cs">
@@ -89,16 +91,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DB\0-Placeholder.jpg" />
-    <Content Include="DB\0-Placeholder.txt" />
-    <Content Include="DB\1-CosbyBill.txt" />
-    <Content Include="DB\1-CosbyBill.jpg" />
-    <Content Include="DB\2-RadcliffeDaniel.jpg" />
-    <Content Include="DB\2-RadcliffeDaniel.txt" />
-    <Content Include="DB\3-DoctorThe.jpg" />
-    <Content Include="DB\3-DoctorThe.txt" />
-    <Content Include="DB\4-HolmesSherlock.jpg" />
-    <Content Include="DB\4-HolmesSherlock.txt" />
+    <Content Include="Resources\PlaceholderImg.jpg" />
     <Content Include="MagicTypes.txt" />
     <None Include="Resources\Background.png" />
   </ItemGroup>

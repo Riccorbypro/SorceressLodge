@@ -8,6 +8,7 @@ namespace SorceressLodge {
     class Users {
         string userName;
         string password;
+        bool isAdmin;
 
         public string UserName {
             get { return userName; }
@@ -19,9 +20,15 @@ namespace SorceressLodge {
             set { password = value; }
         }
 
-        public Users(string username, string password) {
+        public bool IsAdmin {
+            get { return isAdmin; }
+            set { isAdmin = value; }
+        }
+
+        public Users(string username, string password, bool isAdmin) {
             this.userName = username;
             this.password = password;
+            this.isAdmin = isAdmin;
         }
     }
 }
