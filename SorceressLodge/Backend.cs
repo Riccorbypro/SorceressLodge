@@ -25,6 +25,7 @@ namespace SorceressLodge {
         public DataTable SearchUsers(Dictionary<string, object> searchTerms) {
             DataTable table = new DataTable("magicusers");
 
+            table.Columns.Add("ID");
             table.Columns.Add("Name");
             table.Columns.Add("Surname");
             table.Columns.Add("Skill Level");
@@ -50,7 +51,8 @@ namespace SorceressLodge {
                         //[0] MIN
                         //[1] MAX
                         double[] required = (double[])searchTerm.Value;
-                        foreach (double bounty in user.Bounty) {
+                        foreach (Bounty b in user.Bounty) {
+                            double bounty = b.BountyAmount;
                             if (bounty >= required[0] && bounty <= required[1]) {
                                 bPass = true;
                                 break;
@@ -98,7 +100,7 @@ namespace SorceressLodge {
                     }
                 }
                 if (pass) {
-                    table.Rows.Add(user.Name, user.Surname, ParseSkill(user), LastLocation(user));
+                    table.Rows.Add(user.UID, user.Name, user.Surname, ParseSkill(user), LastLocation(user));
                 }
             }
 

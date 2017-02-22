@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace SorceressLodge {
     class MagicUser {
         int uID;
-        double[] bounty;
+        List<Bounty> bounty;
         string description;
         string name;
         string surname;
@@ -16,7 +16,7 @@ namespace SorceressLodge {
         Image image;
         Dictionary<MagicType, int> skills;
 
-        public double[] Bounty {
+        public List<Bounty> Bounty {
             get { return bounty; }
             set { bounty = value; }
         }
@@ -56,7 +56,7 @@ namespace SorceressLodge {
             set { skills = value; }
         }
 
-        public MagicUser(int uid, double[] bounty, string surname, string name, string description, List<Location> location, Image image, Dictionary<MagicType, int> skills) {
+        public MagicUser(int uid, string name, string surname, string description, Image image, Dictionary<MagicType, int> skills, List<Bounty> bounty, List<Location> location) {
             this.bounty = bounty;
             this.description = description;
             this.location = location;

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Data.Sql;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.IO;
 
 namespace SorceressLodge {
     class Connection {
@@ -20,17 +21,25 @@ namespace SorceressLodge {
 
         public List<MagicUser> ReadMagicUsers() {
             List<MagicUser> MagicUserlst = new List<MagicUser>();
-            List<MagicType> types = ReadTypes();
+            List<MagicType> magictypes = ReadTypes();
             List<object[]> osLocation = ReadData("Location");
             List<Location> location = new List<Location>();
             foreach (object[] oa in osLocation) {
                 location.Add(new Location((int)oa[0], (int)oa[1], (string)oa[2], (DateTime)oa[3]));
             }
 
-            List<object[]> osMagicTypes = ReadData("MagicTypes");
-            List<MagicType> magictype = new List<MagicType>();
-            foreach (object[] oa in osMagicTypes) {
-                magictype.Add(new MagicType((int)oa[0],(string)oa[1],(bool)oa[2]));
+            List<object[]> osSkills = ReadData("UserSkills");
+            Dictionary<MagicType, int[]> skills = new Dictionary<MagicType, int[]>();
+            foreach (object[] oa in osSkills) {
+                //temp[0] USER
+                //temp[1] SKILLLVL
+                int[] temp = { (int)oa[1], (int)oa[3] };
+                MagicType t = null;
+                foreach (MagicType type in magictypes) {
+                    if (type.ID == (int)oa[2]) {
+                        t = type;
+                    }
+                }
             }
 
             List<object[]> osBounty = ReadData("Bounty");
@@ -40,25 +49,40 @@ namespace SorceressLodge {
             }
 
             int uidMU = 0;
-            double[] bountyMU = { 0};
-            string surnameMU = "";
-            string nameMU = "";
-            string descriptionMU = "";
-            List< Location > locationMU = new List<Location>();
+            List<Bounty> bountyMU = new List<Bounty>();
+            string surnameMU = null;
+            string nameMU = null;
+            string descriptionMU = null;
+            List<Location> locationMU = new List<Location>();
             Image imageMU = null;
-            Dictionary< MagicType, int> skillsMU = new Dictionary<MagicType, int>();
+            Dictionary<MagicType, int> skillsMU = new Dictionary<MagicType, int>();
 
             List<object[]> osMagicUser = ReadData("MagicUsers");
             foreach (object[] oa in osMagicUser) {
-                MagicUserlst.Add(new MagicUser((int)oa[0], bountyMU, (string)oa[2], (string)oa[1],(string)oa[3],locationMU,(Image)oa[4],skillsMU));
-            }
-
-            foreach (var locationItem in location) {
-                foreach (var muItem in MagicUserlst) {
-                    if (locationItem.UserID.Equals(muItem)) {
-
+                uidMU = (int)oa[0];
+                nameMU = (string)oa[1];
+                surnameMU = (string)oa[2];
+                descriptionMU = (string)oa[3];
+                byte[] imgtmp = (byte[])oa[4];
+                using (MemoryStream ms = new MemoryStream(imgtmp)) {
+                    imageMU = Image.FromStream(ms);
+                }
+                foreach (Location l in location) {
+                    if (l.UserID == uidMU) {
+                        locationMU.Add(l);
                     }
                 }
+                foreach (Bounty b in bounty) {
+                    if (b.UserID == uidMU) {
+                        bountyMU.Add(b);
+                    }
+                }
+                foreach (KeyValuePair<MagicType, int[]> skill in skills) {
+                    if (skill.Value[0] == uidMU) {
+                        skillsMU.Add(skill.Key, skill.Value[1]);
+                    }
+                }
+                MagicUserlst.Add(new MagicUser(uidMU, nameMU, surnameMU, descriptionMU, imageMU, skillsMU, bountyMU, locationMU));
             }
 
             return MagicUserlst;
