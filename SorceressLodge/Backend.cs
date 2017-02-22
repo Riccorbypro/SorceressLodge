@@ -13,6 +13,10 @@ namespace SorceressLodge {
         private List<MagicUser> users;
         private Connection conn;
 
+        enum Skill {
+            None = 0, Novice, Adept, Master
+        }
+
         public Backend() {
             conn = new Connection();
             users = conn.ReadMagicUsers();
@@ -83,7 +87,7 @@ namespace SorceressLodge {
                         string val = (string)searchTerm.Value;
                         bool lCont = false;
                         foreach (Location l in user.Location) {
-                            if (l.LocationStr.Contains(val) {
+                            if (l.LocationStr.Contains(val)) {
                                 lCont = true;
                                 break;
                             }
@@ -102,11 +106,46 @@ namespace SorceressLodge {
         }
 
         private string LastLocation(MagicUser user) {
-            throw new NotImplementedException();
+            Location temp = new Location(0, 0, "", new DateTime(1, 1, 1));
+
+            foreach (Location location in user.Location) {
+                if (location.Seen.CompareTo(temp.Seen) > 0) {
+                    temp = location;
+                }
+            }
+
+            return temp.LocationStr;
         }
 
         private string ParseSkill(MagicUser user) {
-            throw new NotImplementedException();
+            double skillAvg = 0;
+            int total = 0;
+            foreach (KeyValuePair<MagicType, int> skill in user.Skills) {
+                total += skill.Value;
+            }
+            skillAvg = total / user.Skills.Count;
+            int skillLvl = (int)Math.Round(skillAvg, MidpointRounding.AwayFromZero);
+            if (skillLvl <= 3) {
+                Skill skill = (Skill)skillLvl;
+                switch (skill) {
+                    case Skill.None:
+                        return "None";
+                        break;
+                    case Skill.Novice:
+                        return "Novice";
+                        break;
+                    case Skill.Adept:
+                        return "Adept";
+                        break;
+                    case Skill.Master:
+                        return "Master";
+                        break;
+                    default:
+                        return "Skill Level Unknown";
+                        break;
+                }
+            }
+            return "Skill Level Unknown";
         }
     }
 }
