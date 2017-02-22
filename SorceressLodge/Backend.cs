@@ -70,14 +70,6 @@ namespace SorceressLodge {
                                 break;
                             }
                         }
-                    } else if (searchTerm.Key.Equals("HasSkillLVL")) {
-                        Dictionary<MagicType, int> required = (Dictionary<MagicType, int>)searchTerm.Value;
-                        foreach (KeyValuePair<MagicType, int> type in required) {
-                            if (!user.Skills.Contains(type)) {
-                                pass = false;
-                                break;
-                            }
-                        }
                     } else if (searchTerm.Key.Equals("Location")) {
                         string val = (string)searchTerm.Value;
                         bool lCont = false;
@@ -115,8 +107,8 @@ namespace SorceressLodge {
         private string ParseSkill(MagicUser user) {
             double skillAvg = 0;
             int total = 0;
-            foreach (KeyValuePair<MagicType, int> skill in user.Skills) {
-                total += skill.Value;
+            foreach (KeyValuePair<MagicType, int[]> skill in user.Skills) {
+                total += skill.Value[1];
             }
             if (user.Skills.Count > 0) {
                 skillAvg = total / user.Skills.Count;
@@ -170,6 +162,10 @@ namespace SorceressLodge {
                 default:
                     return "Skill Level Unknown";
             }
+        }
+
+        public List<MagicType> getTypes() {
+            return conn.ReadTypes();
         }
     }
 }

@@ -14,7 +14,7 @@ namespace SorceressLodge {
         string surname;
         List<Location> location;
         Image image;
-        Dictionary<MagicType, int> skills;
+        Dictionary<MagicType, int[]> skills;
 
         public List<Bounty> Bounty {
             get { return bounty; }
@@ -51,12 +51,12 @@ namespace SorceressLodge {
             set { image = value; }
         }
 
-        public Dictionary<MagicType, int> Skills {
+        public Dictionary<MagicType, int[]> Skills {
             get { return skills; }
             set { skills = value; }
         }
 
-        public MagicUser(int uid, string name, string surname, string description, Image image, Dictionary<MagicType, int> skills, List<Bounty> bounty, List<Location> location) {
+        public MagicUser(int uid, string name, string surname, string description, Image image, Dictionary<MagicType, int[]> skills, List<Bounty> bounty, List<Location> location) {
             this.bounty = bounty;
             this.description = description;
             this.location = location;

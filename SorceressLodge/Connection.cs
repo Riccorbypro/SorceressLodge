@@ -61,7 +61,7 @@ namespace SorceressLodge {
                 string descriptionMU = null;
                 List<Location> locationMU = new List<Location>();
                 Image imageMU = null;
-                Dictionary<MagicType, int> skillsMU = new Dictionary<MagicType, int>();
+                Dictionary<MagicType, int[]> skillsMU = new Dictionary<MagicType, int[]>();
 
                 uidMU = (int)oa[0];
                 nameMU = (string)oa[1];
@@ -86,7 +86,7 @@ namespace SorceressLodge {
                 }
                 foreach (KeyValuePair<int[], MagicType> skill in skills) {
                     if (skill.Key[1] == uidMU) {
-                        skillsMU.Add(skill.Value, skill.Key[2]);
+                        skillsMU.Add(skill.Value, new int[] { skill.Key[0],skill.Key[2] });
                     }
                 }
                 MagicUserlst.Add(new MagicUser(uidMU, nameMU, surnameMU, descriptionMU, imageMU, skillsMU, bountyMU, locationMU));

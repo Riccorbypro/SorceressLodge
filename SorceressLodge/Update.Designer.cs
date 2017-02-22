@@ -181,6 +181,10 @@
             // cmbLevelU
             // 
             this.cmbLevelU.FormattingEnabled = true;
+            this.cmbLevelU.Items.AddRange(new object[] {
+            "Novice",
+            "Adept",
+            "Master"});
             this.cmbLevelU.Location = new System.Drawing.Point(278, 313);
             this.cmbLevelU.Name = "cmbLevelU";
             this.cmbLevelU.Size = new System.Drawing.Size(108, 21);

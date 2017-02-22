@@ -102,9 +102,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\Game Over.wav" />
     <Content Include="Resources\PlaceholderImg.jpg" />
     <Content Include="MagicTypes.txt" />
-    <None Include="Resources\Background.png" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="AdvancedSearch.resx">

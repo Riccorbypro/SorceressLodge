@@ -1,9 +1,12 @@
-﻿using System;
+﻿using SorceressLodge.Properties;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Resources;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -36,6 +39,9 @@ namespace SorceressLodge {
 
         private void Login_KeyUp(object sender, KeyEventArgs e) {
             if (code.IsCompletedBy(e.KeyCode)) {
+                System.Media.SoundPlayer player = new System.Media.SoundPlayer(Resources.Game_Over);
+                player.Load();
+                player.Play();
                 MessageBox.Show("My life is like a video game,\nTrying hard to beat the stage.\nAll while I am still collecting coins.");
             }
         }

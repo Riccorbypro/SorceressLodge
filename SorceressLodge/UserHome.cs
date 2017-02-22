@@ -47,10 +47,11 @@ namespace SorceressLodge {
         }
 
         private void usersTable_MouseDoubleClick(object sender, MouseEventArgs e) {
-            int id = (int)usersTable.SelectedRows[0].Cells[0].Value;
+            int id = Convert.ToInt32(usersTable.SelectedRows[0].Cells[0].Value);
             MagicUser user;
-            if ((user = b.getUser(id))!=null) {
-
+            if ((user = b.getUser(id)) != null) {
+                Update u = new Update(user, b);
+                u.Show();
             }
         }
     }
