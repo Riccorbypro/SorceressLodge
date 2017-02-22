@@ -12,6 +12,7 @@ namespace SorceressLodge {
     public partial class Login : Form {
         public Login() {
             InitializeComponent();
+            AcceptButton = btnLogin;
         }
 
         private void btnLogin_Click(object sender, EventArgs e) {
@@ -19,11 +20,15 @@ namespace SorceressLodge {
                 if (!LoginBackend.Login(txtUserName.Text, txtUserPassword.Text)) {
                     throw new LoginException("Username or Password Incorrect!");
                 } else {
-                    this.Dispose();
+                    this.Hide();
                 }
             } catch (LoginException ex) {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void Login_FormClosed(object sender, FormClosedEventArgs e) {
+            Environment.Exit(0);
         }
     }
 }

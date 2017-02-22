@@ -44,9 +44,9 @@
             // 
             this.txtUserPassword.Location = new System.Drawing.Point(122, 152);
             this.txtUserPassword.Name = "txtUserPassword";
-            this.txtUserPassword.PasswordChar = '*';
             this.txtUserPassword.Size = new System.Drawing.Size(150, 20);
             this.txtUserPassword.TabIndex = 1;
+            this.txtUserPassword.UseSystemPasswordChar = true;
             // 
             // btnLogin
             // 
@@ -107,6 +107,7 @@
             this.Controls.Add(this.txtUserName);
             this.Name = "Login";
             this.Text = "Administrator Login";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Login_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this.AdminPictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

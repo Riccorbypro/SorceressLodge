@@ -118,9 +118,9 @@ namespace SorceressLodge {
             foreach (KeyValuePair<MagicType, int> skill in user.Skills) {
                 total += skill.Value;
             }
-            skillAvg = total / user.Skills.Count;
-            int skillLvl = (int)Math.Round(skillAvg, MidpointRounding.AwayFromZero);
-            if (skillLvl <= 3) {
+            if (user.Skills.Count > 0) {
+                skillAvg = total / user.Skills.Count;
+                int skillLvl = (int)Math.Round(skillAvg, MidpointRounding.AwayFromZero);
                 Skill skill = (Skill)skillLvl;
                 switch (skill) {
                     case Skill.None:

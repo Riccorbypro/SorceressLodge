@@ -16,6 +16,7 @@ namespace SorceressLodge {
         public UserHome() {
             b = new Backend();
             InitializeComponent();
+            setTable();
         }
 
         private void setTable() {
@@ -26,10 +27,20 @@ namespace SorceressLodge {
                 table = b.SearchUsers(new Dictionary<string, object>() { { "Name", nameSelectCmb.Text } });
             }
             usersTable.DataSource = table;
+            usersTable.Refresh();
         }
 
         private void btnSearch_Click(object sender, EventArgs e) {
+            setTable();
+        }
 
+        private void UserHome_FormClosed(object sender, FormClosedEventArgs e) {
+            Environment.Exit(0);
+        }
+
+        private void btnAdvancS_Click(object sender, EventArgs e) {
+            AdvancedSearch ads = new AdvancedSearch(b);
+            ads.Show();
         }
     }
 }

@@ -7,6 +7,9 @@ using System.Windows.Forms;
 
 namespace SorceressLodge {
     class Program {
+
+        [STAThread]
+
         public static void Main(string[] args) {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

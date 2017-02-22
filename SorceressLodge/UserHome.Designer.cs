@@ -91,6 +91,7 @@
             this.btnAdvancS.TabIndex = 3;
             this.btnAdvancS.Text = "Advanced Search";
             this.btnAdvancS.UseVisualStyleBackColor = true;
+            this.btnAdvancS.Click += new System.EventHandler(this.btnAdvancS_Click);
             // 
             // btnSearch
             // 
@@ -337,6 +338,7 @@
             this.Controls.Add(this.tabcontrols);
             this.Name = "UserHome";
             this.Text = "User Home";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.UserHome_FormClosed);
             this.tabcontrols.ResumeLayout(false);
             this.tabView.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.usersTable)).EndInit();
