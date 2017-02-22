@@ -16,10 +16,13 @@ namespace SorceressLodge {
 
         private void btnLogin_Click(object sender, EventArgs e) {
             try {
-
-            } catch (LoginException ) {
-
-                throw;
+                if (!LoginBackend.Login(txtUserName.Text, txtUserPassword.Text)) {
+                    throw new LoginException("Username or Password Incorrect!");
+                } else {
+                    this.Dispose();
+                }
+            } catch (LoginException ex) {
+                MessageBox.Show(ex.Message);
             }
         }
     }
