@@ -30,7 +30,11 @@ namespace SorceressLodge {
             foreach (object[] oa in osMagicTypes) {
                 magictype.Add(new MagicType((int)oa[0],(string)oa[1],(bool)oa[2]));
             }
-            
+            //List<object[]> os = ReadData("Bounty");
+            //List<Location> location = new List<Location>();
+            //foreach (object[] oa in osLocation) {
+            //    location.Add(new Location((int)oa[0], (int)oa[1], (string)oa[2], (DateTime)oa[3]));
+            //}
             return MagicUserlst;
         }
 
