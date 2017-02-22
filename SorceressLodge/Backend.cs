@@ -147,5 +147,14 @@ namespace SorceressLodge {
 
             return names;
         }
+
+        public MagicUser getUser(int id) {
+            foreach (MagicUser user in users) {
+                if (user.UID==id) {
+                    return user
+                }
+            }
+            return null;
+        }
     }
 }

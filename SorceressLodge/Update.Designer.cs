@@ -32,7 +32,6 @@
             this.lblMagicLevelU = new System.Windows.Forms.Label();
             this.lblLocationU = new System.Windows.Forms.Label();
             this.lblMagicU = new System.Windows.Forms.Label();
-            this.lblNameU = new System.Windows.Forms.Label();
             this.btnUpdateBounty = new System.Windows.Forms.Button();
             this.lstbBountyUpdate = new System.Windows.Forms.ListBox();
             this.txtDescription = new System.Windows.Forms.TextBox();
@@ -42,11 +41,14 @@
             this.cmbLevelU = new System.Windows.Forms.ComboBox();
             this.cmbMagicU = new System.Windows.Forms.ComboBox();
             this.lstbMagicUpdate = new System.Windows.Forms.ListBox();
-            this.txtNameU = new System.Windows.Forms.TextBox();
             this.btnDelMagic = new System.Windows.Forms.Button();
             this.btnDelBounty = new System.Windows.Forms.Button();
             this.pbPictureU = new System.Windows.Forms.PictureBox();
             this.btnUpdatePicture = new System.Windows.Forms.Button();
+            this.txtNameU = new System.Windows.Forms.TextBox();
+            this.lblNameU = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtSurnameU = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pbPictureU)).BeginInit();
             this.SuspendLayout();
             // 
@@ -124,16 +126,6 @@
             this.lblMagicU.TabIndex = 31;
             this.lblMagicU.Text = "Magic Type";
             // 
-            // lblNameU
-            // 
-            this.lblNameU.AutoSize = true;
-            this.lblNameU.BackColor = System.Drawing.SystemColors.Window;
-            this.lblNameU.Location = new System.Drawing.Point(203, 59);
-            this.lblNameU.Name = "lblNameU";
-            this.lblNameU.Size = new System.Drawing.Size(126, 13);
-            this.lblNameU.TabIndex = 30;
-            this.lblNameU.Text = "User Name and Surname";
-            // 
             // btnUpdateBounty
             // 
             this.btnUpdateBounty.Location = new System.Drawing.Point(116, 343);
@@ -208,13 +200,6 @@
             this.lstbMagicUpdate.Size = new System.Drawing.Size(166, 121);
             this.lstbMagicUpdate.TabIndex = 21;
             // 
-            // txtNameU
-            // 
-            this.txtNameU.Location = new System.Drawing.Point(202, 71);
-            this.txtNameU.Name = "txtNameU";
-            this.txtNameU.Size = new System.Drawing.Size(184, 20);
-            this.txtNameU.TabIndex = 20;
-            // 
             // btnDelMagic
             // 
             this.btnDelMagic.Location = new System.Drawing.Point(221, 343);
@@ -250,6 +235,40 @@
             this.btnUpdatePicture.Text = "Update Picture";
             this.btnUpdatePicture.UseVisualStyleBackColor = true;
             // 
+            // txtNameU
+            // 
+            this.txtNameU.Location = new System.Drawing.Point(201, 55);
+            this.txtNameU.Name = "txtNameU";
+            this.txtNameU.Size = new System.Drawing.Size(184, 20);
+            this.txtNameU.TabIndex = 20;
+            // 
+            // lblNameU
+            // 
+            this.lblNameU.AutoSize = true;
+            this.lblNameU.BackColor = System.Drawing.SystemColors.Window;
+            this.lblNameU.Location = new System.Drawing.Point(202, 43);
+            this.lblNameU.Name = "lblNameU";
+            this.lblNameU.Size = new System.Drawing.Size(35, 13);
+            this.lblNameU.TabIndex = 30;
+            this.lblNameU.Text = "Name";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.SystemColors.Window;
+            this.label1.Location = new System.Drawing.Point(202, 78);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(49, 13);
+            this.label1.TabIndex = 44;
+            this.label1.Text = "Surname";
+            // 
+            // txtSurnameU
+            // 
+            this.txtSurnameU.Location = new System.Drawing.Point(201, 90);
+            this.txtSurnameU.Name = "txtSurnameU";
+            this.txtSurnameU.Size = new System.Drawing.Size(184, 20);
+            this.txtSurnameU.TabIndex = 43;
+            // 
             // Update
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -257,6 +276,8 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(401, 623);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.txtSurnameU);
             this.Controls.Add(this.btnUpdatePicture);
             this.Controls.Add(this.pbPictureU);
             this.Controls.Add(this.btnDelBounty);
@@ -298,7 +319,6 @@
         private System.Windows.Forms.Label lblMagicLevelU;
         private System.Windows.Forms.Label lblLocationU;
         private System.Windows.Forms.Label lblMagicU;
-        private System.Windows.Forms.Label lblNameU;
         private System.Windows.Forms.Button btnUpdateBounty;
         private System.Windows.Forms.ListBox lstbBountyUpdate;
         private System.Windows.Forms.TextBox txtDescription;
@@ -308,10 +328,13 @@
         private System.Windows.Forms.ComboBox cmbLevelU;
         private System.Windows.Forms.ComboBox cmbMagicU;
         private System.Windows.Forms.ListBox lstbMagicUpdate;
-        private System.Windows.Forms.TextBox txtNameU;
         private System.Windows.Forms.Button btnDelMagic;
         private System.Windows.Forms.Button btnDelBounty;
         private System.Windows.Forms.PictureBox pbPictureU;
         private System.Windows.Forms.Button btnUpdatePicture;
+        private System.Windows.Forms.TextBox txtNameU;
+        private System.Windows.Forms.Label lblNameU;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txtSurnameU;
     }
 }
