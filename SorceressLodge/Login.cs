@@ -11,12 +11,11 @@ using System.Windows.Forms;
 namespace SorceressLodge {
     public partial class Login : Form {
 
-        private List<Keys> code;
+        private KonamiCode code = new KonamiCode();
 
         public Login() {
             InitializeComponent();
             AcceptButton = btnLogin;
-            code = new List<Keys>();
         }
 
         private void btnLogin_Click(object sender, EventArgs e) {
@@ -35,8 +34,10 @@ namespace SorceressLodge {
             Environment.Exit(0);
         }
 
-        private void Konami(object sender, KeyEventArgs e) {
-            Keys[] required = new Keys[] { };
+        private void Login_KeyUp(object sender, KeyEventArgs e) {
+            if (code.IsCompletedBy(e.KeyCode)) {
+                MessageBox.Show("My life is like a video game,\nTrying hard to beat the stage.\nAll while I am still collecting coins.");
+            }
         }
     }
 }

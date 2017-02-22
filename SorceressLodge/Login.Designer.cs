@@ -39,6 +39,7 @@
             this.txtUserName.Name = "txtUserName";
             this.txtUserName.Size = new System.Drawing.Size(150, 20);
             this.txtUserName.TabIndex = 0;
+            this.txtUserName.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Login_KeyUp);
             // 
             // txtUserPassword
             // 
@@ -47,6 +48,7 @@
             this.txtUserPassword.Size = new System.Drawing.Size(150, 20);
             this.txtUserPassword.TabIndex = 1;
             this.txtUserPassword.UseSystemPasswordChar = true;
+            this.txtUserPassword.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Login_KeyUp);
             // 
             // btnLogin
             // 
@@ -108,7 +110,7 @@
             this.Name = "Login";
             this.Text = "Administrator Login";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Login_FormClosed);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Konami);
+            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Login_KeyUp);
             ((System.ComponentModel.ISupportInitialize)(this.AdminPictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

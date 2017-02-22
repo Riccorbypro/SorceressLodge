@@ -58,6 +58,7 @@
     <Compile Include="Backend.cs" />
     <Compile Include="Bounty.cs" />
     <Compile Include="Connection.cs" />
+    <Compile Include="KonamiCode.cs" />
     <Compile Include="Location.cs" />
     <Compile Include="LoginBackend.cs" />
     <Compile Include="LoginException.cs" />
