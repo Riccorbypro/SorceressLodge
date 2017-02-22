@@ -74,11 +74,11 @@
             // lblUserName
             // 
             this.lblUserName.BackColor = System.Drawing.SystemColors.Window;
-            this.lblUserName.Location = new System.Drawing.Point(9, 127);
+            this.lblUserName.Location = new System.Drawing.Point(10, 127);
             this.lblUserName.Name = "lblUserName";
             this.lblUserName.Size = new System.Drawing.Size(114, 18);
             this.lblUserName.TabIndex = 4;
-            this.lblUserName.Text = "User Name";
+            this.lblUserName.Text = "Username";
             this.lblUserName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblPassword
