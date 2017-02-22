@@ -28,8 +28,8 @@
             this.tabView = new System.Windows.Forms.TabPage();
             this.btnAdvancS = new System.Windows.Forms.Button();
             this.btnSearch = new System.Windows.Forms.Button();
-            this.cmbNameS = new System.Windows.Forms.ComboBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.nameSelectCmb = new System.Windows.Forms.ComboBox();
+            this.usersTable = new System.Windows.Forms.DataGridView();
             this.tabAdd = new System.Windows.Forms.TabPage();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnAddPicture = new System.Windows.Forms.Button();
@@ -60,7 +60,7 @@
             this.txtUserNameA = new System.Windows.Forms.TextBox();
             this.tabcontrols.SuspendLayout();
             this.tabView.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.usersTable)).BeginInit();
             this.tabAdd.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabPage1.SuspendLayout();
@@ -81,8 +81,8 @@
             // 
             this.tabView.Controls.Add(this.btnAdvancS);
             this.tabView.Controls.Add(this.btnSearch);
-            this.tabView.Controls.Add(this.cmbNameS);
-            this.tabView.Controls.Add(this.dataGridView1);
+            this.tabView.Controls.Add(this.nameSelectCmb);
+            this.tabView.Controls.Add(this.usersTable);
             this.tabView.Location = new System.Drawing.Point(4, 22);
             this.tabView.Name = "tabView";
             this.tabView.Padding = new System.Windows.Forms.Padding(3);
@@ -100,6 +100,7 @@
             this.btnAdvancS.TabIndex = 3;
             this.btnAdvancS.Text = "Advanced Search";
             this.btnAdvancS.UseVisualStyleBackColor = true;
+            this.btnAdvancS.Click += new System.EventHandler(this.btnAdvancS_Click);
             // 
             // btnSearch
             // 
@@ -110,22 +111,23 @@
             this.btnSearch.TabIndex = 2;
             this.btnSearch.Text = "Search";
             this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
-            // cmbNameS
+            // nameSelectCmb
             // 
-            this.cmbNameS.FormattingEnabled = true;
-            this.cmbNameS.Location = new System.Drawing.Point(19, 26);
-            this.cmbNameS.Name = "cmbNameS";
-            this.cmbNameS.Size = new System.Drawing.Size(220, 21);
-            this.cmbNameS.TabIndex = 1;
+            this.nameSelectCmb.FormattingEnabled = true;
+            this.nameSelectCmb.Location = new System.Drawing.Point(19, 26);
+            this.nameSelectCmb.Name = "nameSelectCmb";
+            this.nameSelectCmb.Size = new System.Drawing.Size(220, 21);
+            this.nameSelectCmb.TabIndex = 1;
             // 
-            // dataGridView1
+            // usersTable
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(19, 53);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(447, 270);
-            this.dataGridView1.TabIndex = 0;
+            this.usersTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.usersTable.Location = new System.Drawing.Point(19, 53);
+            this.usersTable.Name = "usersTable";
+            this.usersTable.Size = new System.Drawing.Size(447, 270);
+            this.usersTable.TabIndex = 0;
             // 
             // tabAdd
             // 
@@ -408,7 +410,7 @@
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.AdminHome_FormClosed);
             this.tabcontrols.ResumeLayout(false);
             this.tabView.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.usersTable)).EndInit();
             this.tabAdd.ResumeLayout(false);
             this.tabAdd.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -423,8 +425,8 @@
         private System.Windows.Forms.TabControl tabcontrols;
         private System.Windows.Forms.TabPage tabView;
         private System.Windows.Forms.TabPage tabAdd;
-        private System.Windows.Forms.ComboBox cmbNameS;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.ComboBox nameSelectCmb;
+        private System.Windows.Forms.DataGridView usersTable;
         private System.Windows.Forms.ListBox lstbBountyAdd;
         private System.Windows.Forms.TextBox txtDescription;
         private System.Windows.Forms.TextBox txtLocationA;

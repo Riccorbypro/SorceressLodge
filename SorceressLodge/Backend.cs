@@ -151,7 +151,7 @@ namespace SorceressLodge {
         public MagicUser getUser(int id) {
             foreach (MagicUser user in users) {
                 if (user.UID==id) {
-                    return user
+                    return user;
                 }
             }
             return null;

@@ -15,9 +15,9 @@ namespace SorceressLodge {
         SqlDataReader datareader;
 
         public Connection() {
-            string conn = @"Data Source = DESKTOP - C12M830\SQLEXPRESS; Initial Catalog = SorceressLodge; Integrated Security = True";
-            //@"Data Source = DESKTOP - C12M830\SQLEXPRESS; Initial Catalog = SorceressLodge; Integrated Security = True" WelterZen
-            //@"Data Source = DESKTOP - 103SE6A\SQLEXPRESS; Initial Catalog = SorceressLodge; Integrated Security = True" NekoPara
+            string conn = @"Data Source=DESKTOP-C12M830\SQLEXPRESS;Initial Catalog=SorceressLodge;Integrated Security=True";
+            //////////////@"Data Source=DESKTOP-C12M830\SQLEXPRESS;Initial Catalog=SorceressLodge;Integrated Security=True" WelterZen
+            //////////////@"Data Source=DESKTOP-103SE6A\SQLEXPRESS;Initial Catalog=SorceressLodge;Integrated Security=True" 
             sqlconn = new SqlConnection(conn);
         }
 

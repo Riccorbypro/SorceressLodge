@@ -10,12 +10,46 @@ using System.Windows.Forms;
 
 namespace SorceressLodge {
     public partial class AdminHome : Form {
+        private Backend b;
         public AdminHome() {
+            b = new Backend();
             InitializeComponent();
+            nameSelectCmb.DataSource = b.getNames();
+            setTable();
+            nameSelectCmb.Text = "";
         }
 
         private void AdminHome_FormClosed(object sender, FormClosedEventArgs e) {
             Environment.Exit(0);
+        }
+
+        private void setTable() {
+            DataTable table = null;
+            if (nameSelectCmb.Text.Equals("")) {
+                table = b.SearchUsers(new Dictionary<string, object>());
+            } else {
+                table = b.SearchUsers(new Dictionary<string, object>() { { "Name", nameSelectCmb.Text } });
+            }
+            usersTable.DataSource = table;
+            usersTable.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            usersTable.Refresh();
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e) {
+            setTable();
+        }
+
+        private void btnAdvancS_Click(object sender, EventArgs e) {
+            AdvancedSearch ads = new AdvancedSearch(b);
+            ads.Show();
+        }
+
+        private void usersTable_MouseDoubleClick(object sender, MouseEventArgs e) {
+            int id = (int)usersTable.SelectedRows[0].Cells[0].Value;
+            MagicUser user;
+            if ((user = b.getUser(id)) != null) {
+
+            }
         }
     }
 }
