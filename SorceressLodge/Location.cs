@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace SorceressLodge {
-    class Location {
+    public class Location {
         private int id;
 
         public int ID {

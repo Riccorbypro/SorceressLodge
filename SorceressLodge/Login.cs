@@ -10,9 +10,13 @@ using System.Windows.Forms;
 
 namespace SorceressLodge {
     public partial class Login : Form {
+
+        private List<Keys> code;
+
         public Login() {
             InitializeComponent();
             AcceptButton = btnLogin;
+            code = new List<Keys>();
         }
 
         private void btnLogin_Click(object sender, EventArgs e) {
@@ -29,6 +33,10 @@ namespace SorceressLodge {
 
         private void Login_FormClosed(object sender, FormClosedEventArgs e) {
             Environment.Exit(0);
+        }
+
+        private void Konami(object sender, KeyEventArgs e) {
+            Keys[] required = new Keys[] { };
         }
     }
 }

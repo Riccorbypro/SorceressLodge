@@ -108,6 +108,7 @@
             this.Name = "Login";
             this.Text = "Administrator Login";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Login_FormClosed);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Konami);
             ((System.ComponentModel.ISupportInitialize)(this.AdminPictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

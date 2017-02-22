@@ -150,11 +150,26 @@ namespace SorceressLodge {
 
         public MagicUser getUser(int id) {
             foreach (MagicUser user in users) {
-                if (user.UID==id) {
-                    return user
+                if (user.UID == id) {
+                    return user;
                 }
             }
             return null;
+        }
+
+        public string getSkillLevel(int i) {
+            switch ((Skill)i) {
+                case Skill.None:
+                    return "None";
+                case Skill.Novice:
+                    return "Novice";
+                case Skill.Adept:
+                    return "Adept";
+                case Skill.Master:
+                    return "Master";
+                default:
+                    return "Skill Level Unknown";
+            }
         }
     }
 }
