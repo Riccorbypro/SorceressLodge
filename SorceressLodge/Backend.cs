@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.Common;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,38 +13,134 @@ namespace SorceressLodge {
         private List<MagicUser> users;
         private Connection conn;
 
+        enum Skill {
+            None = 0, Novice, Adept, Master
+        }
+
         public Backend() {
             conn = new Connection();
             users = conn.ReadMagicUsers();
         }
 
-        public DataGridView SearchUsers(Dictionary<string, object> searchTerms) {
+        public DataTable SearchUsers(Dictionary<string, object> searchTerms) {
+            DataTable table = new DataTable("magicusers");
 
-            string conn = @"Data Source=DESKTOP-C12M830\SQLEXPRESS;Initial Catalog=first;Integrated Security=True";
+            table.Columns.Add("Name");
+            table.Columns.Add("Surname");
+            table.Columns.Add("Skill Level");
+            table.Columns.Add("Last Location");
 
-            sqlConnect = new SqlConnection(conn);
-            sqlConnect.Open();
+            foreach (MagicUser user in users) {
+                bool pass = true;
+                foreach (KeyValuePair<string, object> searchTerm in searchTerms) {
+                    if (searchTerm.Key.Equals("Name")) {
+                        string val = (string)searchTerm.Value;
+                        if (!user.Name.Equals(val)) {
+                            pass = false;
+                            break;
+                        }
+                    } else if (searchTerm.Key.Equals("Surname")) {
+                        string val = (string)searchTerm.Value;
+                        if (!user.Surname.Equals(val)) {
+                            pass = false;
+                            break;
+                        }
+                    } else if (searchTerm.Key.Equals("Bounty")) {
+                        bool bPass = false;
+                        //[0] MIN
+                        //[1] MAX
+                        double[] required = (double[])searchTerm.Value;
+                        foreach (double bounty in user.Bounty) {
+                            if (bounty >= required[0] && bounty <= required[1]) {
+                                bPass = true;
+                                break;
+                            }
+                        }
+                        if (!bPass) {
+                            pass = false;
+                        }
+                    } else if (searchTerm.Key.Equals("HasSkill")) {
+                        List<MagicType> required = (List<MagicType>)searchTerm.Value;
+                        foreach (MagicType type in required) {
+                            if (!user.Skills.Keys.Contains(type)) {
+                                pass = false;
+                                break;
+                            }
+                        }
+                    } else if (searchTerm.Key.Equals("NotSkill")) {
+                        List<MagicType> required = (List<MagicType>)searchTerm.Value;
+                        foreach (MagicType type in required) {
+                            if (user.Skills.Keys.Contains(type)) {
+                                pass = false;
+                                break;
+                            }
+                        }
+                    } else if (searchTerm.Key.Equals("HasSkillLVL")) {
+                        Dictionary<MagicType, int> required = (Dictionary<MagicType, int>)searchTerm.Value;
+                        foreach (KeyValuePair<MagicType, int> type in required) {
+                            if (!user.Skills.Contains(type)) {
+                                pass = false;
+                                break;
+                            }
+                        }
+                    } else if (searchTerm.Key.Equals("Location")) {
+                        string val = (string)searchTerm.Value;
+                        bool lCont = false;
+                        foreach (Location l in user.Location) {
+                            if (l.LocationStr.Contains(val)) {
+                                lCont = true;
+                                break;
+                            }
+                        }
+                        if (!lCont) {
+                            pass = false;
+                        }
+                    }
+                }
+                if (pass) {
+                    table.Rows.Add(user.Name, user.Surname, ParseSkill(user), LastLocation(user));
+                }
+            }
 
-            string Query1 = "SELECT * from Store_Details";
-
-            sqlCommand = new SqlCommand(Query1, sqlConnect);
-            dataAdapt = new SqlDataAdapter(sqlCommand);
-            dataset = new DataSet();
-            dataAdapt.Fill(dataset, "Store_Details");
-            commBuilder = new SqlCommandBuilder(dataAdapt);
-            dataTable = dataset.Tables["Store_Details"];
-            sqlConnect.Close();
-
-            //MessageBox.Show(dataTable.TableName.ToString());
-            //MessageBox.Show(dataset.DataSetName.ToString());
-
-            dataGridView1.DataSource = dataTable;
-
-            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridView1.ReadOnly = true;
-
-
+            return table;
         }
 
+        private string LastLocation(MagicUser user) {
+            Location temp = new Location(0, 0, "", new DateTime(1, 1, 1));
+
+            foreach (Location location in user.Location) {
+                if (location.Seen.CompareTo(temp.Seen) > 0) {
+                    temp = location;
+                }
+            }
+
+            return temp.LocationStr;
+        }
+
+        private string ParseSkill(MagicUser user) {
+            double skillAvg = 0;
+            int total = 0;
+            foreach (KeyValuePair<MagicType, int> skill in user.Skills) {
+                total += skill.Value;
+            }
+            skillAvg = total / user.Skills.Count;
+            int skillLvl = (int)Math.Round(skillAvg, MidpointRounding.AwayFromZero);
+            if (skillLvl <= 3) {
+                Skill skill = (Skill)skillLvl;
+                switch (skill) {
+                    case Skill.None:
+                        return "None";
+                    case Skill.Novice:
+                        return "Novice";
+                    case Skill.Adept:
+                        return "Adept";
+                    case Skill.Master:
+                        return "Master";
+                    default:
+                        return "Skill Level Unknown";
+                }
+            }
+            return "Skill Level Unknown";
+        }
     }
 }
