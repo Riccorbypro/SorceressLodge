@@ -36,13 +36,7 @@ namespace SorceressLodge {
                 foreach (KeyValuePair<string, object> searchTerm in searchTerms) {
                     if (searchTerm.Key.Equals("Name")) {
                         string val = (string)searchTerm.Value;
-                        if (!user.Name.Equals(val)) {
-                            pass = false;
-                            break;
-                        }
-                    } else if (searchTerm.Key.Equals("Surname")) {
-                        string val = (string)searchTerm.Value;
-                        if (!user.Surname.Equals(val)) {
+                        if (!user.Name.Contains(val)) {
                             pass = false;
                             break;
                         }
