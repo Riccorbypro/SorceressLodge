@@ -52,6 +52,7 @@
     <Compile Include="AdvancedSearch.Designer.cs">
       <DependentUpon>AdvancedSearch.cs</DependentUpon>
     </Compile>
+    <Compile Include="Backend.cs" />
     <Compile Include="Bounty.cs" />
     <Compile Include="Connection.cs" />
     <Compile Include="Location.cs" />
