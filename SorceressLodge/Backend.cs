@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SorceressLodge {
-    class Backend {
+    public class Backend {
 
         private List<MagicUser> users;
         private Connection conn;
@@ -27,7 +27,6 @@ namespace SorceressLodge {
 
             table.Columns.Add("ID");
             table.Columns.Add("Name");
-            table.Columns.Add("Surname");
             table.Columns.Add("Skill Level");
             table.Columns.Add("Last Location");
 
@@ -94,7 +93,7 @@ namespace SorceressLodge {
                     }
                 }
                 if (pass) {
-                    table.Rows.Add(user.UID, user.Name, user.Surname, ParseSkill(user), LastLocation(user));
+                    table.Rows.Add(user.UID, user.Name + " " + user.Surname, ParseSkill(user), LastLocation(user));
                 }
             }
 

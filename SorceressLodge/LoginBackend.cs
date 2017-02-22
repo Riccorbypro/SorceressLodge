@@ -10,7 +10,6 @@ namespace SorceressLodge {
         public static bool Login(string username, string password) {
             Connection conn = new Connection();
             List<Users> userlst = conn.ReadUsers();
-            bool access = false;
             foreach (Users item in userlst) {
                 if ((item.UserName.Equals(username)) || (item.Password.Equals(password))) {
                     if (item.IsAdmin == true) {

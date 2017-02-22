@@ -9,8 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SorceressLodge {
-    public partial class LoginForm : Form {
-        public LoginForm() {
+    public partial class Login : Form {
+        public Login() {
             InitializeComponent();
         }
 
