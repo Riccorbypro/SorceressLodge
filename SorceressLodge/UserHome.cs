@@ -11,7 +11,6 @@ using System.Windows.Forms;
 namespace SorceressLodge {
     public partial class UserHome : Form {
 
-        
         private Backend b;
 
         public UserHome() {
@@ -54,14 +53,6 @@ namespace SorceressLodge {
                 Update u = new Update(user, b);
                 u.Show();
             }
-        }
-        
-        private void tabAdd_Click(object sender, EventArgs e) {
-
-        }
-
-        private void txtNameA_TextChanged(object sender, EventArgs e) {
-
         }
     }
 }
