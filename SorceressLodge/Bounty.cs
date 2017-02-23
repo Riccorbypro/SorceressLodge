@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace SorceressLodge {
-    class Bounty {
+    public class Bounty {
         private int bountyID;
 
         public int BountyID {

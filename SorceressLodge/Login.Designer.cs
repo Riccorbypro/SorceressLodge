@@ -1,5 +1,5 @@
 ﻿namespace SorceressLodge {
-    partial class LoginForm {
+    partial class Login {
         /// <summary>
         /// Required designer variable.
         /// </summary>
@@ -23,7 +23,7 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Login));
             this.txtUserName = new System.Windows.Forms.TextBox();
             this.txtUserPassword = new System.Windows.Forms.TextBox();
             this.btnLogin = new System.Windows.Forms.Button();
@@ -39,14 +39,16 @@
             this.txtUserName.Name = "txtUserName";
             this.txtUserName.Size = new System.Drawing.Size(150, 20);
             this.txtUserName.TabIndex = 0;
+            this.txtUserName.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Login_KeyUp);
             // 
             // txtUserPassword
             // 
             this.txtUserPassword.Location = new System.Drawing.Point(122, 152);
             this.txtUserPassword.Name = "txtUserPassword";
-            this.txtUserPassword.PasswordChar = '*';
             this.txtUserPassword.Size = new System.Drawing.Size(150, 20);
             this.txtUserPassword.TabIndex = 1;
+            this.txtUserPassword.UseSystemPasswordChar = true;
+            this.txtUserPassword.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Login_KeyUp);
             // 
             // btnLogin
             // 
@@ -74,25 +76,25 @@
             // lblUserName
             // 
             this.lblUserName.BackColor = System.Drawing.SystemColors.Window;
-            this.lblUserName.Location = new System.Drawing.Point(12, 127);
+            this.lblUserName.Location = new System.Drawing.Point(10, 127);
             this.lblUserName.Name = "lblUserName";
             this.lblUserName.Size = new System.Drawing.Size(114, 18);
             this.lblUserName.TabIndex = 4;
-            this.lblUserName.Text = "User Name";
+            this.lblUserName.Text = "Username";
             this.lblUserName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblPassword
             // 
             this.lblPassword.BackColor = System.Drawing.SystemColors.Window;
             this.lblPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPassword.Location = new System.Drawing.Point(12, 153);
+            this.lblPassword.Location = new System.Drawing.Point(10, 153);
             this.lblPassword.Name = "lblPassword";
             this.lblPassword.Size = new System.Drawing.Size(114, 18);
             this.lblPassword.TabIndex = 5;
             this.lblPassword.Text = "Password";
             this.lblPassword.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // LoginForm
+            // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -105,8 +107,10 @@
             this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.txtUserPassword);
             this.Controls.Add(this.txtUserName);
-            this.Name = "LoginForm";
+            this.Name = "Login";
             this.Text = "Administrator Login";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Login_FormClosed);
+            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Login_KeyUp);
             ((System.ComponentModel.ISupportInitialize)(this.AdminPictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

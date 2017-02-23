@@ -26,35 +26,36 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UserHome));
             this.tabcontrols = new System.Windows.Forms.TabControl();
             this.tabView = new System.Windows.Forms.TabPage();
-            this.cmbNameS = new System.Windows.Forms.ComboBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.tabAdd = new System.Windows.Forms.TabPage();
-            this.txtNameA = new System.Windows.Forms.TextBox();
-            this.lstbMagicAdd = new System.Windows.Forms.ListBox();
-            this.cmbMagicA = new System.Windows.Forms.ComboBox();
-            this.cmbLevelA = new System.Windows.Forms.ComboBox();
-            this.btnAddMagic = new System.Windows.Forms.Button();
-            this.txtBountyA = new System.Windows.Forms.TextBox();
-            this.txtLocationA = new System.Windows.Forms.TextBox();
-            this.txtDescription = new System.Windows.Forms.TextBox();
-            this.lstbBountyAdd = new System.Windows.Forms.ListBox();
-            this.btnSearch = new System.Windows.Forms.Button();
             this.btnAdvancS = new System.Windows.Forms.Button();
-            this.btnAddBounty = new System.Windows.Forms.Button();
-            this.lblNameA = new System.Windows.Forms.Label();
-            this.lblMagicA = new System.Windows.Forms.Label();
-            this.lblLocationA = new System.Windows.Forms.Label();
-            this.lblMagicLevelA = new System.Windows.Forms.Label();
-            this.lblBountyA = new System.Windows.Forms.Label();
-            this.lblDescA = new System.Windows.Forms.Label();
-            this.dtpLocationA = new System.Windows.Forms.DateTimePicker();
-            this.lstbLocationAdd = new System.Windows.Forms.ListBox();
-            this.btnAddAll = new System.Windows.Forms.Button();
-            this.btnAddPicture = new System.Windows.Forms.Button();
+            this.btnSearch = new System.Windows.Forms.Button();
+            this.nameSelectCmb = new System.Windows.Forms.ComboBox();
+            this.usersTable = new System.Windows.Forms.DataGridView();
+            this.tabAdd = new System.Windows.Forms.TabPage();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.btnAddPicture = new System.Windows.Forms.Button();
+            this.btnAddAll = new System.Windows.Forms.Button();
+            this.lstbLocationAdd = new System.Windows.Forms.ListBox();
+            this.dtpLocationA = new System.Windows.Forms.DateTimePicker();
+            this.lblDescA = new System.Windows.Forms.Label();
+            this.lblBountyA = new System.Windows.Forms.Label();
+            this.lblMagicLevelA = new System.Windows.Forms.Label();
+            this.lblLocationA = new System.Windows.Forms.Label();
+            this.lblMagicA = new System.Windows.Forms.Label();
+            this.lblNameA = new System.Windows.Forms.Label();
+            this.btnAddBounty = new System.Windows.Forms.Button();
+            this.lstbBountyAdd = new System.Windows.Forms.ListBox();
+            this.txtDescription = new System.Windows.Forms.TextBox();
+            this.txtLocationA = new System.Windows.Forms.TextBox();
+            this.txtBountyA = new System.Windows.Forms.TextBox();
+            this.btnAddMagic = new System.Windows.Forms.Button();
+            this.cmbLevelA = new System.Windows.Forms.ComboBox();
+            this.cmbMagicA = new System.Windows.Forms.ComboBox();
+            this.lstbMagicAdd = new System.Windows.Forms.ListBox();
+            this.txtNameA = new System.Windows.Forms.TextBox();
+            this.txtSurname = new System.Windows.Forms.TextBox();
             this.tabcontrols.SuspendLayout();
             this.tabView.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.usersTable)).BeginInit();
             this.tabAdd.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -73,8 +74,8 @@
             // 
             this.tabView.Controls.Add(this.btnAdvancS);
             this.tabView.Controls.Add(this.btnSearch);
-            this.tabView.Controls.Add(this.cmbNameS);
-            this.tabView.Controls.Add(this.dataGridView1);
+            this.tabView.Controls.Add(this.nameSelectCmb);
+            this.tabView.Controls.Add(this.usersTable);
             this.tabView.Location = new System.Drawing.Point(4, 22);
             this.tabView.Name = "tabView";
             this.tabView.Padding = new System.Windows.Forms.Padding(3);
@@ -83,24 +84,50 @@
             this.tabView.Text = "View";
             this.tabView.UseVisualStyleBackColor = true;
             // 
-            // cmbNameS
+            // btnAdvancS
             // 
-            this.cmbNameS.FormattingEnabled = true;
-            this.cmbNameS.Location = new System.Drawing.Point(19, 26);
-            this.cmbNameS.Name = "cmbNameS";
-            this.cmbNameS.Size = new System.Drawing.Size(220, 21);
-            this.cmbNameS.TabIndex = 1;
+            this.btnAdvancS.Location = new System.Drawing.Point(326, 24);
+            this.btnAdvancS.Name = "btnAdvancS";
+            this.btnAdvancS.Size = new System.Drawing.Size(140, 23);
+            this.btnAdvancS.TabIndex = 3;
+            this.btnAdvancS.Text = "Advanced Search";
+            this.btnAdvancS.UseVisualStyleBackColor = true;
+            this.btnAdvancS.Click += new System.EventHandler(this.btnAdvancS_Click);
             // 
-            // dataGridView1
+            // btnSearch
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(19, 53);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(447, 270);
-            this.dataGridView1.TabIndex = 0;
+            this.btnSearch.Location = new System.Drawing.Point(245, 24);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(75, 23);
+            this.btnSearch.TabIndex = 2;
+            this.btnSearch.Text = "Search";
+            this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            // 
+            // nameSelectCmb
+            // 
+            this.nameSelectCmb.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.nameSelectCmb.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.nameSelectCmb.FormattingEnabled = true;
+            this.nameSelectCmb.Location = new System.Drawing.Point(19, 26);
+            this.nameSelectCmb.Name = "nameSelectCmb";
+            this.nameSelectCmb.Size = new System.Drawing.Size(220, 21);
+            this.nameSelectCmb.TabIndex = 1;
+            this.nameSelectCmb.TextUpdate += new System.EventHandler(this.btnSearch_Click);
+            this.nameSelectCmb.DropDownClosed += new System.EventHandler(this.btnSearch_Click);
+            // 
+            // usersTable
+            // 
+            this.usersTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.usersTable.Location = new System.Drawing.Point(19, 53);
+            this.usersTable.Name = "usersTable";
+            this.usersTable.Size = new System.Drawing.Size(447, 270);
+            this.usersTable.TabIndex = 0;
+            this.usersTable.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.usersTable_MouseDoubleClick);
             // 
             // tabAdd
             // 
+            this.tabAdd.Controls.Add(this.txtSurname);
             this.tabAdd.Controls.Add(this.pictureBox1);
             this.tabAdd.Controls.Add(this.btnAddPicture);
             this.tabAdd.Controls.Add(this.btnAddAll);
@@ -129,60 +156,119 @@
             this.tabAdd.TabIndex = 1;
             this.tabAdd.Text = "Add";
             this.tabAdd.UseVisualStyleBackColor = true;
+            this.tabAdd.Click += new System.EventHandler(this.tabAdd_Click);
             // 
-            // txtNameA
+            // pictureBox1
             // 
-            this.txtNameA.Location = new System.Drawing.Point(6, 71);
-            this.txtNameA.Name = "txtNameA";
-            this.txtNameA.Size = new System.Drawing.Size(184, 20);
-            this.txtNameA.TabIndex = 0;
+            this.pictureBox1.Location = new System.Drawing.Point(196, 278);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(109, 95);
+            this.pictureBox1.TabIndex = 21;
+            this.pictureBox1.TabStop = false;
             // 
-            // lstbMagicAdd
+            // btnAddPicture
             // 
-            this.lstbMagicAdd.FormattingEnabled = true;
-            this.lstbMagicAdd.Location = new System.Drawing.Point(195, 151);
-            this.lstbMagicAdd.Name = "lstbMagicAdd";
-            this.lstbMagicAdd.Size = new System.Drawing.Size(166, 121);
-            this.lstbMagicAdd.TabIndex = 2;
+            this.btnAddPicture.Location = new System.Drawing.Point(366, 300);
+            this.btnAddPicture.Name = "btnAddPicture";
+            this.btnAddPicture.Size = new System.Drawing.Size(101, 23);
+            this.btnAddPicture.TabIndex = 20;
+            this.btnAddPicture.Text = "Add Picture";
+            this.btnAddPicture.UseVisualStyleBackColor = true;
             // 
-            // cmbMagicA
+            // btnAddAll
             // 
-            this.cmbMagicA.FormattingEnabled = true;
-            this.cmbMagicA.Location = new System.Drawing.Point(195, 70);
-            this.cmbMagicA.Name = "cmbMagicA";
-            this.cmbMagicA.Size = new System.Drawing.Size(166, 21);
-            this.cmbMagicA.TabIndex = 3;
+            this.btnAddAll.Location = new System.Drawing.Point(367, 330);
+            this.btnAddAll.Name = "btnAddAll";
+            this.btnAddAll.Size = new System.Drawing.Size(100, 23);
+            this.btnAddAll.TabIndex = 19;
+            this.btnAddAll.Text = "Add to Database";
+            this.btnAddAll.UseVisualStyleBackColor = true;
             // 
-            // cmbLevelA
+            // lstbLocationAdd
             // 
-            this.cmbLevelA.FormattingEnabled = true;
-            this.cmbLevelA.Location = new System.Drawing.Point(253, 95);
-            this.cmbLevelA.Name = "cmbLevelA";
-            this.cmbLevelA.Size = new System.Drawing.Size(108, 21);
-            this.cmbLevelA.TabIndex = 4;
+            this.lstbLocationAdd.FormattingEnabled = true;
+            this.lstbLocationAdd.Location = new System.Drawing.Point(6, 177);
+            this.lstbLocationAdd.Name = "lstbLocationAdd";
+            this.lstbLocationAdd.Size = new System.Drawing.Size(183, 95);
+            this.lstbLocationAdd.TabIndex = 18;
             // 
-            // btnAddMagic
+            // dtpLocationA
             // 
-            this.btnAddMagic.Location = new System.Drawing.Point(286, 122);
-            this.btnAddMagic.Name = "btnAddMagic";
-            this.btnAddMagic.Size = new System.Drawing.Size(75, 23);
-            this.btnAddMagic.TabIndex = 5;
-            this.btnAddMagic.Text = "Add Magic";
-            this.btnAddMagic.UseVisualStyleBackColor = true;
+            this.dtpLocationA.Location = new System.Drawing.Point(6, 151);
+            this.dtpLocationA.Name = "dtpLocationA";
+            this.dtpLocationA.Size = new System.Drawing.Size(184, 20);
+            this.dtpLocationA.TabIndex = 17;
             // 
-            // txtBountyA
+            // lblDescA
             // 
-            this.txtBountyA.Location = new System.Drawing.Point(368, 70);
-            this.txtBountyA.Name = "txtBountyA";
-            this.txtBountyA.Size = new System.Drawing.Size(100, 20);
-            this.txtBountyA.TabIndex = 6;
+            this.lblDescA.AutoSize = true;
+            this.lblDescA.Location = new System.Drawing.Point(6, 286);
+            this.lblDescA.Name = "lblDescA";
+            this.lblDescA.Size = new System.Drawing.Size(60, 13);
+            this.lblDescA.TabIndex = 16;
+            this.lblDescA.Text = "Description";
             // 
-            // txtLocationA
+            // lblBountyA
             // 
-            this.txtLocationA.Location = new System.Drawing.Point(6, 125);
-            this.txtLocationA.Name = "txtLocationA";
-            this.txtLocationA.Size = new System.Drawing.Size(184, 20);
-            this.txtLocationA.TabIndex = 7;
+            this.lblBountyA.AutoSize = true;
+            this.lblBountyA.Location = new System.Drawing.Point(427, 53);
+            this.lblBountyA.Name = "lblBountyA";
+            this.lblBountyA.Size = new System.Drawing.Size(40, 13);
+            this.lblBountyA.TabIndex = 15;
+            this.lblBountyA.Text = "Bounty";
+            // 
+            // lblMagicLevelA
+            // 
+            this.lblMagicLevelA.AutoSize = true;
+            this.lblMagicLevelA.Location = new System.Drawing.Point(192, 98);
+            this.lblMagicLevelA.Name = "lblMagicLevelA";
+            this.lblMagicLevelA.Size = new System.Drawing.Size(55, 13);
+            this.lblMagicLevelA.TabIndex = 14;
+            this.lblMagicLevelA.Text = "Skill Level";
+            // 
+            // lblLocationA
+            // 
+            this.lblLocationA.AutoSize = true;
+            this.lblLocationA.Location = new System.Drawing.Point(6, 109);
+            this.lblLocationA.Name = "lblLocationA";
+            this.lblLocationA.Size = new System.Drawing.Size(48, 13);
+            this.lblLocationA.TabIndex = 13;
+            this.lblLocationA.Text = "Location";
+            // 
+            // lblMagicA
+            // 
+            this.lblMagicA.AutoSize = true;
+            this.lblMagicA.Location = new System.Drawing.Point(192, 54);
+            this.lblMagicA.Name = "lblMagicA";
+            this.lblMagicA.Size = new System.Drawing.Size(63, 13);
+            this.lblMagicA.TabIndex = 12;
+            this.lblMagicA.Text = "Magic Type";
+            // 
+            // lblNameA
+            // 
+            this.lblNameA.AutoSize = true;
+            this.lblNameA.Location = new System.Drawing.Point(6, 55);
+            this.lblNameA.Name = "lblNameA";
+            this.lblNameA.Size = new System.Drawing.Size(126, 13);
+            this.lblNameA.TabIndex = 11;
+            this.lblNameA.Text = "User Name and Surname";
+            // 
+            // btnAddBounty
+            // 
+            this.btnAddBounty.Location = new System.Drawing.Point(392, 122);
+            this.btnAddBounty.Name = "btnAddBounty";
+            this.btnAddBounty.Size = new System.Drawing.Size(75, 23);
+            this.btnAddBounty.TabIndex = 10;
+            this.btnAddBounty.Text = "Add Bounty";
+            this.btnAddBounty.UseVisualStyleBackColor = true;
+            // 
+            // lstbBountyAdd
+            // 
+            this.lstbBountyAdd.FormattingEnabled = true;
+            this.lstbBountyAdd.Location = new System.Drawing.Point(367, 151);
+            this.lstbBountyAdd.Name = "lstbBountyAdd";
+            this.lstbBountyAdd.Size = new System.Drawing.Size(100, 121);
+            this.lstbBountyAdd.TabIndex = 9;
             // 
             // txtDescription
             // 
@@ -194,135 +280,67 @@
             this.txtDescription.Size = new System.Drawing.Size(181, 71);
             this.txtDescription.TabIndex = 8;
             // 
-            // lstbBountyAdd
+            // txtLocationA
             // 
-            this.lstbBountyAdd.FormattingEnabled = true;
-            this.lstbBountyAdd.Location = new System.Drawing.Point(367, 151);
-            this.lstbBountyAdd.Name = "lstbBountyAdd";
-            this.lstbBountyAdd.Size = new System.Drawing.Size(100, 121);
-            this.lstbBountyAdd.TabIndex = 9;
+            this.txtLocationA.Location = new System.Drawing.Point(6, 125);
+            this.txtLocationA.Name = "txtLocationA";
+            this.txtLocationA.Size = new System.Drawing.Size(184, 20);
+            this.txtLocationA.TabIndex = 7;
             // 
-            // btnSearch
+            // txtBountyA
             // 
-            this.btnSearch.Location = new System.Drawing.Point(245, 24);
-            this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(75, 23);
-            this.btnSearch.TabIndex = 2;
-            this.btnSearch.Text = "Search";
-            this.btnSearch.UseVisualStyleBackColor = true;
+            this.txtBountyA.Location = new System.Drawing.Point(368, 70);
+            this.txtBountyA.Name = "txtBountyA";
+            this.txtBountyA.Size = new System.Drawing.Size(100, 20);
+            this.txtBountyA.TabIndex = 6;
             // 
-            // btnAdvancS
+            // btnAddMagic
             // 
-            this.btnAdvancS.Location = new System.Drawing.Point(326, 24);
-            this.btnAdvancS.Name = "btnAdvancS";
-            this.btnAdvancS.Size = new System.Drawing.Size(140, 23);
-            this.btnAdvancS.TabIndex = 3;
-            this.btnAdvancS.Text = "Advanced Search";
-            this.btnAdvancS.UseVisualStyleBackColor = true;
+            this.btnAddMagic.Location = new System.Drawing.Point(286, 122);
+            this.btnAddMagic.Name = "btnAddMagic";
+            this.btnAddMagic.Size = new System.Drawing.Size(75, 23);
+            this.btnAddMagic.TabIndex = 5;
+            this.btnAddMagic.Text = "Add Magic";
+            this.btnAddMagic.UseVisualStyleBackColor = true;
             // 
-            // btnAddBounty
+            // cmbLevelA
             // 
-            this.btnAddBounty.Location = new System.Drawing.Point(392, 122);
-            this.btnAddBounty.Name = "btnAddBounty";
-            this.btnAddBounty.Size = new System.Drawing.Size(75, 23);
-            this.btnAddBounty.TabIndex = 10;
-            this.btnAddBounty.Text = "Add Bounty";
-            this.btnAddBounty.UseVisualStyleBackColor = true;
+            this.cmbLevelA.FormattingEnabled = true;
+            this.cmbLevelA.Location = new System.Drawing.Point(253, 95);
+            this.cmbLevelA.Name = "cmbLevelA";
+            this.cmbLevelA.Size = new System.Drawing.Size(108, 21);
+            this.cmbLevelA.TabIndex = 4;
             // 
-            // lblNameA
+            // cmbMagicA
             // 
-            this.lblNameA.AutoSize = true;
-            this.lblNameA.Location = new System.Drawing.Point(6, 55);
-            this.lblNameA.Name = "lblNameA";
-            this.lblNameA.Size = new System.Drawing.Size(126, 13);
-            this.lblNameA.TabIndex = 11;
-            this.lblNameA.Text = "User Name and Surname";
+            this.cmbMagicA.FormattingEnabled = true;
+            this.cmbMagicA.Location = new System.Drawing.Point(195, 70);
+            this.cmbMagicA.Name = "cmbMagicA";
+            this.cmbMagicA.Size = new System.Drawing.Size(166, 21);
+            this.cmbMagicA.TabIndex = 3;
             // 
-            // lblMagicA
+            // lstbMagicAdd
             // 
-            this.lblMagicA.AutoSize = true;
-            this.lblMagicA.Location = new System.Drawing.Point(192, 54);
-            this.lblMagicA.Name = "lblMagicA";
-            this.lblMagicA.Size = new System.Drawing.Size(63, 13);
-            this.lblMagicA.TabIndex = 12;
-            this.lblMagicA.Text = "Magic Type";
+            this.lstbMagicAdd.FormattingEnabled = true;
+            this.lstbMagicAdd.Location = new System.Drawing.Point(195, 151);
+            this.lstbMagicAdd.Name = "lstbMagicAdd";
+            this.lstbMagicAdd.Size = new System.Drawing.Size(166, 121);
+            this.lstbMagicAdd.TabIndex = 2;
             // 
-            // lblLocationA
+            // txtNameA
             // 
-            this.lblLocationA.AutoSize = true;
-            this.lblLocationA.Location = new System.Drawing.Point(6, 109);
-            this.lblLocationA.Name = "lblLocationA";
-            this.lblLocationA.Size = new System.Drawing.Size(48, 13);
-            this.lblLocationA.TabIndex = 13;
-            this.lblLocationA.Text = "Location";
+            this.txtNameA.Location = new System.Drawing.Point(6, 71);
+            this.txtNameA.Name = "txtNameA";
+            this.txtNameA.Size = new System.Drawing.Size(89, 20);
+            this.txtNameA.TabIndex = 0;
+            this.txtNameA.TextChanged += new System.EventHandler(this.txtNameA_TextChanged);
             // 
-            // lblMagicLevelA
+            // txtSurname
             // 
-            this.lblMagicLevelA.AutoSize = true;
-            this.lblMagicLevelA.Location = new System.Drawing.Point(192, 98);
-            this.lblMagicLevelA.Name = "lblMagicLevelA";
-            this.lblMagicLevelA.Size = new System.Drawing.Size(55, 13);
-            this.lblMagicLevelA.TabIndex = 14;
-            this.lblMagicLevelA.Text = "Skill Level";
-            // 
-            // lblBountyA
-            // 
-            this.lblBountyA.AutoSize = true;
-            this.lblBountyA.Location = new System.Drawing.Point(427, 53);
-            this.lblBountyA.Name = "lblBountyA";
-            this.lblBountyA.Size = new System.Drawing.Size(40, 13);
-            this.lblBountyA.TabIndex = 15;
-            this.lblBountyA.Text = "Bounty";
-            // 
-            // lblDescA
-            // 
-            this.lblDescA.AutoSize = true;
-            this.lblDescA.Location = new System.Drawing.Point(6, 286);
-            this.lblDescA.Name = "lblDescA";
-            this.lblDescA.Size = new System.Drawing.Size(60, 13);
-            this.lblDescA.TabIndex = 16;
-            this.lblDescA.Text = "Description";
-            // 
-            // dtpLocationA
-            // 
-            this.dtpLocationA.Location = new System.Drawing.Point(6, 151);
-            this.dtpLocationA.Name = "dtpLocationA";
-            this.dtpLocationA.Size = new System.Drawing.Size(184, 20);
-            this.dtpLocationA.TabIndex = 17;
-            // 
-            // lstbLocationAdd
-            // 
-            this.lstbLocationAdd.FormattingEnabled = true;
-            this.lstbLocationAdd.Location = new System.Drawing.Point(6, 177);
-            this.lstbLocationAdd.Name = "lstbLocationAdd";
-            this.lstbLocationAdd.Size = new System.Drawing.Size(183, 95);
-            this.lstbLocationAdd.TabIndex = 18;
-            // 
-            // btnAddAll
-            // 
-            this.btnAddAll.Location = new System.Drawing.Point(367, 330);
-            this.btnAddAll.Name = "btnAddAll";
-            this.btnAddAll.Size = new System.Drawing.Size(100, 23);
-            this.btnAddAll.TabIndex = 19;
-            this.btnAddAll.Text = "Add to Database";
-            this.btnAddAll.UseVisualStyleBackColor = true;
-            // 
-            // btnAddPicture
-            // 
-            this.btnAddPicture.Location = new System.Drawing.Point(366, 300);
-            this.btnAddPicture.Name = "btnAddPicture";
-            this.btnAddPicture.Size = new System.Drawing.Size(101, 23);
-            this.btnAddPicture.TabIndex = 20;
-            this.btnAddPicture.Text = "Add Picture";
-            this.btnAddPicture.UseVisualStyleBackColor = true;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Location = new System.Drawing.Point(196, 278);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(109, 95);
-            this.pictureBox1.TabIndex = 21;
-            this.pictureBox1.TabStop = false;
+            this.txtSurname.Location = new System.Drawing.Point(98, 71);
+            this.txtSurname.Name = "txtSurname";
+            this.txtSurname.Size = new System.Drawing.Size(89, 20);
+            this.txtSurname.TabIndex = 22;
             // 
             // UserHome
             // 
@@ -334,9 +352,10 @@
             this.Controls.Add(this.tabcontrols);
             this.Name = "UserHome";
             this.Text = "User Home";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.UserHome_FormClosed);
             this.tabcontrols.ResumeLayout(false);
             this.tabView.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.usersTable)).EndInit();
             this.tabAdd.ResumeLayout(false);
             this.tabAdd.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -349,8 +368,8 @@
         private System.Windows.Forms.TabControl tabcontrols;
         private System.Windows.Forms.TabPage tabView;
         private System.Windows.Forms.TabPage tabAdd;
-        private System.Windows.Forms.ComboBox cmbNameS;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.ComboBox nameSelectCmb;
+        private System.Windows.Forms.DataGridView usersTable;
         private System.Windows.Forms.ListBox lstbBountyAdd;
         private System.Windows.Forms.TextBox txtDescription;
         private System.Windows.Forms.TextBox txtLocationA;
@@ -374,5 +393,6 @@
         private System.Windows.Forms.Button btnAddBounty;
         private System.Windows.Forms.Button btnAddPicture;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.TextBox txtSurname;
     }
 }

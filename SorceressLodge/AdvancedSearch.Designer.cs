@@ -106,6 +106,7 @@
             this.btnAdvancedSearch.TabIndex = 9;
             this.btnAdvancedSearch.Text = "Search";
             this.btnAdvancedSearch.UseVisualStyleBackColor = true;
+            this.btnAdvancedSearch.Click += new System.EventHandler(this.btnAdvancedSearch_Click);
             // 
             // lblNameAS
             // 
@@ -120,7 +121,7 @@
             // lblBountyAS
             // 
             this.lblBountyAS.BackColor = System.Drawing.SystemColors.Window;
-            this.lblBountyAS.Location = new System.Drawing.Point(12, 101);
+            this.lblBountyAS.Location = new System.Drawing.Point(13, 101);
             this.lblBountyAS.Name = "lblBountyAS";
             this.lblBountyAS.Size = new System.Drawing.Size(100, 18);
             this.lblBountyAS.TabIndex = 11;

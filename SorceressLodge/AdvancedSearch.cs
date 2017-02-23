@@ -10,8 +10,16 @@ using System.Windows.Forms;
 
 namespace SorceressLodge {
     public partial class AdvancedSearch : Form {
-        public AdvancedSearch() {
+
+        private Backend b;
+
+        public AdvancedSearch(Backend be) {
+            b = be;
             InitializeComponent();
+        }
+
+        private void btnAdvancedSearch_Click(object sender, EventArgs e) {
+
         }
     }
 }

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace SorceressLodge {
-    class MagicType {
+    public class MagicType {
 
         private int id;
 

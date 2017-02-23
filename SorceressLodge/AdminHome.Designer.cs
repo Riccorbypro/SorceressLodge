@@ -28,8 +28,8 @@
             this.tabView = new System.Windows.Forms.TabPage();
             this.btnAdvancS = new System.Windows.Forms.Button();
             this.btnSearch = new System.Windows.Forms.Button();
-            this.cmbNameS = new System.Windows.Forms.ComboBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.nameSelectCmb = new System.Windows.Forms.ComboBox();
+            this.usersTable = new System.Windows.Forms.DataGridView();
             this.tabAdd = new System.Windows.Forms.TabPage();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnAddPicture = new System.Windows.Forms.Button();
@@ -51,16 +51,18 @@
             this.cmbLevelA = new System.Windows.Forms.ComboBox();
             this.cmbMagicA = new System.Windows.Forms.ComboBox();
             this.lstbMagicAdd = new System.Windows.Forms.ListBox();
-            this.txtNameA = new System.Windows.Forms.TextBox();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.txtUserNameA = new System.Windows.Forms.TextBox();
-            this.txtUserPassword = new System.Windows.Forms.TextBox();
-            this.btnAddUser = new System.Windows.Forms.Button();
-            this.lblUserPassword = new System.Windows.Forms.Label();
             this.lblUserNameA = new System.Windows.Forms.Label();
+            this.lblUserPassword = new System.Windows.Forms.Label();
+            this.btnAddUser = new System.Windows.Forms.Button();
+            this.txtUserPassword = new System.Windows.Forms.TextBox();
+            this.txtUserNameA = new System.Windows.Forms.TextBox();
+            this.Deletebtn = new System.Windows.Forms.Button();
+            this.txtNameA = new System.Windows.Forms.TextBox();
+            this.txtSurnameA = new System.Windows.Forms.TextBox();
             this.tabcontrols.SuspendLayout();
             this.tabView.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.usersTable)).BeginInit();
             this.tabAdd.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabPage1.SuspendLayout();
@@ -79,10 +81,11 @@
             // 
             // tabView
             // 
+            this.tabView.Controls.Add(this.Deletebtn);
             this.tabView.Controls.Add(this.btnAdvancS);
             this.tabView.Controls.Add(this.btnSearch);
-            this.tabView.Controls.Add(this.cmbNameS);
-            this.tabView.Controls.Add(this.dataGridView1);
+            this.tabView.Controls.Add(this.nameSelectCmb);
+            this.tabView.Controls.Add(this.usersTable);
             this.tabView.Location = new System.Drawing.Point(4, 22);
             this.tabView.Name = "tabView";
             this.tabView.Padding = new System.Windows.Forms.Padding(3);
@@ -93,40 +96,46 @@
             // 
             // btnAdvancS
             // 
+            this.btnAdvancS.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnAdvancS.Location = new System.Drawing.Point(326, 24);
             this.btnAdvancS.Name = "btnAdvancS";
             this.btnAdvancS.Size = new System.Drawing.Size(140, 23);
             this.btnAdvancS.TabIndex = 3;
             this.btnAdvancS.Text = "Advanced Search";
             this.btnAdvancS.UseVisualStyleBackColor = true;
+            this.btnAdvancS.Click += new System.EventHandler(this.btnAdvancS_Click);
             // 
             // btnSearch
             // 
+            this.btnSearch.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnSearch.Location = new System.Drawing.Point(245, 24);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(75, 23);
             this.btnSearch.TabIndex = 2;
             this.btnSearch.Text = "Search";
             this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
-            // cmbNameS
+            // nameSelectCmb
             // 
-            this.cmbNameS.FormattingEnabled = true;
-            this.cmbNameS.Location = new System.Drawing.Point(19, 26);
-            this.cmbNameS.Name = "cmbNameS";
-            this.cmbNameS.Size = new System.Drawing.Size(220, 21);
-            this.cmbNameS.TabIndex = 1;
+            this.nameSelectCmb.FormattingEnabled = true;
+            this.nameSelectCmb.Location = new System.Drawing.Point(19, 26);
+            this.nameSelectCmb.Name = "nameSelectCmb";
+            this.nameSelectCmb.Size = new System.Drawing.Size(220, 21);
+            this.nameSelectCmb.TabIndex = 1;
             // 
-            // dataGridView1
+            // usersTable
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(19, 53);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(447, 270);
-            this.dataGridView1.TabIndex = 0;
+            this.usersTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.usersTable.Location = new System.Drawing.Point(19, 53);
+            this.usersTable.Name = "usersTable";
+            this.usersTable.Size = new System.Drawing.Size(447, 270);
+            this.usersTable.TabIndex = 0;
             // 
             // tabAdd
             // 
+            this.tabAdd.Controls.Add(this.txtSurnameA);
+            this.tabAdd.Controls.Add(this.txtNameA);
             this.tabAdd.Controls.Add(this.pictureBox1);
             this.tabAdd.Controls.Add(this.btnAddPicture);
             this.tabAdd.Controls.Add(this.btnAddAll);
@@ -147,7 +156,6 @@
             this.tabAdd.Controls.Add(this.cmbLevelA);
             this.tabAdd.Controls.Add(this.cmbMagicA);
             this.tabAdd.Controls.Add(this.lstbMagicAdd);
-            this.tabAdd.Controls.Add(this.txtNameA);
             this.tabAdd.Location = new System.Drawing.Point(4, 22);
             this.tabAdd.Name = "tabAdd";
             this.tabAdd.Padding = new System.Windows.Forms.Padding(3);
@@ -166,6 +174,7 @@
             // 
             // btnAddPicture
             // 
+            this.btnAddPicture.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnAddPicture.Location = new System.Drawing.Point(366, 300);
             this.btnAddPicture.Name = "btnAddPicture";
             this.btnAddPicture.Size = new System.Drawing.Size(101, 23);
@@ -175,12 +184,14 @@
             // 
             // btnAddAll
             // 
+            this.btnAddAll.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnAddAll.Location = new System.Drawing.Point(367, 330);
             this.btnAddAll.Name = "btnAddAll";
             this.btnAddAll.Size = new System.Drawing.Size(100, 23);
             this.btnAddAll.TabIndex = 19;
             this.btnAddAll.Text = "Add to Database";
             this.btnAddAll.UseVisualStyleBackColor = true;
+            this.btnAddAll.Click += new System.EventHandler(this.btnAddAll_Click);
             // 
             // lstbLocationAdd
             // 
@@ -253,6 +264,7 @@
             // 
             // btnAddBounty
             // 
+            this.btnAddBounty.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnAddBounty.Location = new System.Drawing.Point(392, 122);
             this.btnAddBounty.Name = "btnAddBounty";
             this.btnAddBounty.Size = new System.Drawing.Size(75, 23);
@@ -294,6 +306,7 @@
             // 
             // btnAddMagic
             // 
+            this.btnAddMagic.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnAddMagic.Location = new System.Drawing.Point(286, 122);
             this.btnAddMagic.Name = "btnAddMagic";
             this.btnAddMagic.Size = new System.Drawing.Size(75, 23);
@@ -325,13 +338,6 @@
             this.lstbMagicAdd.Size = new System.Drawing.Size(166, 121);
             this.lstbMagicAdd.TabIndex = 2;
             // 
-            // txtNameA
-            // 
-            this.txtNameA.Location = new System.Drawing.Point(6, 71);
-            this.txtNameA.Name = "txtNameA";
-            this.txtNameA.Size = new System.Drawing.Size(184, 20);
-            this.txtNameA.TabIndex = 0;
-            // 
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this.lblUserNameA);
@@ -347,28 +353,14 @@
             this.tabPage1.Text = "Add User";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // txtUserNameA
+            // lblUserNameA
             // 
-            this.txtUserNameA.Location = new System.Drawing.Point(26, 41);
-            this.txtUserNameA.Name = "txtUserNameA";
-            this.txtUserNameA.Size = new System.Drawing.Size(250, 20);
-            this.txtUserNameA.TabIndex = 0;
-            // 
-            // txtUserPassword
-            // 
-            this.txtUserPassword.Location = new System.Drawing.Point(26, 96);
-            this.txtUserPassword.Name = "txtUserPassword";
-            this.txtUserPassword.Size = new System.Drawing.Size(250, 20);
-            this.txtUserPassword.TabIndex = 1;
-            // 
-            // btnAddUser
-            // 
-            this.btnAddUser.Location = new System.Drawing.Point(26, 147);
-            this.btnAddUser.Name = "btnAddUser";
-            this.btnAddUser.Size = new System.Drawing.Size(75, 23);
-            this.btnAddUser.TabIndex = 2;
-            this.btnAddUser.Text = "Add User";
-            this.btnAddUser.UseVisualStyleBackColor = true;
+            this.lblUserNameA.AutoSize = true;
+            this.lblUserNameA.Location = new System.Drawing.Point(23, 25);
+            this.lblUserNameA.Name = "lblUserNameA";
+            this.lblUserNameA.Size = new System.Drawing.Size(60, 13);
+            this.lblUserNameA.TabIndex = 4;
+            this.lblUserNameA.Text = "User Name";
             // 
             // lblUserPassword
             // 
@@ -379,14 +371,53 @@
             this.lblUserPassword.TabIndex = 3;
             this.lblUserPassword.Text = "Password";
             // 
-            // lblUserNameA
+            // btnAddUser
             // 
-            this.lblUserNameA.AutoSize = true;
-            this.lblUserNameA.Location = new System.Drawing.Point(23, 25);
-            this.lblUserNameA.Name = "lblUserNameA";
-            this.lblUserNameA.Size = new System.Drawing.Size(60, 13);
-            this.lblUserNameA.TabIndex = 4;
-            this.lblUserNameA.Text = "User Name";
+            this.btnAddUser.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnAddUser.Location = new System.Drawing.Point(26, 147);
+            this.btnAddUser.Name = "btnAddUser";
+            this.btnAddUser.Size = new System.Drawing.Size(75, 23);
+            this.btnAddUser.TabIndex = 2;
+            this.btnAddUser.Text = "Add User";
+            this.btnAddUser.UseVisualStyleBackColor = true;
+            // 
+            // txtUserPassword
+            // 
+            this.txtUserPassword.Location = new System.Drawing.Point(26, 96);
+            this.txtUserPassword.Name = "txtUserPassword";
+            this.txtUserPassword.Size = new System.Drawing.Size(250, 20);
+            this.txtUserPassword.TabIndex = 1;
+            // 
+            // txtUserNameA
+            // 
+            this.txtUserNameA.Location = new System.Drawing.Point(26, 41);
+            this.txtUserNameA.Name = "txtUserNameA";
+            this.txtUserNameA.Size = new System.Drawing.Size(250, 20);
+            this.txtUserNameA.TabIndex = 0;
+            // 
+            // Deletebtn
+            // 
+            this.Deletebtn.Location = new System.Drawing.Point(391, 329);
+            this.Deletebtn.Name = "Deletebtn";
+            this.Deletebtn.Size = new System.Drawing.Size(75, 23);
+            this.Deletebtn.TabIndex = 4;
+            this.Deletebtn.Text = "Delete";
+            this.Deletebtn.UseVisualStyleBackColor = true;
+            this.Deletebtn.Click += new System.EventHandler(this.Deletebtn_Click);
+            // 
+            // txtNameA
+            // 
+            this.txtNameA.Location = new System.Drawing.Point(9, 71);
+            this.txtNameA.Name = "txtNameA";
+            this.txtNameA.Size = new System.Drawing.Size(89, 20);
+            this.txtNameA.TabIndex = 22;
+            // 
+            // txtSurnameA
+            // 
+            this.txtSurnameA.Location = new System.Drawing.Point(101, 71);
+            this.txtSurnameA.Name = "txtSurnameA";
+            this.txtSurnameA.Size = new System.Drawing.Size(89, 20);
+            this.txtSurnameA.TabIndex = 23;
             // 
             // AdminHome
             // 
@@ -398,9 +429,11 @@
             this.Controls.Add(this.tabcontrols);
             this.Name = "AdminHome";
             this.Text = "Admin Home";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.AdminHome_FormClosed);
+            this.Load += new System.EventHandler(this.AdminHome_Load);
             this.tabcontrols.ResumeLayout(false);
             this.tabView.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.usersTable)).EndInit();
             this.tabAdd.ResumeLayout(false);
             this.tabAdd.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -415,8 +448,8 @@
         private System.Windows.Forms.TabControl tabcontrols;
         private System.Windows.Forms.TabPage tabView;
         private System.Windows.Forms.TabPage tabAdd;
-        private System.Windows.Forms.ComboBox cmbNameS;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.ComboBox nameSelectCmb;
+        private System.Windows.Forms.DataGridView usersTable;
         private System.Windows.Forms.ListBox lstbBountyAdd;
         private System.Windows.Forms.TextBox txtDescription;
         private System.Windows.Forms.TextBox txtLocationA;
@@ -425,7 +458,6 @@
         private System.Windows.Forms.ComboBox cmbLevelA;
         private System.Windows.Forms.ComboBox cmbMagicA;
         private System.Windows.Forms.ListBox lstbMagicAdd;
-        private System.Windows.Forms.TextBox txtNameA;
         private System.Windows.Forms.Button btnAdvancS;
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.Button btnAddAll;
@@ -446,5 +478,8 @@
         private System.Windows.Forms.Button btnAddUser;
         private System.Windows.Forms.TextBox txtUserPassword;
         private System.Windows.Forms.TextBox txtUserNameA;
+        private System.Windows.Forms.Button Deletebtn;
+        private System.Windows.Forms.TextBox txtSurnameA;
+        private System.Windows.Forms.TextBox txtNameA;
     }
 }
