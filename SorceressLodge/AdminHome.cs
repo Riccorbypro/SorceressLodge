@@ -85,15 +85,15 @@ namespace SorceressLodge {
             cmbLevelA.ValueMember = "Key";
 
             MagicItem = new Dictionary<int, string>();
-            MagicItem.Add(1, "");
-            MagicItem.Add(2, "");
-            MagicItem.Add(3, "");
-            MagicItem.Add(4, "");
-            MagicItem.Add(5, "");
-            MagicItem.Add(6, "");
-            MagicItem.Add(7, "");
-            MagicItem.Add(8, "");
-            MagicItem.Add(9, "");
+            MagicItem.Add(1, "Elemental");
+            MagicItem.Add(2, "Herbalist");
+            MagicItem.Add(3, "Summoning");
+            MagicItem.Add(4, "Nature");
+            MagicItem.Add(5, "Arcane");
+            MagicItem.Add(6, "Alchemy");
+            MagicItem.Add(7, "Blood Magic");
+            MagicItem.Add(8, "Necromancy");
+            MagicItem.Add(9, "Transmogrrify");
             cmbMagicA.DataSource = new BindingSource(MagicItem, null);
             cmbMagicA.DisplayMember = "Value";
             cmbMagicA.ValueMember = "Key";
