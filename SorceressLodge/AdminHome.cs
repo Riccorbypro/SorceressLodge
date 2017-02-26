@@ -66,12 +66,9 @@ namespace SorceressLodge {
         private void Deletebtn_Click(object sender, EventArgs e) {
             if (MessageBox.Show("Are you sure you want to delete this user?", "Delete Magic User", MessageBoxButtons.YesNo) == DialogResult.Yes) {
                 int uID = Convert.ToInt32(usersTable.SelectedCells[0].Value);
-                string conn = @"Data Source=DESKTOP-C12M830\SQLEXPRESS;Initial Catalog=SorceressLodge;Integrated Security=True";
-                //@"Data Source=DESKTOP-C12M830\SQLEXPRESS;Initial Catalog=SorceressLodge;Integrated Security=True" WelterZen
-                //@"Data Source=DESKTOP-103SE6A\SQLEXPRESS;Initial Catalog=SorceressLodge;Integrated Security=True" Riccorbypro
+                Connection connect = new Connection();
 
-                sqlconn = new SqlConnection(conn);
-                sqlconn.Open();
+                
                 SqlCommand sqlcom = new SqlCommand("Procedure_Delete", sqlconn);
                 sqlcom.CommandType = CommandType.StoredProcedure;
                 sqlcom.Parameters.AddWithValue("@userid", uID);

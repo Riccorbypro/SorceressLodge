@@ -14,14 +14,20 @@ namespace SorceressLodge {
         SqlCommand sqlcomm;
         SqlDataReader datareader;
 
-        public Connection() {
-            string conn = @"Data Source=RICCORBYPRO-PC;Initial Catalog=SorceressLodge;Integrated Security=True";
-            //@"Data Source=DESKTOP-C12M830\SQLEXPRESS;Initial Catalog=SorceressLodge;Integrated Security=True" WelterZen
-            //@"Data Source=DESKTOP-103SE6A\SQLEXPRESS;Initial Catalog=SorceressLodge;Integrated Security=True" Riccorbypro
+        //public Connection() {
+        //    //string conn = @"Data Source=DESKTOP-103SE6A\SQLEXPRESS;Initial Catalog=SorceressLodge;Integrated Security=True"; // Riccorbypro
+        //    string conn = @"Data Source=DESKTOP-C12M830\SQLEXPRESS;Initial Catalog=SorceressLodge;Integrated Security=True"; // WelterZen
+        //    sqlconn = new SqlConnection(conn);
+        //}
+
+        public void Connect() {
+            string conn = @"Data Source=DESKTOP-103SE6A\SQLEXPRESS;Initial Catalog=SorceressLodge;Integrated Security=True"; // Riccorbypro
+            //string conn = @"Data Source=DESKTOP-C12M830\SQLEXPRESS;Initial Catalog=SorceressLodge;Integrated Security=True"; // WelterZen
             sqlconn = new SqlConnection(conn);
         }
 
         public List<MagicUser> ReadMagicUsers() {
+            Connect();
             List<MagicUser> MagicUserlst = new List<MagicUser>();
             List<MagicType> magictypes = ReadTypes();
             List<object[]> osLocation = ReadData("Location");
@@ -96,6 +102,7 @@ namespace SorceressLodge {
         }
 
         public List<Users> ReadUsers() {
+            Connect();
             List<Users> Userslst = new List<Users>();
             sqlconn.Open();
             string Qry1 = "SELECT * from Users";
@@ -118,6 +125,7 @@ namespace SorceressLodge {
         }
 
         public List<MagicType> ReadTypes() {
+            Connect();
             List<MagicType> lst = new List<MagicType>();
             sqlconn.Open();
             string Qry1 = "SELECT * from MagicTypes";
@@ -131,6 +139,7 @@ namespace SorceressLodge {
         }
 
         public List<object[]> ReadData(string tblName) {
+            Connect();
             List<object[]> list = new List<object[]>();
             sqlconn.Open();
             string Qry1 = "SELECT * FROM " + tblName;

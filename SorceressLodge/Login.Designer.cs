@@ -108,7 +108,7 @@
             this.Controls.Add(this.txtUserPassword);
             this.Controls.Add(this.txtUserName);
             this.Name = "Login";
-            this.Text = "Administrator Login";
+            this.Text = "Login";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Login_FormClosed);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Login_KeyUp);
             ((System.ComponentModel.ISupportInitialize)(this.AdminPictureBox)).EndInit();
