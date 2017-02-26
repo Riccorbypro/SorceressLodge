@@ -66,9 +66,9 @@ namespace SorceressLodge {
         private void Deletebtn_Click(object sender, EventArgs e) {
             if (MessageBox.Show("Are you sure you want to delete this user?", "Delete Magic User", MessageBoxButtons.YesNo) == DialogResult.Yes) {
                 int uID = Convert.ToInt32(usersTable.SelectedCells[0].Value);
-                string conn = @"Data Source=DESKTOP-C12M830\SQLEXPRESS;Initial Catalog=SorceressLodge;Integrated Security=True";
+                string conn = @"Data Source=RICCORBYPRO-PC;Initial Catalog=SorceressLodge;Integrated Security=True";
                 //@"Data Source=DESKTOP-C12M830\SQLEXPRESS;Initial Catalog=SorceressLodge;Integrated Security=True" WelterZen
-                //@"Data Source=DESKTOP-103SE6A\SQLEXPRESS;Initial Catalog=SorceressLodge;Integrated Security=True" Riccorbypro
+                //@"Data Source=RICCORBYPRO-PC;Initial Catalog=SorceressLodge;Integrated Security=True" Riccorbypro
 
                 sqlconn = new SqlConnection(conn);
                 sqlconn.Open();
@@ -87,7 +87,7 @@ namespace SorceressLodge {
             SkillItem.Add(1, "Novice");
             SkillItem.Add(2, "Adept");
             SkillItem.Add(3, "Master");
-            cmbLevelA.DataSource = new BindingSource(SkillItem,null);
+            cmbLevelA.DataSource = new BindingSource(SkillItem, null);
             cmbLevelA.DisplayMember = "Value";
             cmbLevelA.ValueMember = "Key";
 

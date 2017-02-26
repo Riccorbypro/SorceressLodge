@@ -17,7 +17,7 @@ namespace SorceressLodge {
         public Connection() {
             string conn = @"Data Source=RICCORBYPRO-PC;Initial Catalog=SorceressLodge;Integrated Security=True";
             //@"Data Source=DESKTOP-C12M830\SQLEXPRESS;Initial Catalog=SorceressLodge;Integrated Security=True" WelterZen
-            //@"Data Source=DESKTOP-103SE6A\SQLEXPRESS;Initial Catalog=SorceressLodge;Integrated Security=True" Riccorbypro
+            //@"Data Source=RICCORBYPRO-PC;Initial Catalog=SorceressLodge;Integrated Security=True" Riccorbypro
             sqlconn = new SqlConnection(conn);
         }
 
