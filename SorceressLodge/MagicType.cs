@@ -34,5 +34,8 @@ namespace SorceressLodge {
             this.isAllowed = isAllowed;
         }
 
+        public override string ToString() {
+            return Type;
+        }
     }
 }

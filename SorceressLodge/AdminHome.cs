@@ -13,13 +13,8 @@ using System.Data.SqlClient;
 
 namespace SorceressLodge {
     public partial class AdminHome : Form {
-        SqlConnection sqlconn;
-        DataTable table;
-        DataSet dataset;
-        Dictionary<int, string> SkillItem;
-        Dictionary<int, string> MagicItem;
-        List<int> skilllst;
-        List<int> magiclst;
+
+        private DataTable table;
         private Backend b;
         public AdminHome() {
             b = new Backend();
@@ -76,7 +71,7 @@ namespace SorceressLodge {
         }
 
         private void AdminHome_Load(object sender, EventArgs e) {
-            SkillItem = new Dictionary<int, string>();
+            Dictionary<int, string> SkillItem = new Dictionary<int, string>();
             SkillItem.Add(1, "Novice");
             SkillItem.Add(2, "Adept");
             SkillItem.Add(3, "Master");
@@ -84,19 +79,8 @@ namespace SorceressLodge {
             cmbLevelA.DisplayMember = "Value";
             cmbLevelA.ValueMember = "Key";
 
-            MagicItem = new Dictionary<int, string>();
-            MagicItem.Add(1, "Elemental");
-            MagicItem.Add(2, "Herbalist");
-            MagicItem.Add(3, "Summoning");
-            MagicItem.Add(4, "Nature");
-            MagicItem.Add(5, "Arcane");
-            MagicItem.Add(6, "Alchemy");
-            MagicItem.Add(7, "Blood Magic");
-            MagicItem.Add(8, "Necromancy");
-            MagicItem.Add(9, "Transmogrrify");
-            cmbMagicA.DataSource = new BindingSource(MagicItem, null);
-            cmbMagicA.DisplayMember = "Value";
-            cmbMagicA.ValueMember = "Key";
+            List<MagicType> types = b.getTypes();
+            cmbMagicA.DataSource = types;
         }
 
         private void btnAddAll_Click(object sender, EventArgs e) {
