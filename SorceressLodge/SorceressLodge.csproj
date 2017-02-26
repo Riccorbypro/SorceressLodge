@@ -105,6 +105,8 @@
     <Content Include="Resources\KCUnlock.wav" />
     <Content Include="Resources\PlaceholderImg.jpg" />
     <Content Include="MagicTypes.txt" />
+    <Content Include="StoredProcedures\dbo.ProcedureDelete.sql" />
+    <Content Include="StoredProcedures\dbo.ProcedureInsert.sql" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="AdvancedSearch.resx">

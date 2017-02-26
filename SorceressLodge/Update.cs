@@ -48,7 +48,11 @@ namespace SorceressLodge {
                 types.Add(type.Type);
             }
             cmbMagicU.DataSource = types;
-            
+
+        }
+
+        private void btnUpdatePicture_Click(object sender, EventArgs e) {
+
         }
     }
 }
