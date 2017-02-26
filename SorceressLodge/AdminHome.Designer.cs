@@ -146,6 +146,7 @@
             this.usersTable.Name = "usersTable";
             this.usersTable.Size = new System.Drawing.Size(447, 270);
             this.usersTable.TabIndex = 0;
+            this.usersTable.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.usersTable_CellContentClick);
             // 
             // tabAdd
             // 

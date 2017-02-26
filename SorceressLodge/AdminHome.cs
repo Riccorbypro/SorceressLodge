@@ -64,6 +64,8 @@ namespace SorceressLodge {
                 int uID = Convert.ToInt32(usersTable.SelectedCells[0].Value);
                 if (b.DeleteUser(uID)) {
                     MessageBox.Show("Magic user deleted", "Deleted");
+                    b = new Backend();
+                    nameSelectCmb.DataSource = b.getNames();
                     setTable();
                 } else {
                     MessageBox.Show("Deletion Failed");
@@ -95,6 +97,15 @@ namespace SorceressLodge {
             double bounty = double.Parse(lstbBountyAdd.Text);
             string location = lstbLocationAdd.Text;
             DateTime date = Convert.ToDateTime(dtpLocationA.Text);
+        }
+
+        private void usersTable_CellContentClick(object sender, DataGridViewCellEventArgs e) {
+            int id = Convert.ToInt32(usersTable.SelectedRows[0].Cells[0].Value);
+            MagicUser user;
+            if ((user = b.getUser(id)) != null) {
+                Update u = new Update(user, b);
+                u.Show();
+            }
         }
     }
 }

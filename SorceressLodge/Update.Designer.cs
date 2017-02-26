@@ -226,9 +226,12 @@
             // 
             // pbPictureU
             // 
+            this.pbPictureU.BackColor = System.Drawing.Color.Transparent;
+            this.pbPictureU.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.pbPictureU.Location = new System.Drawing.Point(12, 12);
             this.pbPictureU.Name = "pbPictureU";
             this.pbPictureU.Size = new System.Drawing.Size(188, 260);
+            this.pbPictureU.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbPictureU.TabIndex = 41;
             this.pbPictureU.TabStop = false;
             // 
