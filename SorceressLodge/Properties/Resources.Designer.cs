@@ -63,9 +63,9 @@ namespace SorceressLodge.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
-        internal static System.IO.UnmanagedMemoryStream Game_Over {
+        internal static System.IO.UnmanagedMemoryStream KCUnlock {
             get {
-                return ResourceManager.GetStream("Game_Over", resourceCulture);
+                return ResourceManager.GetStream("KCUnlock", resourceCulture);
             }
         }
     }

@@ -39,7 +39,7 @@ namespace SorceressLodge {
 
         private void Login_KeyUp(object sender, KeyEventArgs e) {
             if (code.IsCompletedBy(e.KeyCode)) {
-                System.Media.SoundPlayer player = new System.Media.SoundPlayer(Resources.Game_Over);
+                System.Media.SoundPlayer player = new System.Media.SoundPlayer(Resources.KCUnlock);
                 player.Load();
                 player.Play();
                 MessageBox.Show("My life is like a video game,\nTrying hard to beat the stage.\nAll while I am still collecting coins.");
