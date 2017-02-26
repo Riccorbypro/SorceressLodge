@@ -32,6 +32,7 @@
             this.nameSelectCmb = new System.Windows.Forms.ComboBox();
             this.usersTable = new System.Windows.Forms.DataGridView();
             this.tabAdd = new System.Windows.Forms.TabPage();
+            this.btnLocationAdd = new System.Windows.Forms.Button();
             this.txtSurnameA = new System.Windows.Forms.TextBox();
             this.txtNameA = new System.Windows.Forms.TextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -150,6 +151,7 @@
             // 
             // tabAdd
             // 
+            this.tabAdd.Controls.Add(this.btnLocationAdd);
             this.tabAdd.Controls.Add(this.txtSurnameA);
             this.tabAdd.Controls.Add(this.txtNameA);
             this.tabAdd.Controls.Add(this.pictureBox1);
@@ -179,6 +181,16 @@
             this.tabAdd.TabIndex = 1;
             this.tabAdd.Text = "Add Magic User";
             this.tabAdd.UseVisualStyleBackColor = true;
+            // 
+            // btnLocationAdd
+            // 
+            this.btnLocationAdd.Location = new System.Drawing.Point(196, 123);
+            this.btnLocationAdd.Name = "btnLocationAdd";
+            this.btnLocationAdd.Size = new System.Drawing.Size(84, 23);
+            this.btnLocationAdd.TabIndex = 24;
+            this.btnLocationAdd.Text = "Add Location";
+            this.btnLocationAdd.UseVisualStyleBackColor = true;
+            this.btnLocationAdd.Click += new System.EventHandler(this.btnLocationAdd_Click);
             // 
             // txtSurnameA
             // 
@@ -343,6 +355,7 @@
             this.btnAddMagic.TabIndex = 5;
             this.btnAddMagic.Text = "Add Magic";
             this.btnAddMagic.UseVisualStyleBackColor = true;
+            this.btnAddMagic.Click += new System.EventHandler(this.btnAddMagic_Click);
             // 
             // cmbLevelA
             // 
@@ -487,5 +500,6 @@
         private System.Windows.Forms.Button Deletebtn;
         private System.Windows.Forms.TextBox txtSurnameA;
         private System.Windows.Forms.TextBox txtNameA;
+        private System.Windows.Forms.Button btnLocationAdd;
     }
 }

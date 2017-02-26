@@ -16,6 +16,9 @@ namespace SorceressLodge {
 
         private DataTable table;
         private Backend b;
+        List<Bounty> listBlounty = new List<Bounty>();
+        List<Location> listLocation = new List<Location>();
+        Dictionary<MagicType, int> dicSkill = new Dictionary<MagicType, int>();
         public AdminHome() {
             b = new Backend();
             InitializeComponent();
@@ -94,10 +97,9 @@ namespace SorceressLodge {
             string sname = txtSurnameA.Text;
             string desc = txtDescription.Text;
             Image image = pictureBox1.Image;
-            double bounty = double.Parse(lstbBountyAdd.Text);
-            string location = lstbLocationAdd.Text;
+            //double.Parse(lstbBountyAdd.Text);
             DateTime date = Convert.ToDateTime(dtpLocationA.Text);
-
+            
             //MagicUser User = new MagicUser(0,)
         }
 
@@ -108,6 +110,22 @@ namespace SorceressLodge {
                 Update u = new Update(user, b);
                 u.Show();
             }
+        }
+
+        private void btnLocationAdd_Click(object sender, EventArgs e) {
+            try {
+                listLocation.Add(new SorceressLodge.Location(0, 0, txtLocationA.Text, dtpLocationA.Value));
+                lstbLocationAdd.Items.Add(txtLocationA + " " + dtpLocationA.Value.ToString());
+                txtLocationA.Clear();
+                dtpLocationA.Text = "";
+            } catch (Exception) {
+                MessageBox.Show("Incorrect values entered","Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                throw;
+            }
+        }
+
+        private void btnAddMagic_Click(object sender, EventArgs e) {
+            
         }
     }
 }
