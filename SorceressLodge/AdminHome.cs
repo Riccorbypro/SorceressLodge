@@ -66,16 +66,12 @@ namespace SorceressLodge {
         private void Deletebtn_Click(object sender, EventArgs e) {
             if (MessageBox.Show("Are you sure you want to delete this user?", "Delete Magic User", MessageBoxButtons.YesNo) == DialogResult.Yes) {
                 int uID = Convert.ToInt32(usersTable.SelectedCells[0].Value);
-                Connection connect = new Connection();
-
-                
-                SqlCommand sqlcom = new SqlCommand("Procedure_Delete", sqlconn);
-                sqlcom.CommandType = CommandType.StoredProcedure;
-                sqlcom.Parameters.AddWithValue("@userid", uID);
-                sqlcom.ExecuteNonQuery();
-                sqlconn.Close();
-                MessageBox.Show("Magic user deleted", "Deleted");
-                setTable();
+                if (b.DeleteUser(uID)) {
+                    MessageBox.Show("Magic user deleted", "Deleted");
+                    setTable();
+                } else {
+                    MessageBox.Show("Deletion Failed");
+                }
             }
         }
 
@@ -84,7 +80,7 @@ namespace SorceressLodge {
             SkillItem.Add(1, "Novice");
             SkillItem.Add(2, "Adept");
             SkillItem.Add(3, "Master");
-            cmbLevelA.DataSource = new BindingSource(SkillItem,null);
+            cmbLevelA.DataSource = new BindingSource(SkillItem, null);
             cmbLevelA.DisplayMember = "Value";
             cmbLevelA.ValueMember = "Key";
 

@@ -7,6 +7,7 @@ using System.Data.Sql;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
+using System.Data;
 
 namespace SorceressLodge {
     class Connection {
@@ -14,20 +15,14 @@ namespace SorceressLodge {
         SqlCommand sqlcomm;
         SqlDataReader datareader;
 
-        //public Connection() {
-        //    //string conn = @"Data Source=DESKTOP-103SE6A\SQLEXPRESS;Initial Catalog=SorceressLodge;Integrated Security=True"; // Riccorbypro
-        //    string conn = @"Data Source=DESKTOP-C12M830\SQLEXPRESS;Initial Catalog=SorceressLodge;Integrated Security=True"; // WelterZen
-        //    sqlconn = new SqlConnection(conn);
-        //}
-
-        public void Connect() {
-            string conn = @"Data Source=DESKTOP-103SE6A\SQLEXPRESS;Initial Catalog=SorceressLodge;Integrated Security=True"; // Riccorbypro
-            //string conn = @"Data Source=DESKTOP-C12M830\SQLEXPRESS;Initial Catalog=SorceressLodge;Integrated Security=True"; // WelterZen
+        public Connection() {
+            string conn = @"Data Source=RICCORBYPRO-PC;Initial Catalog=SorceressLodge;Integrated Security=True";
+            //@"Data Source=DESKTOP-C12M830\SQLEXPRESS;Initial Catalog=SorceressLodge;Integrated Security=True" WelterZen
+            //@"Data Source=RICCORBYPRO-PC;Initial Catalog=SorceressLodge;Integrated Security=True" Riccorbypro
             sqlconn = new SqlConnection(conn);
         }
 
         public List<MagicUser> ReadMagicUsers() {
-            Connect();
             List<MagicUser> MagicUserlst = new List<MagicUser>();
             List<MagicType> magictypes = ReadTypes();
             List<object[]> osLocation = ReadData("Location");
@@ -92,7 +87,7 @@ namespace SorceressLodge {
                 }
                 foreach (KeyValuePair<int[], MagicType> skill in skills) {
                     if (skill.Key[1] == uidMU) {
-                        skillsMU.Add(skill.Value, new int[] { skill.Key[0],skill.Key[2] });
+                        skillsMU.Add(skill.Value, new int[] { skill.Key[0], skill.Key[2] });
                     }
                 }
                 MagicUserlst.Add(new MagicUser(uidMU, nameMU, surnameMU, descriptionMU, imageMU, skillsMU, bountyMU, locationMU));
@@ -102,7 +97,6 @@ namespace SorceressLodge {
         }
 
         public List<Users> ReadUsers() {
-            Connect();
             List<Users> Userslst = new List<Users>();
             sqlconn.Open();
             string Qry1 = "SELECT * from Users";
@@ -125,7 +119,6 @@ namespace SorceressLodge {
         }
 
         public List<MagicType> ReadTypes() {
-            Connect();
             List<MagicType> lst = new List<MagicType>();
             sqlconn.Open();
             string Qry1 = "SELECT * from MagicTypes";
@@ -139,7 +132,6 @@ namespace SorceressLodge {
         }
 
         public List<object[]> ReadData(string tblName) {
-            Connect();
             List<object[]> list = new List<object[]>();
             sqlconn.Open();
             string Qry1 = "SELECT * FROM " + tblName;
@@ -154,6 +146,22 @@ namespace SorceressLodge {
             }
             sqlconn.Close();
             return list;
+        }
+
+        public bool Delete(int id) {
+            try {
+                sqlconn.Open();
+                sqlcomm = new SqlCommand("Procedure_Delete", sqlconn);
+                sqlcomm.CommandType = CommandType.StoredProcedure;
+                sqlcomm.Parameters.AddWithValue("@userid", id);
+                sqlcomm.ExecuteNonQuery();
+                ReadMagicUsers();
+                return true;
+            } catch (Exception) {
+                return false;
+            } finally {
+                sqlconn.Close();
+            }
         }
     }
 }
