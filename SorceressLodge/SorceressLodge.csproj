@@ -102,7 +102,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Game Over.wav" />
+    <Content Include="Resources\KCUnlock.wav" />
     <Content Include="Resources\PlaceholderImg.jpg" />
     <Content Include="MagicTypes.txt" />
   </ItemGroup>
