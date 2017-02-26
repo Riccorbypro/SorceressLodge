@@ -7,6 +7,7 @@ using System.Data.Sql;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
+using System.Data;
 
 namespace SorceressLodge {
     class Connection {
@@ -86,7 +87,7 @@ namespace SorceressLodge {
                 }
                 foreach (KeyValuePair<int[], MagicType> skill in skills) {
                     if (skill.Key[1] == uidMU) {
-                        skillsMU.Add(skill.Value, new int[] { skill.Key[0],skill.Key[2] });
+                        skillsMU.Add(skill.Value, new int[] { skill.Key[0], skill.Key[2] });
                     }
                 }
                 MagicUserlst.Add(new MagicUser(uidMU, nameMU, surnameMU, descriptionMU, imageMU, skillsMU, bountyMU, locationMU));
@@ -145,6 +146,22 @@ namespace SorceressLodge {
             }
             sqlconn.Close();
             return list;
+        }
+
+        public bool Delete(int id) {
+            try {
+                sqlconn.Open();
+                sqlcomm = new SqlCommand("Procedure_Delete", sqlconn);
+                sqlcomm.CommandType = CommandType.StoredProcedure;
+                sqlcomm.Parameters.AddWithValue("@userid", id);
+                sqlcomm.ExecuteNonQuery();
+                ReadMagicUsers();
+                return true;
+            } catch (Exception) {
+                return false;
+            } finally {
+                sqlconn.Close();
+            }
         }
     }
 }

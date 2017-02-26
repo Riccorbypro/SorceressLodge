@@ -167,5 +167,9 @@ namespace SorceressLodge {
         public List<MagicType> getTypes() {
             return conn.ReadTypes();
         }
+
+        public bool DeleteUser(int id) {
+            return conn.Delete(id);
+        }
     }
 }
