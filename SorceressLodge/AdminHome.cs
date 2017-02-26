@@ -90,16 +90,11 @@ namespace SorceressLodge {
         }
 
         private void btnAddAll_Click(object sender, EventArgs e) {
-            int userID = 0;
-            int typeID = 0;
-            int profc = 0;
             string fname = txtNameA.Text;
             string sname = txtSurnameA.Text;
             string desc = txtDescription.Text;
             Image image = pictureBox1.Image;
-            //double.Parse(lstbBountyAdd.Text);
-            DateTime date = Convert.ToDateTime(dtpLocationA.Text);
-            
+
             //MagicUser User = new MagicUser(0,)
         }
 
@@ -119,13 +114,14 @@ namespace SorceressLodge {
                 txtLocationA.Clear();
                 dtpLocationA.Text = "";
             } catch (Exception) {
-                MessageBox.Show("Incorrect values entered","Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                MessageBox.Show("Incorrect values entered", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 throw;
             }
         }
 
         private void btnAddMagic_Click(object sender, EventArgs e) {
-            
+            dicSkill.Add((MagicType)cmbMagicA.SelectedValue, int.Parse(cmbLevelA.SelectedValue.ToString()));
+            lstbMagicAdd.Items.Add(cmbMagicA.SelectedValue + " (" + cmbLevelA.SelectedValue + ")");
         }
     }
 }
