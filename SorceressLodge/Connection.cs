@@ -16,8 +16,8 @@ namespace SorceressLodge {
         SqlDataReader datareader;
 
         public Connection() {
-            string conn = @"Data Source=RICCORBYPRO-PC;Initial Catalog=SorceressLodge;Integrated Security=True"; //Riccorbypro
-            //string conn = @"Data Source=DESKTOP-C12M830\SQLEXPRESS;Initial Catalog=SorceressLodge;Integrated Security=True"; // WelterZen
+            //string conn = @"Data Source=RICCORBYPRO-PC;Initial Catalog=SorceressLodge;Integrated Security=True"; //Riccorbypro
+            string conn = @"Data Source=DESKTOP-103SE6A\SQLEXPRESS;Initial Catalog=SorceressLodge;Integrated Security=True"; // WelterZen
             sqlconn = new SqlConnection(conn);
         }
 
@@ -179,13 +179,10 @@ namespace SorceressLodge {
                 sqlcomm.Parameters.AddWithValue("@image", user.Image);
                 sqlcomm.ExecuteNonQuery();
 
-                sqlcomm = new SqlCommand("Procedure_SelectUserID", sqlconn);
-                sqlcomm.CommandType = CommandType.StoredProcedure;
-                sqlcomm.Parameters.Add(new SqlParameter("@fname", user.Name));
-                sqlcomm.Parameters.AddWithValue("@sname", user.Surname);
-                sqlcomm.Parameters.AddWithValue("@desc", user.Description);
-                sqlcomm.Parameters.AddWithValue("@image", user.Image);
-                int userid = sqlcomm.ExecuteNonQuery();
+                string Qry1 = "SELECT * from MagicUser where FName=" + user.Name + " and SName=" + user.Surname;
+                sqlcomm = new SqlCommand(Qry1, sqlconn);
+                datareader = sqlcomm.ExecuteReader();
+                int userid = datareader.GetInt32(0);                
                 foreach (Location item in user.Location) {
                     sqlcomm = new SqlCommand("Procedure_InsertLocation", sqlconn);
                     sqlcomm.CommandType = CommandType.StoredProcedure;

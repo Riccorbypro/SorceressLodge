@@ -2,8 +2,7 @@
 	@fname varchar(20),
 	@sname varchar(20),
 	@desc varchar(127),
-	@image image
-
+	@image varbinary(MAX)
 AS
-	insert into MagicUsers(FName,SName,Desription,Image) values(@fname, @sname, @desc, @image) 
+	insert into MagicUsers(FName,SName,Description,Image) values(@fname, @sname, @desc, @image) 
 RETURN 0

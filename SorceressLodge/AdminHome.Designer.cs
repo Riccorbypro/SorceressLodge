@@ -313,6 +313,7 @@
             this.btnAddBounty.TabIndex = 10;
             this.btnAddBounty.Text = "Add Bounty";
             this.btnAddBounty.UseVisualStyleBackColor = true;
+            this.btnAddBounty.Click += new System.EventHandler(this.btnAddBounty_Click);
             // 
             // lstbBountyAdd
             // 

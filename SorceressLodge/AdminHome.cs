@@ -18,7 +18,7 @@ namespace SorceressLodge {
         private Backend b;
         List<Bounty> listBlounty = new List<Bounty>();
         List<Location> listLocation = new List<Location>();
-        Dictionary<MagicType, int> dicSkill = new Dictionary<MagicType, int>();
+        Dictionary<MagicType, int[]> dicSkill = new Dictionary<MagicType, int[]>();
         public AdminHome() {
             b = new Backend();
             InitializeComponent();
@@ -63,7 +63,7 @@ namespace SorceressLodge {
 
         private void Deletebtn_Click(object sender, EventArgs e) {
             string MagicUserName = "Delete " + usersTable.SelectedCells[1].Value.ToString();
-            if (MessageBox.Show("Are you sure you want to delete this user?", MagicUserName, MessageBoxButtons.YesNo) == DialogResult.Yes) {
+            if (MessageBox.Show("Are you sure you want to delete this user?", MagicUserName, MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes) {
                 int uID = Convert.ToInt32(usersTable.SelectedCells[0].Value);
                 if (b.DeleteUser(uID)) {
                     MessageBox.Show("Magic user deleted", "Deleted");
@@ -71,7 +71,7 @@ namespace SorceressLodge {
                     nameSelectCmb.DataSource = b.getNames();
                     setTable();
                 } else {
-                    MessageBox.Show("Deletion Failed");
+                    MessageBox.Show("Deletion Failed", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -90,12 +90,27 @@ namespace SorceressLodge {
         }
 
         private void btnAddAll_Click(object sender, EventArgs e) {
-            string fname = txtNameA.Text;
-            string sname = txtSurnameA.Text;
-            string desc = txtDescription.Text;
-            Image image = pictureBox1.Image;
+            try {
+                string fname = txtNameA.Text;
+                string sname = txtSurnameA.Text;
+                string desc = txtDescription.Text;
+                Image image = pictureBox1.Image;
 
-            //MagicUser User = new MagicUser(0,)
+                MagicUser User = new MagicUser(0, fname, sname, desc, image, dicSkill, listBlounty, listLocation);
+                string names = "Succesfully added " + fname + " " + sname;
+                MessageBox.Show(names, "Added to database");
+            } catch (Exception) {
+                MessageBox.Show("Incorrect values entered", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            } finally {
+                txtBountyA.Clear();
+                txtDescription.Clear();
+                txtLocationA.Clear();
+                txtNameA.Clear();
+                txtSurnameA.Clear();
+                lstbBountyAdd.Items.Clear();
+                lstbLocationAdd.Items.Clear();
+                lstbMagicAdd.Items.Clear();
+            }
         }
 
         private void usersTable_CellContentClick(object sender, DataGridViewCellEventArgs e) {
@@ -110,18 +125,32 @@ namespace SorceressLodge {
         private void btnLocationAdd_Click(object sender, EventArgs e) {
             try {
                 listLocation.Add(new SorceressLodge.Location(0, 0, txtLocationA.Text, dtpLocationA.Value));
-                lstbLocationAdd.Items.Add(txtLocationA + " " + dtpLocationA.Value.ToString());
+                lstbLocationAdd.Items.Add(txtLocationA.Text + " " + dtpLocationA.Value.ToString());
                 txtLocationA.Clear();
-                dtpLocationA.Text = "";
+                dtpLocationA.ResetText();
             } catch (Exception) {
                 MessageBox.Show("Incorrect values entered", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                throw;
             }
         }
 
         private void btnAddMagic_Click(object sender, EventArgs e) {
-            dicSkill.Add((MagicType)cmbMagicA.SelectedValue, int.Parse(cmbLevelA.SelectedValue.ToString()));
-            lstbMagicAdd.Items.Add(cmbMagicA.SelectedValue + " (" + cmbLevelA.SelectedValue + ")");
+            try {
+                int[] prof = { 0, int.Parse(cmbLevelA.SelectedValue.ToString()), 0 };
+                dicSkill.Add((MagicType)cmbMagicA.SelectedValue, prof);
+                lstbMagicAdd.Items.Add(cmbMagicA.SelectedValue + " (" + cmbLevelA.SelectedValue + ")");
+            } catch (Exception) {
+                MessageBox.Show("Incorrect values entered", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnAddBounty_Click(object sender, EventArgs e) {
+            try {
+                listBlounty.Add(new Bounty(0, 0, double.Parse(txtBountyA.Text)));
+                lstbBountyAdd.Items.Add("R" + txtBountyA.Text);
+                txtBountyA.Clear();
+            } catch (Exception) {
+                MessageBox.Show("Incorrect values entered", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
