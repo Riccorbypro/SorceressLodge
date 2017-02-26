@@ -16,8 +16,8 @@ namespace SorceressLodge {
         SqlDataReader datareader;
 
         public Connection() {
-            //string conn = @"Data Source=RICCORBYPRO-PC;Initial Catalog=SorceressLodge;Integrated Security=True"; //Riccorbypro
-            string conn = @"Data Source=DESKTOP-103SE6A\SQLEXPRESS;Initial Catalog=SorceressLodge;Integrated Security=True"; // WelterZen
+            string conn = @"Data Source=RICCORBYPRO-PC;Initial Catalog=SorceressLodge;Integrated Security=True"; //Riccorbypro
+            //string conn = @"Data Source=DESKTOP-103SE6A\SQLEXPRESS;Initial Catalog=SorceressLodge;Integrated Security=True"; // WelterZen
             sqlconn = new SqlConnection(conn);
         }
 
@@ -171,24 +171,24 @@ namespace SorceressLodge {
         public bool Insert(MagicUser user) {
             try {
                 sqlconn.Open();
-                sqlcomm = new SqlCommand("Procedure_InsertMU",sqlconn);
+                sqlcomm = new SqlCommand("Procedure_InsertMU", sqlconn);
                 sqlcomm.CommandType = CommandType.StoredProcedure;
-                sqlcomm.Parameters.Add(new SqlParameter("@fname",user.Name));
-                sqlcomm.Parameters.AddWithValue("@sname",user.Surname);
-                sqlcomm.Parameters.AddWithValue("@desc",user.Description);
-                sqlcomm.Parameters.AddWithValue("@image", user.Image);
+                sqlcomm.Parameters.Add(new SqlParameter("@fname", user.Name));
+                sqlcomm.Parameters.AddWithValue("@sname", user.Surname);
+                sqlcomm.Parameters.AddWithValue("@desc", user.Description);
                 sqlcomm.ExecuteNonQuery();
 
-                string Qry1 = "SELECT * from MagicUser where FName=" + user.Name + " and SName=" + user.Surname;
+                string Qry1 = "SELECT * from MagicUsers where FName=" + user.Name + " and SName=" + user.Surname;
                 sqlcomm = new SqlCommand(Qry1, sqlconn);
                 datareader = sqlcomm.ExecuteReader();
-                int userid = datareader.GetInt32(0);                
+                datareader.Read();
+                int userid = datareader.GetInt32(0);
                 foreach (Location item in user.Location) {
                     sqlcomm = new SqlCommand("Procedure_InsertLocation", sqlconn);
                     sqlcomm.CommandType = CommandType.StoredProcedure;
                     sqlcomm.Parameters.Add(new SqlParameter("@userid", userid));
-                    sqlcomm.Parameters.AddWithValue("@location",item.LocationStr);
-                    sqlcomm.Parameters.AddWithValue("@date",item.Seen);
+                    sqlcomm.Parameters.AddWithValue("@location", item.LocationStr);
+                    sqlcomm.Parameters.AddWithValue("@date", item.Seen);
                     sqlcomm.ExecuteNonQuery();
                 }
                 foreach (Bounty item in user.Bounty) {

@@ -110,7 +110,6 @@
     <Content Include="StoredProcedures\dbo.ProcedureInsertLocation.sql" />
     <Content Include="StoredProcedures\dbo.ProcedureInsertMagicUser.sql" />
     <Content Include="StoredProcedures\dbo.ProcedureInsertUserSkill.sql" />
-    <Content Include="StoredProcedures\dbo.ProcedureSelectUserID.sql" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="AdvancedSearch.resx">
