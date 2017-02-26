@@ -106,7 +106,11 @@
     <Content Include="Resources\PlaceholderImg.jpg" />
     <Content Include="MagicTypes.txt" />
     <Content Include="StoredProcedures\dbo.ProcedureDelete.sql" />
-    <Content Include="StoredProcedures\dbo.ProcedureInsert.sql" />
+    <Content Include="StoredProcedures\dbo.ProcedureInsertBounty.sql" />
+    <Content Include="StoredProcedures\dbo.ProcedureInsertLocation.sql" />
+    <Content Include="StoredProcedures\dbo.ProcedureInsertMagicUser.sql" />
+    <Content Include="StoredProcedures\dbo.ProcedureInsertUserSkill.sql" />
+    <Content Include="StoredProcedures\dbo.ProcedureSelectUserID.sql" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="AdvancedSearch.resx">

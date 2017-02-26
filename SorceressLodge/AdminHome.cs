@@ -95,6 +95,8 @@ namespace SorceressLodge {
             double bounty = double.Parse(lstbBountyAdd.Text);
             string location = lstbLocationAdd.Text;
             DateTime date = Convert.ToDateTime(dtpLocationA.Text);
+
+            //MagicUser User = new MagicUser(0,)
         }
     }
 }

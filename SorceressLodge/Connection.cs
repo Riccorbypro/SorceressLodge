@@ -166,6 +166,44 @@ namespace SorceressLodge {
         public bool Insert(MagicUser user) {
             try {
                 sqlconn.Open();
+                sqlcomm = new SqlCommand("Procedure_InsertMU",sqlconn);
+                sqlcomm.CommandType = CommandType.StoredProcedure;
+                sqlcomm.Parameters.Add(new SqlParameter("@fname",user.Name));
+                sqlcomm.Parameters.AddWithValue("@sname",user.Surname);
+                sqlcomm.Parameters.AddWithValue("@desc",user.Description);
+                sqlcomm.Parameters.AddWithValue("@image", user.Image);
+                sqlcomm.ExecuteNonQuery();
+
+                sqlcomm = new SqlCommand("Procedure_SelectUserID", sqlconn);
+                sqlcomm.CommandType = CommandType.StoredProcedure;
+                sqlcomm.Parameters.Add(new SqlParameter("@fname", user.Name));
+                sqlcomm.Parameters.AddWithValue("@sname", user.Surname);
+                sqlcomm.Parameters.AddWithValue("@desc", user.Description);
+                sqlcomm.Parameters.AddWithValue("@image", user.Image);
+                int userid = sqlcomm.ExecuteNonQuery();
+                foreach (Location item in user.Location) {
+                    sqlcomm = new SqlCommand("Procedure_InsertLocation", sqlconn);
+                    sqlcomm.CommandType = CommandType.StoredProcedure;
+                    sqlcomm.Parameters.Add(new SqlParameter("@userid", userid));
+                    sqlcomm.Parameters.AddWithValue("@location",item.LocationStr);
+                    sqlcomm.Parameters.AddWithValue("@date",item.Seen);
+                    sqlcomm.ExecuteNonQuery();
+                }
+                foreach (Bounty item in user.Bounty) {
+                    sqlcomm = new SqlCommand("Procedure_InsertBounty", sqlconn);
+                    sqlcomm.CommandType = CommandType.StoredProcedure;
+                    sqlcomm.Parameters.Add(new SqlParameter("@userid", userid));
+                    sqlcomm.Parameters.AddWithValue("@bounty", item.BountyAmount);
+                    sqlcomm.ExecuteNonQuery();
+                }
+                foreach (var item in user.Skills) {
+                    sqlcomm = new SqlCommand("Procedure_InsertUserSkill", sqlconn);
+                    sqlcomm.CommandType = CommandType.StoredProcedure;
+                    sqlcomm.Parameters.Add(new SqlParameter("@userid", user.UID));
+                    sqlcomm.Parameters.AddWithValue("@typeid", item.Key.ID);
+                    sqlcomm.Parameters.AddWithValue("@profic", item.Value[1]);
+                    sqlcomm.ExecuteNonQuery();
+                }
                 return true;
             } catch (Exception) {
                 return false;
