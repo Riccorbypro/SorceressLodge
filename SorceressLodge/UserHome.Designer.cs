@@ -156,7 +156,6 @@
             this.tabAdd.TabIndex = 1;
             this.tabAdd.Text = "Add";
             this.tabAdd.UseVisualStyleBackColor = true;
-            this.tabAdd.Click += new System.EventHandler(this.tabAdd_Click);
             // 
             // pictureBox1
             // 
@@ -333,7 +332,6 @@
             this.txtNameA.Name = "txtNameA";
             this.txtNameA.Size = new System.Drawing.Size(89, 20);
             this.txtNameA.TabIndex = 0;
-            this.txtNameA.TextChanged += new System.EventHandler(this.txtNameA_TextChanged);
             // 
             // txtSurname
             // 

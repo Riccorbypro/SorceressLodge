@@ -16,6 +16,10 @@ namespace SorceressLodge {
         SqlConnection sqlconn;
         DataTable table;
         DataSet dataset;
+        Dictionary<int, string> SkillItem;
+        Dictionary<int, string> MagicItem;
+        List<int> skilllst;
+        List<int> magiclst;
         private Backend b;
         public AdminHome() {
             b = new Backend();
@@ -54,7 +58,8 @@ namespace SorceressLodge {
             int id = (int)usersTable.SelectedRows[0].Cells[0].Value;
             MagicUser user;
             if ((user = b.getUser(id)) != null) {
-
+                Update u = new Update(user, b);
+                u.Show();
             }
         }
 
@@ -78,13 +83,27 @@ namespace SorceressLodge {
         }
 
         private void AdminHome_Load(object sender, EventArgs e) {
-            Dictionary<int, string> item = new Dictionary<int, string>();
-            item.Add(1, "Novice");
-            item.Add(2, "Adept");
-            item.Add(3, "Master");
-            cmbLevelA.DataSource = new BindingSource(item,null);
+            SkillItem = new Dictionary<int, string>();
+            SkillItem.Add(1, "Novice");
+            SkillItem.Add(2, "Adept");
+            SkillItem.Add(3, "Master");
+            cmbLevelA.DataSource = new BindingSource(SkillItem,null);
             cmbLevelA.DisplayMember = "Value";
             cmbLevelA.ValueMember = "Key";
+
+            MagicItem = new Dictionary<int, string>();
+            MagicItem.Add(1, "");
+            MagicItem.Add(2, "");
+            MagicItem.Add(3, "");
+            MagicItem.Add(4, "");
+            MagicItem.Add(5, "");
+            MagicItem.Add(6, "");
+            MagicItem.Add(7, "");
+            MagicItem.Add(8, "");
+            MagicItem.Add(9, "");
+            cmbMagicA.DataSource = new BindingSource(MagicItem, null);
+            cmbMagicA.DisplayMember = "Value";
+            cmbMagicA.ValueMember = "Key";
         }
 
         private void btnAddAll_Click(object sender, EventArgs e) {

@@ -26,11 +26,14 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdminHome));
             this.tabcontrols = new System.Windows.Forms.TabControl();
             this.tabView = new System.Windows.Forms.TabPage();
+            this.Deletebtn = new System.Windows.Forms.Button();
             this.btnAdvancS = new System.Windows.Forms.Button();
             this.btnSearch = new System.Windows.Forms.Button();
             this.nameSelectCmb = new System.Windows.Forms.ComboBox();
             this.usersTable = new System.Windows.Forms.DataGridView();
             this.tabAdd = new System.Windows.Forms.TabPage();
+            this.txtSurnameA = new System.Windows.Forms.TextBox();
+            this.txtNameA = new System.Windows.Forms.TextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnAddPicture = new System.Windows.Forms.Button();
             this.btnAddAll = new System.Windows.Forms.Button();
@@ -57,9 +60,6 @@
             this.btnAddUser = new System.Windows.Forms.Button();
             this.txtUserPassword = new System.Windows.Forms.TextBox();
             this.txtUserNameA = new System.Windows.Forms.TextBox();
-            this.Deletebtn = new System.Windows.Forms.Button();
-            this.txtNameA = new System.Windows.Forms.TextBox();
-            this.txtSurnameA = new System.Windows.Forms.TextBox();
             this.tabcontrols.SuspendLayout();
             this.tabView.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.usersTable)).BeginInit();
@@ -94,6 +94,16 @@
             this.tabView.Text = "View Magic User";
             this.tabView.UseVisualStyleBackColor = true;
             // 
+            // Deletebtn
+            // 
+            this.Deletebtn.Location = new System.Drawing.Point(391, 329);
+            this.Deletebtn.Name = "Deletebtn";
+            this.Deletebtn.Size = new System.Drawing.Size(75, 23);
+            this.Deletebtn.TabIndex = 4;
+            this.Deletebtn.Text = "Delete";
+            this.Deletebtn.UseVisualStyleBackColor = true;
+            this.Deletebtn.Click += new System.EventHandler(this.Deletebtn_Click);
+            // 
             // btnAdvancS
             // 
             this.btnAdvancS.DialogResult = System.Windows.Forms.DialogResult.Cancel;
@@ -118,11 +128,15 @@
             // 
             // nameSelectCmb
             // 
+            this.nameSelectCmb.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.nameSelectCmb.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.nameSelectCmb.FormattingEnabled = true;
             this.nameSelectCmb.Location = new System.Drawing.Point(19, 26);
             this.nameSelectCmb.Name = "nameSelectCmb";
             this.nameSelectCmb.Size = new System.Drawing.Size(220, 21);
             this.nameSelectCmb.TabIndex = 1;
+            this.nameSelectCmb.TextUpdate += new System.EventHandler(this.btnSearch_Click);
+            this.nameSelectCmb.DropDownClosed += new System.EventHandler(this.btnSearch_Click);
             // 
             // usersTable
             // 
@@ -163,6 +177,20 @@
             this.tabAdd.TabIndex = 1;
             this.tabAdd.Text = "Add Magic User";
             this.tabAdd.UseVisualStyleBackColor = true;
+            // 
+            // txtSurnameA
+            // 
+            this.txtSurnameA.Location = new System.Drawing.Point(101, 71);
+            this.txtSurnameA.Name = "txtSurnameA";
+            this.txtSurnameA.Size = new System.Drawing.Size(89, 20);
+            this.txtSurnameA.TabIndex = 23;
+            // 
+            // txtNameA
+            // 
+            this.txtNameA.Location = new System.Drawing.Point(9, 71);
+            this.txtNameA.Name = "txtNameA";
+            this.txtNameA.Size = new System.Drawing.Size(89, 20);
+            this.txtNameA.TabIndex = 22;
             // 
             // pictureBox1
             // 
@@ -394,30 +422,6 @@
             this.txtUserNameA.Name = "txtUserNameA";
             this.txtUserNameA.Size = new System.Drawing.Size(250, 20);
             this.txtUserNameA.TabIndex = 0;
-            // 
-            // Deletebtn
-            // 
-            this.Deletebtn.Location = new System.Drawing.Point(391, 329);
-            this.Deletebtn.Name = "Deletebtn";
-            this.Deletebtn.Size = new System.Drawing.Size(75, 23);
-            this.Deletebtn.TabIndex = 4;
-            this.Deletebtn.Text = "Delete";
-            this.Deletebtn.UseVisualStyleBackColor = true;
-            this.Deletebtn.Click += new System.EventHandler(this.Deletebtn_Click);
-            // 
-            // txtNameA
-            // 
-            this.txtNameA.Location = new System.Drawing.Point(9, 71);
-            this.txtNameA.Name = "txtNameA";
-            this.txtNameA.Size = new System.Drawing.Size(89, 20);
-            this.txtNameA.TabIndex = 22;
-            // 
-            // txtSurnameA
-            // 
-            this.txtSurnameA.Location = new System.Drawing.Point(101, 71);
-            this.txtSurnameA.Name = "txtSurnameA";
-            this.txtSurnameA.Size = new System.Drawing.Size(89, 20);
-            this.txtSurnameA.TabIndex = 23;
             // 
             // AdminHome
             // 
