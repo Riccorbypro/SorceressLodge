@@ -240,6 +240,7 @@
             this.btnUpdatePicture.TabIndex = 42;
             this.btnUpdatePicture.Text = "Update Picture";
             this.btnUpdatePicture.UseVisualStyleBackColor = true;
+            this.btnUpdatePicture.Click += new System.EventHandler(this.btnUpdatePicture_Click);
             // 
             // txtNameU
             // 
