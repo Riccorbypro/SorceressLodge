@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -52,7 +53,20 @@ namespace SorceressLodge {
         }
 
         private void btnUpdatePicture_Click(object sender, EventArgs e) {
+            OpenFileDialog ofd = new OpenFileDialog();
+            byte[] image;
 
+            ofd.InitialDirectory = Environment.SpecialFolder.MyDocuments.ToString();
+            ofd.Filter = "Image files (.jpg)|*.jpg";
+            ofd.FilterIndex = 1;
+            ofd.RestoreDirectory = true;
+
+            if (ofd.ShowDialog() == DialogResult.OK) {
+                if (ofd.CheckFileExists) {
+                    image = ImageHandler.readImage(ofd.FileName);
+                    pbPictureU.Image = new Bitmap(new MemoryStream(image));
+                }
+            }
         }
     }
 }

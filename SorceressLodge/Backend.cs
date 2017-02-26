@@ -171,6 +171,7 @@ namespace SorceressLodge {
         public bool DeleteUser(int id) {
             return conn.Delete(id);
         }
+
         public bool InsertUser(MagicUser user) {
             return conn.Insert(user);
         }

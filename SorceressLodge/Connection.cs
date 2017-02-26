@@ -16,8 +16,8 @@ namespace SorceressLodge {
         SqlDataReader datareader;
 
         public Connection() {
-            //string conn = @"Data Source=RICCORBYPRO-PC;Initial Catalog=SorceressLodge;Integrated Security=True"; //Riccorbypro
-            string conn = @"Data Source=DESKTOP-C12M830\SQLEXPRESS;Initial Catalog=SorceressLodge;Integrated Security=True"; // WelterZen
+            string conn = @"Data Source=RICCORBYPRO-PC;Initial Catalog=SorceressLodge;Integrated Security=True"; //Riccorbypro
+            //string conn = @"Data Source=DESKTOP-C12M830\SQLEXPRESS;Initial Catalog=SorceressLodge;Integrated Security=True"; // WelterZen
             sqlconn = new SqlConnection(conn);
         }
 
@@ -91,6 +91,9 @@ namespace SorceressLodge {
                 }
                 MagicUserlst.Add(new MagicUser(uidMU, nameMU, surnameMU, descriptionMU, imageMU, skillsMU, bountyMU, locationMU));
             }
+            if (sqlconn.State == ConnectionState.Open) {
+                sqlconn.Close();
+            }
 
             return MagicUserlst;
         }
@@ -119,7 +122,9 @@ namespace SorceressLodge {
 
         public List<MagicType> ReadTypes() {
             List<MagicType> lst = new List<MagicType>();
-            sqlconn.Open();
+            if (sqlconn.State == ConnectionState.Closed) {
+                sqlconn.Open();
+            }
             string Qry1 = "SELECT * from MagicTypes";
             sqlcomm = new SqlCommand(Qry1, sqlconn);
             datareader = sqlcomm.ExecuteReader();
