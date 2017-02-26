@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [dbo].[ProcedureInsert]
+﻿CREATE PROCEDURE [dbo].[Procedure_Insert]
 	@userid int,
 	@typeid int,
 	@profic int,

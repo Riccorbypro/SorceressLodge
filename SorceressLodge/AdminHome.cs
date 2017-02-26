@@ -59,7 +59,8 @@ namespace SorceressLodge {
         }
 
         private void Deletebtn_Click(object sender, EventArgs e) {
-            if (MessageBox.Show("Are you sure you want to delete this user?", "Delete Magic User", MessageBoxButtons.YesNo) == DialogResult.Yes) {
+            string MagicUserName = "Delete " + usersTable.SelectedCells[1].Value.ToString();
+            if (MessageBox.Show("Are you sure you want to delete this user?", MagicUserName, MessageBoxButtons.YesNo) == DialogResult.Yes) {
                 int uID = Convert.ToInt32(usersTable.SelectedCells[0].Value);
                 if (b.DeleteUser(uID)) {
                     MessageBox.Show("Magic user deleted", "Deleted");
