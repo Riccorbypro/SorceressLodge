@@ -135,8 +135,9 @@
             this.nameSelectCmb.Name = "nameSelectCmb";
             this.nameSelectCmb.Size = new System.Drawing.Size(220, 21);
             this.nameSelectCmb.TabIndex = 1;
+            this.nameSelectCmb.SelectedIndexChanged += new System.EventHandler(this.btnSearch_Click);
+            this.nameSelectCmb.SelectionChangeCommitted += new System.EventHandler(this.btnSearch_Click);
             this.nameSelectCmb.TextUpdate += new System.EventHandler(this.btnSearch_Click);
-            this.nameSelectCmb.DropDownClosed += new System.EventHandler(this.btnSearch_Click);
             // 
             // usersTable
             // 

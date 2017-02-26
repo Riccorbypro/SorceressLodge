@@ -31,6 +31,7 @@
             this.nameSelectCmb = new System.Windows.Forms.ComboBox();
             this.usersTable = new System.Windows.Forms.DataGridView();
             this.tabAdd = new System.Windows.Forms.TabPage();
+            this.txtSurname = new System.Windows.Forms.TextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnAddPicture = new System.Windows.Forms.Button();
             this.btnAddAll = new System.Windows.Forms.Button();
@@ -52,7 +53,6 @@
             this.cmbMagicA = new System.Windows.Forms.ComboBox();
             this.lstbMagicAdd = new System.Windows.Forms.ListBox();
             this.txtNameA = new System.Windows.Forms.TextBox();
-            this.txtSurname = new System.Windows.Forms.TextBox();
             this.tabcontrols.SuspendLayout();
             this.tabView.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.usersTable)).BeginInit();
@@ -113,8 +113,8 @@
             this.nameSelectCmb.Name = "nameSelectCmb";
             this.nameSelectCmb.Size = new System.Drawing.Size(220, 21);
             this.nameSelectCmb.TabIndex = 1;
+            this.nameSelectCmb.SelectedIndexChanged += new System.EventHandler(this.btnSearch_Click);
             this.nameSelectCmb.TextUpdate += new System.EventHandler(this.btnSearch_Click);
-            this.nameSelectCmb.DropDownClosed += new System.EventHandler(this.btnSearch_Click);
             // 
             // usersTable
             // 
@@ -156,6 +156,13 @@
             this.tabAdd.TabIndex = 1;
             this.tabAdd.Text = "Add";
             this.tabAdd.UseVisualStyleBackColor = true;
+            // 
+            // txtSurname
+            // 
+            this.txtSurname.Location = new System.Drawing.Point(98, 71);
+            this.txtSurname.Name = "txtSurname";
+            this.txtSurname.Size = new System.Drawing.Size(89, 20);
+            this.txtSurname.TabIndex = 22;
             // 
             // pictureBox1
             // 
@@ -332,13 +339,6 @@
             this.txtNameA.Name = "txtNameA";
             this.txtNameA.Size = new System.Drawing.Size(89, 20);
             this.txtNameA.TabIndex = 0;
-            // 
-            // txtSurname
-            // 
-            this.txtSurname.Location = new System.Drawing.Point(98, 71);
-            this.txtSurname.Name = "txtSurname";
-            this.txtSurname.Size = new System.Drawing.Size(89, 20);
-            this.txtSurname.TabIndex = 22;
             // 
             // UserHome
             // 
