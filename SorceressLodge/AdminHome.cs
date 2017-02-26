@@ -97,6 +97,7 @@ namespace SorceressLodge {
                 Image image = pictureBox1.Image;
 
                 MagicUser User = new MagicUser(0, fname, sname, desc, image, dicSkill, listBlounty, listLocation);
+                b.InsertUser(User);
                 string names = "Succesfully added " + fname + " " + sname;
                 MessageBox.Show(names, "Added to database");
             } catch (Exception) {
