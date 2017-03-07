@@ -7,8 +7,8 @@
     <ProjectGuid>{457069B2-BF96-4C0E-AF8B-C25BC78E8E45}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SorceressLodge</RootNamespace>
-    <AssemblyName>SorceressLodge</AssemblyName>
+    <RootNamespace>ServerSide</RootNamespace>
+    <AssemblyName>ServerSide</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>

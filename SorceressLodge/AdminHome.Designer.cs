@@ -1,4 +1,4 @@
-﻿namespace SorceressLodge {
+﻿namespace ServerSide {
     partial class AdminHome {
         /// <summary>
         /// Required designer variable.

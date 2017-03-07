@@ -9,7 +9,7 @@ using System.Drawing;
 using System.IO;
 using System.Data;
 
-namespace SorceressLodge {
+namespace ServerSide {
     class Connection {
         SqlConnection sqlconn;
         SqlCommand sqlcomm;

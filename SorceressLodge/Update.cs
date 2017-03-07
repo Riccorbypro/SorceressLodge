@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace SorceressLodge {
+namespace ServerSide {
     public partial class Update : Form {
 
         private MagicUser user;

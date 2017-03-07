@@ -1,19 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ServerSide {
-    class Program {
-
+namespace ClientSide {
+    static class Program {
+        /// <summary>
+        /// The main entry point for the application.
+        /// </summary>
         [STAThread]
-
-        public static void Main(string[] args) {
+        static void Main() {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Login());
+            Application.Run();
         }
     }
 }

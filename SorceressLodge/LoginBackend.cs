@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SorceressLodge {
+namespace ServerSide {
     class LoginBackend {
 
         public static bool Login(string username, string password) {

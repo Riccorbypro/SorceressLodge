@@ -11,7 +11,7 @@ using System.Data.Sql;
 using System.Data.SqlClient;
 
 
-namespace SorceressLodge {
+namespace ServerSide {
     public partial class AdminHome : Form {
 
         private DataTable table;
