@@ -1,4 +1,4 @@
-﻿namespace ServerSide {
+﻿namespace ClientSide {
     partial class Login {
         /// <summary>
         /// Required designer variable.

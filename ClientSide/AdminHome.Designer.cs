@@ -1,4 +1,4 @@
-﻿namespace ServerSide {
+﻿namespace ClientSide {
     partial class AdminHome {
         /// <summary>
         /// Required designer variable.

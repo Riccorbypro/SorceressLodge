@@ -1,4 +1,4 @@
-﻿namespace ServerSide {
+﻿namespace ClientSide {
     partial class AdvancedSearch {
         /// <summary>
         /// Required designer variable.

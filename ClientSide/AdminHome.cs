@@ -12,7 +12,7 @@ using System.Data.SqlClient;
 using SorceressLibs;
 
 
-namespace ServerSide {
+namespace ClientSide {
     public partial class AdminHome : Form {
 
         private DataTable table;

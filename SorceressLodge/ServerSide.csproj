@@ -49,24 +49,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AdvancedSearch.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AdvancedSearch.Designer.cs">
-      <DependentUpon>AdvancedSearch.cs</DependentUpon>
-    </Compile>
     <Compile Include="Backend.cs" />
     <Compile Include="Connection.cs" />
     <Compile Include="FileHandler.cs" />
-    <Compile Include="KonamiCode.cs" />
     <Compile Include="LoginBackend.cs" />
     <Compile Include="LoginException.cs" />
-    <Compile Include="Login.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Login.Designer.cs">
-      <DependentUpon>Login.cs</DependentUpon>
-    </Compile>
     <Compile Include="ImageHandler.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -74,24 +61,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Update.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Update.Designer.cs">
-      <DependentUpon>Update.cs</DependentUpon>
-    </Compile>
-    <Compile Include="AdminHome.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AdminHome.Designer.cs">
-      <DependentUpon>AdminHome.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UserHome.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UserHome.Designer.cs">
-      <DependentUpon>UserHome.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -108,24 +77,9 @@
     <Content Include="StoredProcedures\dbo.ProcedureInsertUserSkill.sql" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="AdvancedSearch.resx">
-      <DependentUpon>AdvancedSearch.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Login.resx">
-      <DependentUpon>Login.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Update.resx">
-      <DependentUpon>Update.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AdminHome.resx">
-      <DependentUpon>AdminHome.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UserHome.resx">
-      <DependentUpon>UserHome.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

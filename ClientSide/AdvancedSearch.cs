@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ServerSide {
+namespace ClientSide {
     public partial class AdvancedSearch : Form {
 
         private Backend b;

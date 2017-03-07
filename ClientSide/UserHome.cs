@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using SorceressLibs;
 
-namespace ServerSide {
+namespace ClientSide {
     public partial class UserHome : Form {
 
         private Backend b;
