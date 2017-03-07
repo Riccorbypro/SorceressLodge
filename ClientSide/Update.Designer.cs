@@ -1,4 +1,4 @@
-﻿namespace SorceressLibs {
+﻿namespace ClientSide {
     partial class Update {
         /// <summary>
         /// Required designer variable.
