@@ -12,6 +12,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace ClientSide {
     public partial class Loading : Form {
@@ -43,10 +44,46 @@ namespace ClientSide {
                 Console.WriteLine("Took {0} milliseconds. {1} hosts active.", sw.ElapsedMilliseconds, upCount);
                 Console.WriteLine("Searching for server...");
                 foreach (IPHostEntry host in hosts) {
+                    IPAddress ip = host.AddressList[0];
+
+                    //send request to server in format:
+                    Socket s = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.IP);
+                    s.Connect(new IPEndPoint(ip, 3006));
+                    string getIP = GetLocalIP();
+                    byte[] arr =  {0x3a, 0x6e, 0x30, 0x4f, 0x78, 0x37, 0x4b, 0x51, 0x42, 0x51, 0x65, 0x65, 0x74, 0x44, 0x50, 0x45, 0x69 };
+                    List<byte> bytelist = new List<byte>();
+                    bytelist.AddRange(Encoding.ASCII.GetBytes(getIP));
+                    bytelist.AddRange(arr);
+                    byte[] Sendarr = bytelist.ToArray();
+                    s.Send(Sendarr);
+                    // [CLIENT IP] [KEY]
+                    //where CLIENT IP is the machine's IP
+                    //and
+                    //KEY is a pre-defined byte array
+                    //
+                    //expect response of de-serialized key from server. format:
+                    // [SERVER IP] [KEY]
+                    //where SERVER IP is the IP of the server
+                    //and
+                    //KEY is a string
+                    //
+                    //if key matches byte array,
+                    //use current IP as server, break.
+
 
                 }
             }));
             searchThr.Start();
+        }
+
+        public string GetLocalIP() {
+            var host = Dns.GetHostEntry(Dns.GetHostName());
+            foreach (var ip in host.AddressList) {
+                if (ip.AddressFamily == AddressFamily.InterNetwork) {
+                    return ip.ToString();
+                }
+            }
+            throw new Exception("IP Not Found");
         }
 
         private void p_PingCompleted(object sender, PingCompletedEventArgs e) {
