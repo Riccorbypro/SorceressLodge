@@ -18,50 +18,36 @@ namespace ServerSide {
             this.filePathPrime = filePathParam;
         }
 
-        public void WriteData(List<MagicUser> dataToWrite) {
-            try {
-                stream = new FileStream(this.filePathPrime, FileMode.OpenOrCreate, FileAccess.Write);
-                writer = new StreamWriter(stream);
-
-                foreach (MagicUser item in dataToWrite) {
-                    writer.WriteLine(item);
-                    writer.Flush();
-                }
-
+        public void WriteData(List<MagicUser> magicDataToWrite, Users userData) {
+            try {                
+                if (File.Exists(this.filePathPrime)) {
+                    stream = new FileStream(this.filePathPrime, FileMode.Append, FileAccess.Write);
+                    writer = new StreamWriter(stream);
+                    
+                    foreach (MagicUser mItem in magicDataToWrite) {
+                        writer.WriteLine("[{0}] {1} {2} ({3}) Added to database by {4}", DateTime.Now, mItem.Name, mItem.Surname, mItem.UID, userData.UserName);
+                        writer.Flush();
+                    }
+                } else {
+                    stream = new FileStream(this.filePathPrime, FileMode.OpenOrCreate, FileAccess.Write);
+                    writer = new StreamWriter(stream);
+                    foreach (MagicUser mItem in magicDataToWrite) {
+                        writer.WriteLine("[{0}] {1} {2} ({3}) Added to database by {4}", DateTime.Now, mItem.Name, mItem.Surname, mItem.UID, userData.UserName);
+                        writer.Flush();
+                    }
+                }            
             } catch (FileNotFoundException) {
-                Console.WriteLine("fILE mISSING");
+                MessageBox.Show("File was not found", "File", MessageBoxButtons.OK, MessageBoxIcon.Error);
             } catch (DirectoryNotFoundException) {
-                Console.WriteLine("dIRECTORY mISSING");
+                MessageBox.Show("No directory found", "Directory missing", MessageBoxButtons.OK, MessageBoxIcon.Error);
             } catch (IOException) {
-                Console.WriteLine("cRITICAL eRROR");
+                MessageBox.Show("A Critical Error Occurred", "Critical Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             } finally {
                 writer.Close();
                 stream.Close();
             }
         }
-
-        public void WriteDataAppend(List<MagicUser> dataToWrite) {
-            try {
-                stream = new FileStream(this.filePathPrime, FileMode.Append, FileAccess.Write);
-                writer = new StreamWriter(stream);
-
-                foreach (MagicUser item in dataToWrite) {
-                    writer.WriteLine(item);
-                    writer.Flush();
-                }
-
-            } catch (FileNotFoundException) {
-                
-            } catch (DirectoryNotFoundException) {
-                
-            } catch (IOException) {
-                
-            } finally {
-                writer.Close();
-                stream.Close();
-            }
-        }
-
+        
         public List<string> ReadData() {
             List<string> dataRaw = new List<string>();
 

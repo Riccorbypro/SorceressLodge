@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace SorceressLibs {
-    class Users {
+    public class Users {
         string userName;
         string password;
         bool isAdmin;
