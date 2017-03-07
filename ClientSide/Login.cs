@@ -1,4 +1,4 @@
-﻿using SorceressLodge.Properties;
+﻿
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -19,19 +19,19 @@ namespace ClientSide {
 
         public Login() {
             InitializeComponent();
-            AcceptButton = btnLogin;
+            //AcceptButton = btnLogin;
         }
 
         private void btnLogin_Click(object sender, EventArgs e) {
-            try {
-                if (!LoginBackend.Login(txtUserName.Text, txtUserPassword.Text)) {
-                    throw new LoginException("Username or Password Incorrect!");
-                } else {
-                    this.Hide();
-                }
-            } catch (LoginException ex) {
-                MessageBox.Show(ex.Message);
-            }
+            //try {
+            //    if (!LoginBackend.Login(txtUserName.Text, txtUserPassword.Text)) {
+            //        throw new LoginException("Username or Password Incorrect!");
+            //    } else {
+            //        this.Hide();
+            //    }
+            //} catch (LoginException ex) {
+            //    MessageBox.Show(ex.Message);
+            //}
         }
 
         private void Login_FormClosed(object sender, FormClosedEventArgs e) {
@@ -39,12 +39,12 @@ namespace ClientSide {
         }
 
         private void Login_KeyUp(object sender, KeyEventArgs e) {
-            if (code.IsCompletedBy(e.KeyCode)) {
-                System.Media.SoundPlayer player = new System.Media.SoundPlayer(Resources.KCUnlock);
-                player.Load();
-                player.Play();
-                MessageBox.Show("My life is like a video game,\nTrying hard to beat the stage.\nAll while I am still collecting coins.");
-            }
+            //if (code.IsCompletedBy(e.KeyCode)) {
+            //    System.Media.SoundPlayer player = new System.Media.SoundPlayer(Resources.KCUnlock);
+            //    player.Load();
+            //    player.Play();
+            //    MessageBox.Show("My life is like a video game,\nTrying hard to beat the stage.\nAll while I am still collecting coins.");
+            //}
         }
     }
 }
