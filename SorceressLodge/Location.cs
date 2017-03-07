@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SorceressLodge {
+namespace ServerSide {
     public class Location {
         private int id;
 

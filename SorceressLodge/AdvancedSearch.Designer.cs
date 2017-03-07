@@ -1,4 +1,4 @@
-﻿namespace SorceressLodge {
+﻿namespace ServerSide {
     partial class AdvancedSearch {
         /// <summary>
         /// Required designer variable.

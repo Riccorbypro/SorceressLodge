@@ -11,7 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace SorceressLodge {
+namespace ServerSide {
     public partial class Login : Form {
 
         private KonamiCode code = new KonamiCode();

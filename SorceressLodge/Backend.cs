@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace SorceressLodge {
+namespace ServerSide {
     public class Backend {
 
         private List<MagicUser> users;
