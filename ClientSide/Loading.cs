@@ -50,12 +50,24 @@ namespace ClientSide {
                     Socket s = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.IP);
                     s.Connect(new IPEndPoint(ip, 3006));
                     string getIP = GetLocalIP();
-                    byte[] arr =  {0x3a, 0x6e, 0x30, 0x4f, 0x78, 0x37, 0x4b, 0x51, 0x42, 0x51, 0x65, 0x65, 0x74, 0x44, 0x50, 0x45, 0x69 };
+                    byte[] arr = { 0x3a, 0x6e, 0x30, 0x4f, 0x78, 0x37, 0x4b, 0x51, 0x42, 0x51, 0x65, 0x65, 0x74, 0x44, 0x50, 0x45, 0x69 };
                     List<byte> bytelist = new List<byte>();
                     bytelist.AddRange(Encoding.ASCII.GetBytes(getIP));
                     bytelist.AddRange(arr);
                     byte[] Sendarr = bytelist.ToArray();
-                    s.Send(Sendarr);
+                    int size = Sendarr.Length;
+                    byte[] bArrSize = Encoding.ASCII.GetBytes(size.ToString());
+                    s.Send(bArrSize);
+                    byte[] confirm = new byte[1];
+                    s.Receive(confirm);
+                    if (confirm[0] == 0x00) {
+                        Console.WriteLine(getIP + "is server - sending key...");
+                        s.Send(Sendarr);
+                    } else {
+                        Console.WriteLine(getIP + " is not server.");
+                    }
+
+
                     // [CLIENT IP] [KEY]
                     //where CLIENT IP is the machine's IP
                     //and
