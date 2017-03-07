@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ServerSide {
+namespace SorceressLibs {
     public class MagicUser {
         int uID;
         List<Bounty> bounty;

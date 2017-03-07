@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServerSide", "SorceressLodg
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientSide", "ClientSide\ClientSide.csproj", "{FCA2DFFE-7AE5-47BB-8F83-BB8B9AE24510}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SorceressLibs", "SorceressLibs\SorceressLibs.csproj", "{0CCFBF28-0BF2-421B-864F-F41468172CE3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{FCA2DFFE-7AE5-47BB-8F83-BB8B9AE24510}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FCA2DFFE-7AE5-47BB-8F83-BB8B9AE24510}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FCA2DFFE-7AE5-47BB-8F83-BB8B9AE24510}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0CCFBF28-0BF2-421B-864F-F41468172CE3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0CCFBF28-0BF2-421B-864F-F41468172CE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0CCFBF28-0BF2-421B-864F-F41468172CE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0CCFBF28-0BF2-421B-864F-F41468172CE3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

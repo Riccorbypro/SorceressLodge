@@ -1,4 +1,4 @@
-﻿namespace ServerSide {
+﻿namespace SorceressLibs {
     partial class UserHome {
         /// <summary>
         /// Required designer variable.

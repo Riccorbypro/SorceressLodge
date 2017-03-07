@@ -5,8 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using System.Windows.Forms;
+using SorceressLibs;
 
-namespace SorceressLodge {
+namespace ServerSide {
     class FileHandler {
         private FileStream stream;
         private StreamReader reader;
