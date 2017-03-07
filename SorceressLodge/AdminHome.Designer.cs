@@ -61,6 +61,7 @@
             this.btnAddUser = new System.Windows.Forms.Button();
             this.txtUserPassword = new System.Windows.Forms.TextBox();
             this.txtUserNameA = new System.Windows.Forms.TextBox();
+            this.btnViewchanges = new System.Windows.Forms.Button();
             this.tabcontrols.SuspendLayout();
             this.tabView.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.usersTable)).BeginInit();
@@ -82,6 +83,7 @@
             // 
             // tabView
             // 
+            this.tabView.Controls.Add(this.btnViewchanges);
             this.tabView.Controls.Add(this.Deletebtn);
             this.tabView.Controls.Add(this.btnAdvancS);
             this.tabView.Controls.Add(this.btnSearch);
@@ -439,6 +441,15 @@
             this.txtUserNameA.Size = new System.Drawing.Size(250, 20);
             this.txtUserNameA.TabIndex = 0;
             // 
+            // btnViewchanges
+            // 
+            this.btnViewchanges.Location = new System.Drawing.Point(19, 329);
+            this.btnViewchanges.Name = "btnViewchanges";
+            this.btnViewchanges.Size = new System.Drawing.Size(87, 23);
+            this.btnViewchanges.TabIndex = 5;
+            this.btnViewchanges.Text = "View Changes";
+            this.btnViewchanges.UseVisualStyleBackColor = true;
+            // 
             // AdminHome
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -502,5 +513,6 @@
         private System.Windows.Forms.TextBox txtSurnameA;
         private System.Windows.Forms.TextBox txtNameA;
         private System.Windows.Forms.Button btnLocationAdd;
+        private System.Windows.Forms.Button btnViewchanges;
     }
 }
