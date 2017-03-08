@@ -70,11 +70,11 @@ namespace ServerSide {
                     dataRaw.Add(reader.ReadLine());
                 }
             } catch (FileNotFoundException) {
-
+                MessageBox.Show("File was not found", "File", MessageBoxButtons.OK, MessageBoxIcon.Error);
             } catch (DirectoryNotFoundException) {
-
+                MessageBox.Show("No directory found", "Directory missing", MessageBoxButtons.OK, MessageBoxIcon.Error);
             } catch (IOException) {
-
+                MessageBox.Show("A Critical Error Occurred", "Critical Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             } finally {
                 reader.Close();
                 stream.Close();

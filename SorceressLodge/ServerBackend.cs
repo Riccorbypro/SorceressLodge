@@ -174,9 +174,8 @@ namespace ServerSide {
                                 ms = new MemoryStream();
                                 formatter.Serialize(ms, result);
                                 byte[] toSend = ms.GetBuffer();
-                                byte[] sizetoSend = Encoding.ASCII.GetBytes(toSend.Length.ToString());
-                                IAsyncResult ASRes;
-                                client.BeginSend(sizetoSend,0,toSend.Length,SocketFlags.None,AsyncCallback(ASRes));
+                                byte[] sizetoSend = Encoding.ASCII.GetBytes(toSend.Length.ToString());                                
+                                client.BeginSend(sizetoSend, 0, toSend.Length, SocketFlags.None, new AsyncCallback(SendCallback), client);
                             } catch (Exception) {
                                 try {
                                     MagicUser user = (MagicUser)o;
@@ -189,6 +188,14 @@ namespace ServerSide {
                     }
                 } catch (Exception) { }
             }
+        }
+        private static void SendCallback(IAsyncResult ar) {
+            try {
+                Socket handler = (Socket)ar.AsyncState;
+                int bytesSend = handler.EndSend(ar);
+                handler.Shutdown(SocketShutdown.Both);
+                handler.Close();
+            } catch (Exception e) { Console.WriteLine(e.ToString()); }
         }
 
         public static string GetLocalIPAddress() {
