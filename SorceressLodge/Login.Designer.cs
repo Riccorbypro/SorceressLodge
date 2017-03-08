@@ -30,6 +30,7 @@
             this.AdminPictureBox = new System.Windows.Forms.PictureBox();
             this.lblUserName = new System.Windows.Forms.Label();
             this.lblPassword = new System.Windows.Forms.Label();
+            this.autoStartChk = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.AdminPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -94,6 +95,20 @@
             this.lblPassword.Text = "Password";
             this.lblPassword.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // autoStartChk
+            // 
+            this.autoStartChk.CheckAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.autoStartChk.Checked = true;
+            this.autoStartChk.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.autoStartChk.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.autoStartChk.Location = new System.Drawing.Point(0, 226);
+            this.autoStartChk.Name = "autoStartChk";
+            this.autoStartChk.Size = new System.Drawing.Size(284, 35);
+            this.autoStartChk.TabIndex = 6;
+            this.autoStartChk.Text = "Automatically Start Server";
+            this.autoStartChk.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.autoStartChk.UseVisualStyleBackColor = true;
+            // 
             // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -101,6 +116,7 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(284, 261);
+            this.Controls.Add(this.autoStartChk);
             this.Controls.Add(this.lblPassword);
             this.Controls.Add(this.lblUserName);
             this.Controls.Add(this.AdminPictureBox);
@@ -125,5 +141,6 @@
         private System.Windows.Forms.PictureBox AdminPictureBox;
         private System.Windows.Forms.Label lblUserName;
         private System.Windows.Forms.Label lblPassword;
+        private System.Windows.Forms.CheckBox autoStartChk;
     }
 }

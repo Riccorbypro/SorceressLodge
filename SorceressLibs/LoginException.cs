@@ -4,15 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ServerSide {
-    class LoginException: Exception {
+namespace SorceressLibs {
+    public class LoginException : Exception {
         public LoginException()
             : base() { }
 
         public LoginException(string message)
-            : base(message) { }
+                : base(message) { }
 
         public LoginException(string message, Exception inner)
-            :base(message, inner) { }
+                : base(message, inner) { }
     }
 }

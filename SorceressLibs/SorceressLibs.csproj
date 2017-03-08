@@ -46,6 +46,7 @@
     <Compile Include="Bounty.cs" />
     <Compile Include="KonamiCode.cs" />
     <Compile Include="Location.cs" />
+    <Compile Include="LoginException.cs" />
     <Compile Include="MagicType.cs" />
     <Compile Include="MagicUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -54,6 +55,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="SerializedObject.cs" />
     <Compile Include="Users.cs" />
   </ItemGroup>
   <ItemGroup>

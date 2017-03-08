@@ -26,7 +26,7 @@ namespace ServerSide {
         private void btnLogin_Click(object sender, EventArgs e) {
             try {
                 ServerBackend sb;
-                if ((sb = LoginBackend.Login(txtUserName.Text, txtUserPassword.Text))!=null) {
+                if ((sb = LoginBackend.Login(txtUserName.Text, txtUserPassword.Text, autoStartChk.Checked)) == null) {
                     throw new LoginException("Username or Password Incorrect!");
                 } else {
                     Hide();

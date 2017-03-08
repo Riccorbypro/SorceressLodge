@@ -7,6 +7,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Net.Sockets;
 using System.Resources;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,24 +19,24 @@ namespace ClientSide {
     public partial class Login : Form {
 
         private KonamiCode code = new KonamiCode();
-        private IPAddress serverIP;
+        private Connection conn;
 
-        public Login(IPAddress ip) {
+        public Login(IPAddress ip, Socket s) {
             InitializeComponent();
-            serverIP = ip;
+            conn = new ClientSide.Connection(ip, s);
             AcceptButton = btnLogin;
         }
 
         private void btnLogin_Click(object sender, EventArgs e) {
-            //try {
-            //    if (!LoginBackend.Login(txtUserName.Text, txtUserPassword.Text)) {
-            //        throw new LoginException("Username or Password Incorrect!");
-            //    } else {
-            //        this.Hide();
-            //    }
-            //} catch (LoginException ex) {
-            //    MessageBox.Show(ex.Message);
-            //}
+            try {
+                if (((Users)(((conn.Comm(new SerializedObject("LoginBackend", "LoginClient", new object[] { txtUserName.Text, txtUserPassword.Text }, new Users("", "", false))).ObjectS[0])))) == null) {
+                    throw new LoginException("Username or Password Incorrect!");
+                } else {
+                    this.Hide();
+                }
+            } catch (LoginException ex) {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void Login_FormClosed(object sender, FormClosedEventArgs e) {

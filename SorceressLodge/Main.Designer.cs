@@ -65,6 +65,7 @@
             this.startButt.TabIndex = 2;
             this.startButt.Text = "Start Server";
             this.startButt.UseVisualStyleBackColor = true;
+            this.startButt.Click += new System.EventHandler(this.startButt_Click);
             // 
             // stopButt
             // 
@@ -75,6 +76,7 @@
             this.stopButt.TabIndex = 3;
             this.stopButt.Text = "Stop Server";
             this.stopButt.UseVisualStyleBackColor = true;
+            this.stopButt.Click += new System.EventHandler(this.stopButt_Click);
             // 
             // label2
             // 

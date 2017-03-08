@@ -62,7 +62,6 @@
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
     <Compile Include="LoginBackend.cs" />
-    <Compile Include="LoginException.cs" />
     <Compile Include="ImageHandler.cs" />
     <Compile Include="Main.cs">
       <SubType>Form</SubType>
