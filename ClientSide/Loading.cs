@@ -17,15 +17,17 @@ using System.Runtime.Serialization.Formatters.Binary;
 namespace ClientSide {
     public partial class Loading : Form {
 
+        delegate void SetTextCallback(string text);
         private CountdownEvent countdown;
         private int upCount = 0;
         private object lockObj = new object();
-        private List<IPHostEntry> hosts = new List<IPHostEntry>();
+        private List<string> hosts = new List<string>();
         const bool resolveNames = true;
 
         public Loading() {
             InitializeComponent();
-            Thread searchThr = new Thread(new ThreadStart(() => {
+            Thread searchThr = null;
+            searchThr = new Thread(new ThreadStart(() => {
                 countdown = new CountdownEvent(1);
                 Stopwatch sw = new Stopwatch();
                 sw.Start();
@@ -35,24 +37,33 @@ namespace ClientSide {
                     Ping p = new Ping();
                     p.PingCompleted += new PingCompletedEventHandler(p_PingCompleted);
                     countdown.AddCount();
-                    p.SendAsync(ip, 100, ip);
+                    p.SendAsync(ip, 50, ip);
                 }
                 countdown.Signal();
                 countdown.Wait();
                 sw.Stop();
                 TimeSpan span = new TimeSpan(sw.ElapsedTicks);
                 Console.WriteLine("Took {0} milliseconds. {1} hosts active.", sw.ElapsedMilliseconds, upCount);
+                setProgressTextWorker(string.Format("Found {0} hosts. Querying server...", upCount));
+                Thread.Sleep(5000);
                 Console.WriteLine("Searching for server...");
-                foreach (IPHostEntry host in hosts) {
-                    IPAddress ip = host.AddressList[0];
+                foreach (string host in hosts) {
+                    string[] sub = host.Split('.');
+                    IPAddress ip = new IPAddress(new byte[] { (byte)int.Parse(sub[0]), (byte)int.Parse(sub[1]), (byte)int.Parse(sub[2]), (byte)int.Parse(sub[3]) });
 
                     //send request to server in format:
+                    // [CLIENT IP]:[KEY]
+                    //where CLIENT IP is the machine's IP
+                    //and
+                    //KEY is a pre-defined byte array
+
                     Socket s = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.IP);
                     s.Connect(new IPEndPoint(ip, 3006));
                     string getIP = GetLocalIP();
-                    byte[] arr = { 0x3a, 0x6e, 0x30, 0x4f, 0x78, 0x37, 0x4b, 0x51, 0x42, 0x51, 0x65, 0x65, 0x74, 0x44, 0x50, 0x45, 0x69 };
+                    byte[] arr = { 0x6e, 0x30, 0x4f, 0x78, 0x37, 0x4b, 0x51, 0x42, 0x51, 0x65, 0x65, 0x74, 0x44, 0x50, 0x45, 0x69 };
                     List<byte> bytelist = new List<byte>();
                     bytelist.AddRange(Encoding.ASCII.GetBytes(getIP));
+                    bytelist.Add(0x3a);
                     bytelist.AddRange(arr);
                     byte[] Sendarr = bytelist.ToArray();
                     int size = Sendarr.Length;
@@ -61,29 +72,43 @@ namespace ClientSide {
                     byte[] confirm = new byte[1];
                     s.Receive(confirm);
                     if (confirm[0] == 0x00) {
-                        Console.WriteLine(getIP + "is server - sending key...");
+                        Console.WriteLine(ip.ToString() + "is server - sending key...");
+                        setProgressTextWorker(string.Format("Found possible server at {0}. Initiating Handshake...", ip.ToString()));
+                        Thread.Sleep(5000);
                         s.Send(Sendarr);
+
+                        //expect response of de-serialized key from server. format:
+                        // [SERVER IP]:[KEY]
+                        //where SERVER IP is the IP of the server
+                        //and
+                        //KEY is a string
+
+                        int count = Encoding.ASCII.GetByteCount(ip.ToString());
+                        count += arr.Length + 1;
+                        byte[] recBArr = new byte[count];
+                        s.Receive(recBArr);
+                        string received = Encoding.ASCII.GetString(recBArr);
+                        string[] recArr = received.Split(':');
+
+                        //if key matches byte array,
+                        //use current IP as server, break.
+
+                        if (recArr[0].Equals(ip.ToString()) && Encoding.ASCII.GetBytes(recArr[1]).Equals(arr)) {
+                            Console.WriteLine("Server Handshake Complete: Beginning Login Process...");
+                            setProgressTextWorker("Server Handshake Complete: Beginning Login Process...");
+                            Thread.Sleep(5000);
+                            new Login(ip).Show();
+                            this.Visible = false;
+                            searchThr.Abort();
+                        }
                     } else {
-                        Console.WriteLine(getIP + " is not server.");
+                        Console.WriteLine(ip.ToString() + " is not server.");
                     }
-
-
-                    // [CLIENT IP] [KEY]
-                    //where CLIENT IP is the machine's IP
-                    //and
-                    //KEY is a pre-defined byte array
-                    //
-                    //expect response of de-serialized key from server. format:
-                    // [SERVER IP] [KEY]
-                    //where SERVER IP is the IP of the server
-                    //and
-                    //KEY is a string
-                    //
-                    //if key matches byte array,
-                    //use current IP as server, break.
-
-
                 }
+                setMainTextWorker("    :(");
+                setProgressTextWorker("  No suitable servers were found. Program exiting...");
+                Thread.Sleep(5000);
+                Environment.Exit(0);
             }));
             searchThr.Start();
         }
@@ -98,22 +123,61 @@ namespace ClientSide {
             throw new Exception("IP Not Found");
         }
 
+        private void setProgressTextWorker(string s) {
+            setProgressText(s);
+        }
+
+        private void setProgressText(string s) {
+            if (progressLabel.InvokeRequired) {
+                SetTextCallback d = new SetTextCallback(setProgressTextWorker);
+                Invoke(d, new object[] { s });
+            } else {
+                progressLabel.Text = s;
+            }
+        }
+
+        private void setMainTextWorker(string s) {
+            setMainText(s);
+        }
+
+        private void setMainText(string s) {
+            if (label1.InvokeRequired) {
+                SetTextCallback d = new SetTextCallback(setMainTextWorker);
+                Invoke(d, new object[] { s });
+            } else {
+                TopMost = true;
+                FormBorderStyle = FormBorderStyle.None;
+                WindowState = FormWindowState.Maximized;
+                Font f = new Font(label1.Font.FontFamily, 200, FontStyle.Bold);
+                label1.Font = f;
+                label1.TextAlign = ContentAlignment.MiddleLeft;
+                label1.ForeColor = Color.White;
+                label1.BackColor = Color.Transparent;
+                BackColor = Color.DodgerBlue;
+                BackgroundImage = null;
+                progressBar1.Visible = false;
+                label1.Text = s;
+                label1.Size = new Size(1024, 600);
+                progressLabel.ForeColor = Color.White;
+                progressLabel.BackColor = Color.Transparent;
+                f = new Font(progressLabel.Font.FontFamily, 50, FontStyle.Regular);
+                progressLabel.TextAlign = ContentAlignment.TopLeft;
+                progressLabel.Font = f;
+                progressLabel.Size = new Size(1024, 300);
+            }
+        }
+
         private void p_PingCompleted(object sender, PingCompletedEventArgs e) {
             string ip = (string)e.UserState;
             if (e.Reply != null && e.Reply.Status == IPStatus.Success) {
-                if (resolveNames) {
                     string name;
                     try {
                         IPHostEntry hostEntry = Dns.GetHostEntry(ip);
-                        hosts.Add(hostEntry);
                         name = hostEntry.HostName;
-                    } catch (SocketException ex) {
+                    } catch (SocketException) {
                         name = "?";
                     }
                     Console.WriteLine("{0} ({1}) is up: ({2} ms)", ip, name, e.Reply.RoundtripTime);
-                } else {
-                    Console.WriteLine("{0} is up: ({1} ms)", ip, e.Reply.RoundtripTime);
-                }
                 lock (lockObj) {
                     upCount++;
                 }

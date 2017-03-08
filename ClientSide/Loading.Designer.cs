@@ -30,10 +30,11 @@
             // 
             // label1
             // 
+            this.label1.Dock = System.Windows.Forms.DockStyle.Top;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(12, 9);
+            this.label1.Location = new System.Drawing.Point(0, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(377, 64);
+            this.label1.Size = new System.Drawing.Size(400, 73);
             this.label1.TabIndex = 0;
             this.label1.Text = "Loading: Please Wait...";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -50,18 +51,20 @@
             // 
             // progressLabel
             // 
-            this.progressLabel.Location = new System.Drawing.Point(13, 106);
+            this.progressLabel.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.progressLabel.Location = new System.Drawing.Point(0, 115);
             this.progressLabel.Name = "progressLabel";
-            this.progressLabel.Size = new System.Drawing.Size(376, 38);
+            this.progressLabel.Size = new System.Drawing.Size(400, 38);
             this.progressLabel.TabIndex = 2;
-            this.progressLabel.Text = "Looking for Server";
+            this.progressLabel.Text = "Scanning Hosts...";
             this.progressLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // Loading
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(401, 153);
+            this.BackColor = System.Drawing.SystemColors.Control;
+            this.ClientSize = new System.Drawing.Size(400, 153);
             this.Controls.Add(this.progressLabel);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.label1);

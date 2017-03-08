@@ -8,22 +8,21 @@ using SorceressLibs;
 namespace ServerSide {
     class LoginBackend {
 
-        public static bool Login(string username, string password) {
+        public static ServerBackend Login(string username, string password) {
             Connection conn = new Connection();
             List<Users> userlst = conn.ReadUsers();
             foreach (Users item in userlst) {
                 if ((item.UserName.Equals(username)) && (item.Password.Equals(password))) {
                     if (item.IsAdmin == true) {
-                        new AdminHome().Show();
-                        return true;
+                        ServerBackend sb = new ServerBackend(item);
+                        return sb;
                     } else {
-                        new UserHome().Show();
-                        return true;
+                        return null;
                     }
                 }
             }
 
-            return false;
+            return null;
         }
     }
 }

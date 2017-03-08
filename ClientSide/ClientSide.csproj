@@ -62,7 +62,6 @@
     <Compile Include="AdvancedSearch.Designer.cs">
       <DependentUpon>AdvancedSearch.cs</DependentUpon>
     </Compile>
-    <Compile Include="KonamiCode.cs" />
     <Compile Include="Loading.cs">
       <SubType>Form</SubType>
     </Compile>

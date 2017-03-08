@@ -6,7 +6,6 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Net;
 using System.Resources;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,28 +13,27 @@ using System.Windows.Forms;
 using SorceressLibs;
 using SorceressLibs.Properties;
 
-namespace ClientSide {
+namespace ServerSide {
     public partial class Login : Form {
 
         private KonamiCode code = new KonamiCode();
-        private IPAddress serverIP;
 
-        public Login(IPAddress ip) {
+        public Login() {
             InitializeComponent();
-            serverIP = ip;
             AcceptButton = btnLogin;
         }
 
         private void btnLogin_Click(object sender, EventArgs e) {
-            //try {
-            //    if (!LoginBackend.Login(txtUserName.Text, txtUserPassword.Text)) {
-            //        throw new LoginException("Username or Password Incorrect!");
-            //    } else {
-            //        this.Hide();
-            //    }
-            //} catch (LoginException ex) {
-            //    MessageBox.Show(ex.Message);
-            //}
+            try {
+                ServerBackend sb;
+                if ((sb = LoginBackend.Login(txtUserName.Text, txtUserPassword.Text))!=null) {
+                    throw new LoginException("Username or Password Incorrect!");
+                } else {
+                    Hide();
+                }
+            } catch (LoginException ex) {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void Login_FormClosed(object sender, FormClosedEventArgs e) {
