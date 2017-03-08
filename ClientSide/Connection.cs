@@ -16,7 +16,6 @@ namespace ClientSide {
         private IPAddress ip;
         private Socket client;
         private Thread shutdownWaiter;
-        private bool CommRunning = false;
 
         public Connection(IPAddress ip, Socket s) {
             this.ip = ip;
@@ -26,15 +25,13 @@ namespace ClientSide {
             shutdownWaiter = null;
             shutdownWaiter = new Thread(new ThreadStart(() => {
                 while (true) {
-                    if (!CommRunning) {
-                        byte[] received = new byte[36];
-                        client.Receive(received);
-                        if (Encoding.ASCII.GetString(received).Equals("SERVER SHUTTING DOWN!!! 882246467913")) {
-                            client.Dispose();
-                            System.Windows.Forms.MessageBox.Show("You have been logged out as the server is shutting down.", "Shutting Down", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Information);
-                            Thread.Sleep(5000);
-                            Environment.Exit(0);
-                        }
+                    byte[] received = new byte[36];
+                    client.Receive(received);
+                    if (Encoding.ASCII.GetString(received).Equals("SERVER SHUTTING DOWN!!! 882246467913")) {
+                        client.Dispose();
+                        System.Windows.Forms.MessageBox.Show("You have been logged out as the server is shutting down.", "Shutting Down", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Information);
+                        Thread.Sleep(5000);
+                        Environment.Exit(0);
                     }
                 }
             }));
@@ -42,8 +39,8 @@ namespace ClientSide {
         }
 
         public SerializedObject Comm(SerializedObject val) {
-            CommRunning = true;
-            SerializedObject obj = null;
+            shutdownWaiter.Suspend();
+            SerializedObject obj = new SerializedObject();
             try {
                 BinaryFormatter formatter = new BinaryFormatter();
                 MemoryStream ms = new MemoryStream();
@@ -75,7 +72,7 @@ namespace ClientSide {
                     ms.Dispose();
                 }
             } catch (Exception) { }
-            CommRunning = false;
+            shutdownWaiter.Resume();
             return obj;
         }
     }

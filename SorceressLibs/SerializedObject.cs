@@ -71,5 +71,7 @@ namespace SorceressLibs {
             Dt = DateTime.Now;
         }
 
+        public SerializedObject() { }
+
     }
 }

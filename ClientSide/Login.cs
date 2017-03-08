@@ -29,9 +29,10 @@ namespace ClientSide {
 
         private void btnLogin_Click(object sender, EventArgs e) {
             try {
-                if (((Users)(((conn.Comm(new SerializedObject("LoginBackend", "LoginClient", new object[] { txtUserName.Text, txtUserPassword.Text }, new Users("", "", false))).ObjectS[0])))).UserName.Equals("882246467913") && ((Users)(((conn.Comm(new SerializedObject("LoginBackend", "LoginClient", new object[] { txtUserName.Text, txtUserPassword.Text }, new Users("", "", false))).ObjectS[0])))).Password.Equals("882246467913")) {
+                Users loginAttempt = (Users)(conn.Comm(new SerializedObject("LoginBackend", "LoginClient", new object[] { txtUserName.Text, txtUserPassword.Text }, new Users("", "", false))).ObjectS[0]);
+                if (loginAttempt.UserName.Equals("882246467913") || loginAttempt.Password.Equals("882246467913")) {
                     throw new LoginException("Username or Password Incorrect!");
-                } else if (((Users)(((conn.Comm(new SerializedObject("LoginBackend", "LoginClient", new object[] { txtUserName.Text, txtUserPassword.Text }, new Users("", "", false))).ObjectS[0])))).IsAdmin) {
+                } else if (loginAttempt.IsAdmin) {
                     this.Hide();
                     new AdminHome().Show();
                 } else {

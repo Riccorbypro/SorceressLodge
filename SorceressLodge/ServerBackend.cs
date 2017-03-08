@@ -128,7 +128,7 @@ namespace ServerSide {
                         SerializedObject val = null;
                         switch (obj.ObjectClass) {
                             case "LoginBackend":
-                                val = new SerializedObject(obj.ObjectClass, obj.ObjectMethod, new object[] { LoginBackend.LoginClient(obj.ObjectS[0].ToString(), obj.ObjectS[1].ToString()) }, obj.User);
+                                val = new SerializedObject("Users", "", new object[] { LoginBackend.LoginClient(obj.ObjectS[0].ToString(), obj.ObjectS[1].ToString()) }, obj.User);
                                 break;
                             default:
                                 val = new SerializedObject(obj.ObjectClass, obj.ObjectMethod, new object[] { b.GetType().GetMethod(obj.ObjectMethod).Invoke(b, obj.ObjectS) }, obj.User);
