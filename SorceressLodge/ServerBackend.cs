@@ -23,6 +23,9 @@ namespace ServerSide {
         private Socket s;
         private Thread waitThread = null, stopThread = null;
         private byte[] tempByteArr;
+        private Socket tempClient;
+        public ManualResetEvent allDone = new ManualResetEvent(false);
+        private ManualResetEvent receiveDone = new ManualResetEvent(false);
 
         public ServerBackend(Users user, bool autoStart) {
             this.user = user;
@@ -54,29 +57,38 @@ namespace ServerSide {
             s = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.IP);//socket()
             s.Bind(new IPEndPoint(IPAddress.Parse(GetLocalIPAddress()), 3006));//Bind()
             s.Listen(100);
-            byte[] bytes = new Byte[1024];
+            byte[] bytes = new byte[1024];
             main.AppendWorker("Starting Server...");
             isRunning = true;
             clientAccepter = new Thread(new ThreadStart(() => {
                 try {
                     while (isRunning) {
-                        Socket client = null;
-                        if (!commsThreads.Keys.Contains(client = s.Accept())) {
-                            byte[] init = new byte[32];
-                            client.Receive(init);
-                            int size = int.Parse(Encoding.ASCII.GetString(init));
-                            byte[] accept = new byte[] { 0x00 };
-                            client.Send(accept);
-                            byte[] handshake = new byte[size];
-                            client.Receive(handshake);
-                            string str = Encoding.ASCII.GetString(handshake);
-                            byte[] reply = Encoding.ASCII.GetBytes(str);
-                            client.Send(reply);
-                            byte[] complete = new byte[1];
-                            client.Receive(complete);
-                            if (complete[0] == 0x00) {
-                                commsThreads.Add(client, new Thread(new ThreadStart(() => CommsThread(client))));
-                                main.AppendWorker(string.Format("Client {0} connected at {1}.", client.RemoteEndPoint.ToString(), DateTime.Now));
+                        allDone.Reset();
+                        s.BeginAccept(new AsyncCallback(AcceptCallback), s);
+                        allDone.WaitOne();
+                        Socket tempClient1 = tempClient;
+                        if (!commsThreads.Keys.Contains(tempClient1)) {
+                            byte[] key;
+                            byte[] arr = { 0x6e, 0x30, 0x4f, 0x78, 0x37, 0x4b, 0x51, 0x42, 0x51, 0x65, 0x65, 0x74, 0x44, 0x50, 0x45, 0x69 };
+                            bool authenticated = true;
+                            Receive(tempClient1);
+                            receiveDone.WaitOne();
+                            key = tempByteArr;
+                            for (int i = 0; i < 16; i++) {
+                                if (key[i] != arr[i]) {
+                                    authenticated = false;
+                                    break;
+                                }
+                            }
+                            if (authenticated) {
+                                Send(tempClient1, new byte[] { 0x00 });
+                                Receive(tempClient1);
+                                receiveDone.WaitOne();
+                                byte[] complete = tempByteArr;
+                                if (complete[0] == 0x00) {
+                                    commsThreads.Add(tempClient1, new Thread(new ThreadStart(() => CommsThread(tempClient1))));
+                                    main.AppendWorker(string.Format("{0} - Client {1} connected.", DateTime.Now, tempClient1.RemoteEndPoint.ToString()));
+                                }
                             }
                         }
                     }
@@ -192,68 +204,49 @@ namespace ServerSide {
             }
         }
 
-
-
-        // Thread signal.  
-        public ManualResetEvent allDone = new ManualResetEvent(false);
-
-
-        public void StartListening() {
-            // Data buffer for incoming data.  
-            byte[] bytes = new Byte[1024];
-
-            // Establish the local endpoint for the socket.  
-            // The DNS name of the computer  
-            // running the listener is "host.contoso.com".  
-            IPHostEntry ipHostInfo = Dns.Resolve(Dns.GetHostName());
-            IPAddress ipAddress = ipHostInfo.AddressList[0];
-            IPEndPoint localEndPoint = new IPEndPoint(ipAddress, 11000);
-
-            // Create a TCP/IP socket.  
-            Socket listener = new Socket(AddressFamily.InterNetwork,
-                SocketType.Stream, ProtocolType.Tcp);
-
-            // Bind the socket to the local endpoint and listen for incoming connections.  
+        private void Receive(Socket client) {
             try {
-                listener.Bind(localEndPoint);
-                listener.Listen(100);
-
-                while (true) {
-                    // Set the event to nonsignaled state.  
-                    allDone.Reset();
-
-                    // Start an asynchronous socket to listen for connections.  
-                    Console.WriteLine("Waiting for a connection...");
-                    listener.BeginAccept(
-                        new AsyncCallback(AcceptCallback),
-                        listener);
-
-                    // Wait until a connection is made before continuing.  
-                    allDone.WaitOne();
-                }
-
+                StateObject state = new StateObject();
+                state.workSocket = client;
+                client.BeginReceive(state.buffer, 0, StateObject.BufferSize, 0, new AsyncCallback(ReceiveCallback), state);
             } catch (Exception e) {
                 Console.WriteLine(e.ToString());
             }
+        }
 
-            Console.WriteLine("\nPress ENTER to continue...");
-            Console.Read();
-
+        private void ReceiveCallback(IAsyncResult ar) {
+            try {
+                StateObject state = (StateObject)ar.AsyncState;
+                Socket client = state.workSocket;
+                int bytesRead = client.EndReceive(ar);
+                if (bytesRead > 0) {
+                    state.data.AddRange(state.buffer);
+                    client.BeginReceive(state.buffer, 0, StateObject.BufferSize, 0,
+                        new AsyncCallback(ReceiveCallback), state);
+                } else {
+                    if (state.data.Count > 1) {
+                        tempByteArr = state.data.ToArray();
+                    }
+                    receiveDone.Set();
+                }
+            } catch (Exception e) {
+                Console.WriteLine(e.ToString());
+            }
         }
 
         public void AcceptCallback(IAsyncResult ar) {
-            // Signal the main thread to continue.  
-            allDone.Set();
+            try {
+                allDone.Set();
+                Socket listener = (Socket)ar.AsyncState;
+                Socket handler = listener.EndAccept(ar);
+                tempClient = handler;
+            } catch (Exception) { }
+        }
 
-            // Get the socket that handles the client request.  
-            Socket listener = (Socket)ar.AsyncState;
-            Socket handler = listener.EndAccept(ar);
-
-            // Create the state object.  
+        public void Read(Socket socket) {
             StateObject state = new StateObject();
-            state.workSocket = handler;
-            handler.BeginReceive(state.buffer, 0, StateObject.BufferSize, 0,
-                new AsyncCallback(ReadCallback), state);
+            state.workSocket = socket;
+            socket.BeginReceive(state.buffer, 0, StateObject.BufferSize, 0, new AsyncCallback(ReadCallback), state);
         }
 
         public void ReadCallback(IAsyncResult ar) {
