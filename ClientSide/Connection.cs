@@ -48,7 +48,7 @@ namespace ClientSide {
                 byte[] arr = ms.GetBuffer();
                 byte[] sendSize = Encoding.ASCII.GetBytes(arr.Length.ToString());
                 client.Send(sendSize);
-                byte[] confirm = new byte[1];
+                byte[] confirm = new byte[0];
                 client.Receive(confirm);
                 if (confirm[0] == 0x00) {
                     client.Send(arr);
@@ -57,13 +57,8 @@ namespace ClientSide {
                 client.Receive(size);
                 int recSize = int.Parse(Encoding.ASCII.GetString(size));
                 client.Send(Encoding.ASCII.GetBytes(recSize.ToString()));
-                SocketAsyncEventArgs args = new SocketAsyncEventArgs();
-                args.SetBuffer(0, recSize);
-                client.ReceiveAsync(args);
-                while (client.Available < recSize) {
-                    Thread.Sleep(1);
-                }
-                byte[] data = args.Buffer;
+                byte[] data = new byte[recSize];
+                client.Receive(data);
                 MemoryStream stream = new MemoryStream(data);
                 try {
                     obj = (SerializedObject)formatter.Deserialize(stream);

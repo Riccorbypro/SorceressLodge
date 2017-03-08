@@ -102,7 +102,7 @@ namespace ClientSide {
                         }
                     } catch (Exception) { }
                 }
-                if (!login.Visible) {
+                if (login == null) {
                     setMainTextWorker("    :(");
                     setProgressTextWorker("  No suitable servers were found. Program exiting...");
                     Thread.Sleep(5000);

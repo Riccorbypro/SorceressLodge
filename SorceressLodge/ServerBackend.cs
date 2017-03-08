@@ -14,7 +14,6 @@ using SorceressLibs;
 namespace ServerSide {
     class ServerBackend {
 
-        private List<Socket> clients = new List<Socket>();
         private Dictionary<Socket, Thread> commsThreads = new Dictionary<Socket, Thread>();
         public bool isRunning = false;
         private Users user;
@@ -22,31 +21,32 @@ namespace ServerSide {
         private Thread clientAccepter;
         private Backend b;
         private Socket s;
+        private Thread waitThread = null, stopThread = null;
 
         public ServerBackend(Users user, bool autoStart) {
             this.user = user;
             b = new Backend();
             main = new Main(autoStart);
             main.Show();
-            Thread waitThread = null;
-            Thread stopThread = null;
             waitThread = new Thread(new ThreadStart(() => {
                 while (!main.Started) {
                     Thread.Sleep(25);
                 }
-                Start();
-                stopThread.Start();
-                waitThread.Abort();
+                Thread startThread = new Thread(new ThreadStart(Start));
+                startThread.Start();
             }));
             stopThread = new Thread(new ThreadStart(() => {
                 while (main.started) {
                     Thread.Sleep(25);
                 }
-                Stop();
-                waitThread.Start();
-                stopThread.Abort();
+                Thread stoppingThread = new Thread(new ThreadStart(Stop));
+                stoppingThread.Start();
             }));
-            waitThread.Start();
+            if (autoStart) {
+                Start();
+            } else {
+                waitThread.Start();
+            }
         }
 
         public void Start() {
@@ -58,7 +58,7 @@ namespace ServerSide {
             clientAccepter = new Thread(new ThreadStart(() => {
                 while (true) {
                     Socket client = null;
-                    if (!clients.Contains(client = s.Accept())) {
+                    if (!commsThreads.Keys.Contains(client = s.Accept())) {
                         byte[] init = new byte[32];
                         client.Receive(init);
                         int size = int.Parse(Encoding.ASCII.GetString(init));
@@ -74,7 +74,6 @@ namespace ServerSide {
                         byte[] complete = new byte[1];
                         client.Receive(complete);
                         if (complete[0] == 0x00) {
-                            clients.Add(client);
                             commsThreads.Add(client, new Thread(new ThreadStart(() => CommsThread(client))));
                             main.AppendWorker(string.Format("Client {0} connected at {1}.", client.RemoteEndPoint.ToString(), DateTime.Now));
                         }
@@ -84,26 +83,33 @@ namespace ServerSide {
             }));
             clientAccepter.Start();
             main.AppendWorker("Server Started Successfully.");
+
+            stopThread.Start();
+            waitThread.Abort();
         }
 
         public void Stop() {
-            main.AppendWorker("Stopping Server...");
+            try {
+                main.AppendWorker("Stopping Server...");
 
-            clientAccepter.Abort();
+                clientAccepter.Abort();
 
-            foreach (Socket client in clients) {
-                client.Send(Encoding.ASCII.GetBytes("SERVER SHUTTING DOWN!!! 882246467913"));
+                foreach (KeyValuePair<Socket, Thread> thread in commsThreads) {
+                    thread.Key.Dispose();
+                    thread.Value.Abort();
+                }
+
+                commsThreads.Clear();
+
+                main.AppendWorker("Server Stopped Successfully");
+                waitThread.Start();
+                stopThread.Abort();
+            } catch (Exception e) {
+                Console.WriteLine(e.Message);
+                main.AppendWorker("Server Failed to Stop - Killing...");
+                Thread.Sleep(5000);
+                Environment.Exit(1);
             }
-
-            clients.Clear();
-
-            foreach (KeyValuePair<Socket, Thread> thread in commsThreads) {
-                thread.Value.Abort();
-            }
-
-            commsThreads.Clear();
-
-            main.AppendWorker("Server Stopped Successfully");
         }
 
         public void CommsThread(Socket client) {
@@ -113,13 +119,8 @@ namespace ServerSide {
                     client.Receive(size);
                     int recSize = int.Parse(Encoding.ASCII.GetString(size));
                     client.Send(new byte[] { 0x00 });
-                    SocketAsyncEventArgs args = new SocketAsyncEventArgs();
-                    args.SetBuffer(0, recSize);
-                    client.ReceiveAsync(args);
-                    while (client.Available < recSize) {
-                        Thread.Sleep(1);
-                    }
-                    byte[] data = args.Buffer;
+                    byte[] data = new byte[recSize];
+                    client.Receive(data);
                     MemoryStream stream = new MemoryStream(data);
                     MemoryStream ms = new MemoryStream();
                     try {
