@@ -18,34 +18,24 @@ namespace ServerSide {
             filePathPrime = filePathParam;
         }
 
-        public void WriteData(/*List<MagicUser> magicDataToWrite, Users userData*/ string[] data) {
+        public void WriteData(List<MagicUser> magicDataToWrite, Users userData) {
             try {
                 if (File.Exists(filePathPrime)) {
                     stream = new FileStream(filePathPrime, FileMode.Append, FileAccess.Write);
                     writer = new StreamWriter(stream);
-
-                    foreach (string s in data) {
-                        writer.WriteLine(s);
+                    
+                    foreach (MagicUser mItem in magicDataToWrite) {
+                        writer.WriteLine("[{0}] {1} {2} ({3}) Added to database by {4}", DateTime.Now, mItem.Name, mItem.Surname, mItem.UID, userData.UserName);
                         writer.Flush();
                     }
-
-                    //foreach (MagicUser mItem in magicDataToWrite) {
-                    //    writer.WriteLine("[{0}] {1} {2} ({3}) Added to database by {4}", DateTime.Now, mItem.Name, mItem.Surname, mItem.UID, userData.UserName);
-                    //    writer.Flush();
-                    //}
                 } else {
                     stream = new FileStream(filePathPrime, FileMode.OpenOrCreate, FileAccess.Write);
                     writer = new StreamWriter(stream);
-
-                    foreach (string s in data) {
-                        writer.WriteLine(s);
+                    
+                    foreach (MagicUser mItem in magicDataToWrite) {
+                        writer.WriteLine("[{0}] {1} {2} ({3}) Added to database by {4}", DateTime.Now, mItem.Name, mItem.Surname, mItem.UID, userData.UserName);
                         writer.Flush();
                     }
-
-                    //foreach (MagicUser mItem in magicDataToWrite) {
-                    //    writer.WriteLine("[{0}] {1} {2} ({3}) Added to database by {4}", DateTime.Now, mItem.Name, mItem.Surname, mItem.UID, userData.UserName);
-                    //    writer.Flush();
-                    //}
                 }
             } catch (FileNotFoundException) {
                 MessageBox.Show("File was not found", "File", MessageBoxButtons.OK, MessageBoxIcon.Error);
