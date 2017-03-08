@@ -17,8 +17,8 @@ namespace ServerSide {
         SqlDataReader datareader;
 
         public Connection() {
-            string conn = @"Data Source=RICCORBYPRO-PC;Initial Catalog=SorceressLodge;Integrated Security=True"; //Riccorbypro
-            //string conn = @"Data Source=DESKTOP-103SE6A\SQLEXPRESS;Initial Catalog=SorceressLodge;Integrated Security=True"; // WelterZen
+            //string conn = @"Data Source=RICCORBYPRO-PC;Initial Catalog=SorceressLodge;Integrated Security=True"; //Riccorbypro
+            string conn = @"Data Source=DESKTOP-103SE6A\SQLEXPRESS;Initial Catalog=SorceressLodge;Integrated Security=True"; // WelterZen
             sqlconn = new SqlConnection(conn);
         }
 

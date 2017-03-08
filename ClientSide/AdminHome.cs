@@ -14,13 +14,13 @@ using SorceressLibs;
 
 namespace ClientSide {
     public partial class AdminHome : Form {
-
-        //private DataTable table;
-        //private Backend b;
-        //List<Bounty> listBlounty = new List<Bounty>();
-        //List<Location> listLocation = new List<Location>();
-        //Dictionary<MagicType, int[]> dicSkill = new Dictionary<MagicType, int[]>();
+        Connection conn;
+        private DataTable table;
+        List<Bounty> listBlounty = new List<Bounty>();
+        List<Location> listLocation = new List<Location>();
+        Dictionary<MagicType, int[]> dicSkill = new Dictionary<MagicType, int[]>();
         public AdminHome() {
+            //conn = new Connection();
             //b = new Backend();
             InitializeComponent();
             //nameSelectCmb.DataSource = b.getNames();
