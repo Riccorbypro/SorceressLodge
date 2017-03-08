@@ -26,12 +26,11 @@ namespace ClientSide {
         private List<string> hosts = new List<string>();
         const bool resolveNames = true;
         private Login login;
+        private Thread searchThr = null;
 
         public Loading() {
             InitializeComponent();
-            Thread searchThr = null;
             searchThr = new Thread(new ThreadStart(() => {
-                Thread.Sleep(10000);
                 countdown = new CountdownEvent(1);
                 Stopwatch sw = new Stopwatch();
                 sw.Start();
@@ -92,7 +91,7 @@ namespace ClientSide {
                             if (received.Equals(Encoding.ASCII.GetString(arr))) {
                                 Console.WriteLine("Server Handshake Complete: Beginning Login Process...");
                                 setProgressTextWorker("Server Handshake Complete: Beginning Login Process...");
-                                Thread.Sleep(5000);
+                                Thread.Sleep(2500);
                                 MakeLoginWorker(ip, s);
                                 HideFrameWorker();
                                 break;
@@ -109,7 +108,6 @@ namespace ClientSide {
                     Environment.Exit(0);
                 }
             }));
-            searchThr.Start();
         }
 
         private void MakeLoginWorker(IPAddress ip, Socket client) {
@@ -212,6 +210,14 @@ namespace ClientSide {
                 Console.WriteLine("Pinging {0} failed. (Null Reply object?)", ip);
             }
             countdown.Signal();
+        }
+
+        private void StartButt_Click(object sender, EventArgs e) {
+            StartButt.Visible = false;
+            label1.Visible = true;
+            progressBar1.Visible = true;
+            progressLabel.Visible = true;
+            searchThr.Start();
         }
     }
 }
