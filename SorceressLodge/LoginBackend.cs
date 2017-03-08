@@ -34,7 +34,7 @@ namespace ServerSide {
                 }
             }
 
-            return null;
+            return new Users("882246467913", "882246467913", false);
         }
     }
 }

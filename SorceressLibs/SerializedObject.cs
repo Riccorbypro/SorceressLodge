@@ -7,12 +7,11 @@ using System.Threading.Tasks;
 namespace SorceressLibs {
     [Serializable]
     public class SerializedObject {
-
-        private string objectClass;
-        private string objectMethod;
-        private object[] objectS;
-        private DateTime dt;
-        private Users user;
+        private string objectClass = "";
+        private string objectMethod = "";
+        private object[] objectS = new object[0];
+        private DateTime dt = DateTime.Now;
+        private Users user = new Users("", "", false);
 
         public string ObjectClass {
             get {

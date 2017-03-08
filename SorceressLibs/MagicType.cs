@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace SorceressLibs {
+    [Serializable]
     public class MagicType {
 
         private int id;

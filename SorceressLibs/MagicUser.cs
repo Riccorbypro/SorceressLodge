@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace SorceressLibs {
+    [Serializable]
     public class MagicUser {
         int uID;
         List<Bounty> bounty;
