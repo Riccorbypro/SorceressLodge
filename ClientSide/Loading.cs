@@ -20,6 +20,9 @@ namespace ClientSide {
         delegate void SetTextCallback(string text);
         delegate void CallbackHide();
         delegate void CallbackLogin(IPAddress ip, Socket client);
+        private ManualResetEvent connectDone = new ManualResetEvent(false);
+        private ManualResetEvent sendDone = new ManualResetEvent(false);
+        private ManualResetEvent receiveDone = new ManualResetEvent(false);
         private CountdownEvent countdown;
         private int upCount = 0;
         private object lockObj = new object();
@@ -27,6 +30,7 @@ namespace ClientSide {
         const bool resolveNames = true;
         private Login login;
         private Thread searchThr = null;
+        private byte[] tempByteArr;
 
         public Loading() {
             InitializeComponent();
@@ -63,27 +67,27 @@ namespace ClientSide {
 
                         Socket s = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.IP);
 
-                        s.Connect(new IPEndPoint(ip, 3006));
-                        string getIP = GetLocalIP();
+                        s.BeginConnect(new IPEndPoint(ip, 3006), new AsyncCallback(ConnectCallback), s);
+                        connectDone.WaitOne();
                         byte[] arr = { 0x6e, 0x30, 0x4f, 0x78, 0x37, 0x4b, 0x51, 0x42, 0x51, 0x65, 0x65, 0x74, 0x44, 0x50, 0x45, 0x69 };
-                        byte[] Sendarr = arr;
-                        int size = Sendarr.Length;
-                        byte[] bArrSize = Encoding.ASCII.GetBytes(size.ToString());
-                        s.Send(bArrSize);
-                        byte[] confirm = new byte[1];
-                        s.Receive(confirm);
+                        Send(s, arr);
+                        sendDone.WaitOne();
+                        Receive(s);
+                        receiveDone.WaitOne();
+                        byte[] confirm = tempByteArr;
                         if (confirm[0] == 0x00) {
                             Console.WriteLine(ip.ToString() + " is server - sending key...");
                             setProgressTextWorker(string.Format("Found possible server at {0}. Initiating Handshake...", ip.ToString()));
-                            s.Send(Sendarr);
+                            Send(s, arr);
+                            sendDone.WaitOne();
 
                             //expect response of de-serialized key from server. format:
                             //[KEY]
                             //where KEY is a string
 
-                            byte[] recBArr = new byte[arr.Length];
-                            s.Receive(recBArr);
-                            string received = Encoding.ASCII.GetString(recBArr);
+                            Receive(s);
+                            receiveDone.WaitOne();
+                            string received = Encoding.ASCII.GetString(tempByteArr);
 
                             //if key matches byte array,
                             //use current IP as server, break.
@@ -91,7 +95,7 @@ namespace ClientSide {
                             if (received.Equals(Encoding.ASCII.GetString(arr))) {
                                 Console.WriteLine("Server Handshake Complete: Beginning Login Process...");
                                 setProgressTextWorker("Server Handshake Complete: Beginning Login Process...");
-                                Thread.Sleep(2500);
+                                Thread.Sleep(1500);
                                 MakeLoginWorker(ip, s);
                                 HideFrameWorker();
                                 break;
@@ -104,7 +108,7 @@ namespace ClientSide {
                 if (login == null) {
                     setMainTextWorker("    :(");
                     setProgressTextWorker("  No suitable servers were found. Program exiting...");
-                    Thread.Sleep(5000);
+                    Thread.Sleep(2500);
                     Environment.Exit(0);
                 }
             }));
@@ -121,6 +125,82 @@ namespace ClientSide {
             } else {
                 login = new Login(ip, client);
                 login.Show();
+            }
+        }
+
+        private void Receive(Socket client) {
+            try {
+                // Create the state object.  
+                StateObject state = new StateObject();
+                state.workSocket = client;
+
+                // Begin receiving the data from the remote device.  
+                client.BeginReceive(state.buffer, 0, StateObject.BufferSize, 0,
+                    new AsyncCallback(ReceiveCallback), state);
+            } catch (Exception e) {
+                Console.WriteLine(e.ToString());
+            }
+        }
+
+        private void ReceiveCallback(IAsyncResult ar) {
+            try {
+                // Retrieve the state object and the client socket   
+                // from the asynchronous state object.  
+                StateObject state = (StateObject)ar.AsyncState;
+                Socket client = state.workSocket;
+
+                // Read data from the remote device.  
+                int bytesRead = client.EndReceive(ar);
+
+                if (bytesRead > 0) {
+                    // There might be more data, so store the data received so far.  
+                    state.data.AddRange(state.buffer);
+
+                    // Get the rest of the data.  
+                    client.BeginReceive(state.buffer, 0, StateObject.BufferSize, 0,
+                        new AsyncCallback(ReceiveCallback), state);
+                } else {
+                    // All the data has arrived; put it in response.  
+                    if (state.data.Count > 1) {
+                        tempByteArr = state.data.ToArray();
+                    }
+                    // Signal that all bytes have been received.  
+                    receiveDone.Set();
+                }
+            } catch (Exception e) {
+                Console.WriteLine(e.ToString());
+            }
+        }
+
+        private void Send(Socket client, byte[] data) {
+            // Begin sending the data to the remote device.  
+            client.BeginSend(data, 0, data.Length, 0, new AsyncCallback(SendCallback), client);
+        }
+
+        private void SendCallback(IAsyncResult ar) {
+            try {
+                // Retrieve the socket from the state object.  
+                Socket client = (Socket)ar.AsyncState;
+
+                // Complete sending the data to the remote device.  
+                int bytesSent = client.EndSend(ar);
+                Console.WriteLine("Sent {0} bytes to server.", bytesSent);
+
+                // Signal that all bytes have been sent.  
+                sendDone.Set();
+            } catch (Exception e) {
+                Console.WriteLine(e.ToString());
+            }
+        }
+
+        private void ConnectCallback(IAsyncResult ar) {
+            try {
+                Socket client = (Socket)ar.AsyncState;
+                client.EndConnect(ar);
+                Console.WriteLine("Socket connected to {0}", client.RemoteEndPoint.ToString());
+                connectDone.Set();
+            } catch (Exception e) {
+                Console.WriteLine(e.ToString());
             }
         }
 
@@ -219,5 +299,15 @@ namespace ClientSide {
             progressLabel.Visible = true;
             searchThr.Start();
         }
+    }
+    public class StateObject {
+        // Client socket.  
+        public Socket workSocket = null;
+        // Size of receive buffer.  
+        public const int BufferSize = 256;
+        // Receive buffer.  
+        public byte[] buffer = new byte[BufferSize];
+        // Received data string.  
+        public List<byte> data = new List<byte>();
     }
 }
