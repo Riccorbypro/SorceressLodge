@@ -117,6 +117,7 @@
             this.Controls.Add(this.logBox);
             this.Name = "Main";
             this.Text = "Server";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Main_FormClosing);
             this.ResumeLayout(false);
 
         }

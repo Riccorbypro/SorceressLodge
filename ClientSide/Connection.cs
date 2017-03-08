@@ -16,30 +16,40 @@ namespace ClientSide {
         private IPAddress ip;
         private Socket client;
         private Thread shutdownWaiter;
+        private bool loggedIn = false;
+
+        public bool LoggedIn {
+            get {
+                return loggedIn;
+            }
+            set {
+                loggedIn = value;
+            }
+        }
 
         public Connection(IPAddress ip, Socket s) {
             this.ip = ip;
             client = s;
             byte[] complete = new byte[] { 0x00 };
             client.Send(complete);
-            shutdownWaiter = null;
-            shutdownWaiter = new Thread(new ThreadStart(() => {
-                while (true) {
-                    byte[] received = new byte[36];
-                    client.Receive(received);
-                    if (Encoding.ASCII.GetString(received).Equals("SERVER SHUTTING DOWN!!! 882246467913")) {
-                        client.Dispose();
-                        System.Windows.Forms.MessageBox.Show("You have been logged out as the server is shutting down.", "Shutting Down", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Information);
-                        Thread.Sleep(5000);
-                        Environment.Exit(0);
-                    }
-                }
-            }));
+            shutdownWaiter = new Thread(ShutdownWaiter);
             shutdownWaiter.Start();
         }
 
+        private void ShutdownWaiter() {
+            while (loggedIn) {
+                byte[] received = new byte[36];
+                client.Receive(received);
+                if (Encoding.ASCII.GetString(received).Equals("SERVER SHUTTING DOWN!!! 882246467913")) {
+                    client.Dispose();
+                    System.Windows.Forms.MessageBox.Show("You have been logged out.\nThe server is shutting down.", "Shutting Down", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Information);
+                    Environment.Exit(0);
+                }
+            }
+        }
+
         public SerializedObject Comm(SerializedObject val) {
-            shutdownWaiter.Suspend();
+            shutdownWaiter.Abort();
             SerializedObject obj = new SerializedObject();
             try {
                 BinaryFormatter formatter = new BinaryFormatter();
@@ -48,15 +58,10 @@ namespace ClientSide {
                 byte[] arr = ms.GetBuffer();
                 byte[] sendSize = Encoding.ASCII.GetBytes(arr.Length.ToString());
                 client.Send(sendSize);
-                byte[] confirm = new byte[0];
-                client.Receive(confirm);
-                if (confirm[0] == 0x00) {
-                    client.Send(arr);
-                }
+                client.Send(arr);
                 byte[] size = new byte[32];
                 client.Receive(size);
                 int recSize = int.Parse(Encoding.ASCII.GetString(size));
-                client.Send(Encoding.ASCII.GetBytes(recSize.ToString()));
                 byte[] data = new byte[recSize];
                 client.Receive(data);
                 MemoryStream stream = new MemoryStream(data);
@@ -67,7 +72,26 @@ namespace ClientSide {
                     ms.Dispose();
                 }
             } catch (Exception) { }
-            shutdownWaiter.Resume();
+            shutdownWaiter = new Thread(ShutdownWaiter);
+            shutdownWaiter.Start();
+            return obj;
+        }
+
+        public object SendReceive(object o) {
+            BinaryFormatter formatter = new BinaryFormatter();
+            MemoryStream ms = new MemoryStream();
+            formatter.Serialize(ms, o);
+            byte[] toSend = ms.GetBuffer();
+            client.Send(Encoding.ASCII.GetBytes(toSend.Length.ToString()));
+            Thread.Sleep(100);
+            client.Send(toSend);
+            byte[] size = new byte[32];
+            client.Receive(size);
+            int recSize = int.Parse(Encoding.ASCII.GetString(size));
+            byte[] data = new byte[recSize];
+            client.Receive(data);
+            ms = new MemoryStream(data);
+            object obj = formatter.Deserialize(ms);
             return obj;
         }
     }

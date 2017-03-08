@@ -9,6 +9,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Resources;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -29,14 +30,17 @@ namespace ClientSide {
 
         private void btnLogin_Click(object sender, EventArgs e) {
             try {
-                Users loginAttempt = (Users)(conn.Comm(new SerializedObject("LoginBackend", "LoginClient", new object[] { txtUserName.Text, txtUserPassword.Text }, new Users("", "", false))).ObjectS[0]);
-                if (loginAttempt.UserName.Equals("882246467913") || loginAttempt.Password.Equals("882246467913")) {
+                Users loginAttempt = new Users(txtUserName.Text, txtUserPassword.Text, false);
+                Users result = (Users)conn.SendReceive(loginAttempt);
+                if (result.UserName.Equals("882246467913") && result.Password.Equals("882246467913")) {
                     throw new LoginException("Username or Password Incorrect!");
-                } else if (loginAttempt.IsAdmin) {
-                    this.Hide();
+                } else if (result.IsAdmin) {
+                    Hide();
+                    conn.LoggedIn = true;
                     new AdminHome().Show();
                 } else {
-                    this.Hide();
+                    Hide();
+                    conn.LoggedIn = true;
                     new UserHome().Show();
                 }
             } catch (LoginException ex) {

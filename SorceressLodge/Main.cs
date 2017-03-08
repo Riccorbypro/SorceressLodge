@@ -13,6 +13,7 @@ namespace ServerSide {
 
         delegate void SetTextCallback(string text);
         public bool started = false;
+        public bool closed = false;
 
         public bool Started {
             get { return started; }
@@ -51,6 +52,11 @@ namespace ServerSide {
             started = false;
             stopButt.Enabled = false;
             startButt.Enabled = true;
+        }
+
+        private void Main_FormClosing(object sender, FormClosingEventArgs e) {
+            started = false;
+            closed = true;
         }
     }
 }
