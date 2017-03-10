@@ -31,17 +31,19 @@ namespace ClientSide {
         private void btnLogin_Click(object sender, EventArgs e) {
             try {
                 Users loginAttempt = new Users(txtUserName.Text, txtUserPassword.Text, false);
-                Users result = (Users)conn.SendReceive(loginAttempt);
-                if (result.UserName.Equals("882246467913") && result.Password.Equals("882246467913")) {
-                    throw new LoginException("Username or Password Incorrect!");
-                } else if (result.IsAdmin) {
-                    Hide();
-                    conn.LoggedIn = true;
-                    new AdminHome().Show();
-                } else {
-                    Hide();
-                    conn.LoggedIn = true;
-                    new UserHome().Show();
+                Users result = (Users)conn.Comm(loginAttempt);
+                if (result != null) {
+                    if (result.UserName.Equals("882246467913") && result.Password.Equals("882246467913")) {
+                        throw new LoginException("Username or Password Incorrect!");
+                    } else if (result.IsAdmin) {
+                        Hide();
+                        conn.LoggedIn = true;
+                        new AdminHome(conn).Show();
+                    } else {
+                        Hide();
+                        conn.LoggedIn = true;
+                        new UserHome(conn).Show();
+                    }
                 }
             } catch (LoginException ex) {
                 MessageBox.Show(ex.Message);

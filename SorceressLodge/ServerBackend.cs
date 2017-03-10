@@ -15,17 +15,18 @@ namespace ServerSide {
     class ServerBackend {
 
         private Dictionary<Socket, Thread> commsThreads = new Dictionary<Socket, Thread>();
+        private Connection b;
         public bool isRunning = false;
         private Users user;
         private Main main;
         private Thread clientAccepter;
-        private Backend b;
         private Socket s;
         private Thread waitThread = null, stopThread = null;
+        private byte[] constArr = { 0x6e, 0x30, 0x4f, 0x78, 0x37, 0x4b, 0x51, 0x42, 0x51, 0x65, 0x65, 0x74, 0x44, 0x50, 0x45, 0x69 };
 
         public ServerBackend(Users user, bool autoStart) {
+            b = new Connection();
             this.user = user;
-            b = new Backend();
             main = new Main(autoStart);
             main.Show();
             waitThread = new Thread(new ThreadStart(() => {
@@ -74,6 +75,7 @@ namespace ServerSide {
                             client.Receive(complete);
                             if (complete[0] == 0x00) {
                                 commsThreads.Add(client, new Thread(new ThreadStart(() => CommsThread(client))));
+                                commsThreads[client].Start();
                                 main.AppendWorker(string.Format("Client {0} connected at {1}.", client.RemoteEndPoint.ToString(), DateTime.Now));
                             }
                         }
@@ -115,6 +117,7 @@ namespace ServerSide {
 
                 foreach (var thread in commsThreads) {
                     thread.Key.Send(Encoding.ASCII.GetBytes("SERVER SHUTTING DOWN!!! 882246467913"));
+                    thread.Key.Shutdown(SocketShutdown.Both);
                     thread.Value.Abort();
                 }
 
@@ -143,12 +146,9 @@ namespace ServerSide {
         }
 
         public void CommsThread(Socket client) {
-            while (true) {
+            while (client.Connected) {
                 try {
-                    byte[] size = new byte[32];
-                    client.Receive(size);
-                    int recSize = int.Parse(Encoding.ASCII.GetString(size));
-                    byte[] data = new byte[recSize];
+                    byte[] data = new byte[65536];
                     client.Receive(data);
                     MemoryStream stream = new MemoryStream(data);
                     MemoryStream ms = new MemoryStream();
@@ -156,17 +156,25 @@ namespace ServerSide {
                         BinaryFormatter formatter = new BinaryFormatter();
                         object o = formatter.Deserialize(stream);
                         try {
-                            SerializedObject obj = (SerializedObject)o;
-                            SerializedObject val = null;
-                            val = new SerializedObject(obj.ObjectClass, obj.ObjectMethod, new object[] { b.GetType().GetMethod(obj.ObjectMethod).Invoke(b, obj.ObjectS) }, obj.User);
-                            if (val != null) {
-                                formatter.Serialize(ms, val);
-                                byte[] arr = ms.GetBuffer();
-                                byte[] sendSize = Encoding.ASCII.GetBytes(arr.Length.ToString());
-                                client.Send(sendSize);
-                                Thread.Sleep(10);
-                                client.Send(arr);
+                            object[] s = (object[])o;
+                            if (s.Length > 1) {
+                                object[] os = new object[s.Length - 1];
+                                for (int i = 0; i < os.Length; i++) {
+                                    os[i] = s[i + 1];
+                                }
+                                Object ret = b.GetType().GetMethod(s[0].ToString()).Invoke(b, os);
+                                ms = new MemoryStream();
+                                formatter.Serialize(ms, ret);
+                                byte[] toSend = ms.GetBuffer();
+                                client.Send(toSend);
+                            } else {
+                                Object ret = b.GetType().GetMethod(s[0].ToString()).Invoke(b, new object[] { });
+                                ms = new MemoryStream();
+                                formatter.Serialize(ms, ret);
+                                byte[] toSend = ms.GetBuffer();
+                                client.Send(toSend);
                             }
+
                         } catch (Exception) {
                             try {
                                 Users user = (Users)o;
@@ -174,28 +182,26 @@ namespace ServerSide {
                                 ms = new MemoryStream();
                                 formatter.Serialize(ms, result);
                                 byte[] toSend = ms.GetBuffer();
-                                byte[] sizetoSend = Encoding.ASCII.GetBytes(toSend.Length.ToString());                                
-                                client.BeginSend(sizetoSend, 0, toSend.Length, SocketFlags.None, new AsyncCallback(SendCallback), client);
-                            } catch (Exception) {
-                                try {
-                                    MagicUser user = (MagicUser)o;
-                                } catch (Exception) { }
-                            }
+                                client.Send(toSend);
+
+                            } catch (Exception) { }
                         }
-                    } catch (Exception) { } finally {
+                    } catch (Exception) {
+                        try {
+                            string s = Encoding.ASCII.GetString(data);
+                            if (s.Equals("SHUTDOWN")) {
+                                client.Disconnect(false);
+                            }
+                        } catch (Exception) { }
+                    } finally {
                         stream.Dispose();
                         ms.Dispose();
                     }
                 } catch (Exception) { }
             }
-        }
-        private static void SendCallback(IAsyncResult ar) {
-            try {
-                Socket handler = (Socket)ar.AsyncState;
-                int bytesSend = handler.EndSend(ar);
-                handler.Shutdown(SocketShutdown.Both);
-                handler.Close();
-            } catch (Exception e) { Console.WriteLine(e.ToString()); }
+            main.AppendWorker(string.Format("Client {0} disconnected at {1}.", client.RemoteEndPoint.ToString(), DateTime.Now));
+            client.Disconnect(false);
+            commsThreads.Remove(client);
         }
 
         public static string GetLocalIPAddress() {

@@ -11,10 +11,10 @@ using System.Windows.Forms;
 namespace ClientSide {
     public partial class AdvancedSearch : Form {
 
-        //private Backend b;
+        private Backend b;
 
-        public AdvancedSearch(/*Backend be*/) {
-            //b = be;
+        public AdvancedSearch(Backend be) {
+            b = be;
             InitializeComponent();
         }
 

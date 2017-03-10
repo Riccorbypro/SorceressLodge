@@ -9,7 +9,7 @@ namespace SorceressLibs {
     public class SerializedObject {
         private string objectClass = "";
         private string objectMethod = "";
-        private object[] objectS = new object[0];
+        private object objectS = new object();
         private DateTime dt = DateTime.Now;
         private Users user = new Users("", "", false);
 
@@ -23,7 +23,7 @@ namespace SorceressLibs {
             }
         }
 
-        public object[] ObjectS {
+        public object ObjectS {
             get {
                 return objectS;
             }
@@ -63,7 +63,7 @@ namespace SorceressLibs {
             }
         }
 
-        public SerializedObject(string oc, string om, object[] o, Users u) {
+        public SerializedObject(string oc, string om, object o, Users u) {
             ObjectClass = oc;
             ObjectMethod = om;
             ObjectS = o;

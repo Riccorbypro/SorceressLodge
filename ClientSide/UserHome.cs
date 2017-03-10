@@ -12,30 +12,30 @@ using SorceressLibs;
 namespace ClientSide {
     public partial class UserHome : Form {
 
-        //private Backend b;
+        private Backend b;
 
-        public UserHome() {
-            //b = new Backend();
+        public UserHome(Connection conn) {
+            b = new Backend(conn);
             InitializeComponent();
-            //nameSelectCmb.DataSource = b.getNames();
-            //setTable();
-            //nameSelectCmb.Text = "";
+            nameSelectCmb.DataSource = b.getNames();
+            setTable();
+            nameSelectCmb.Text = "";
         }
 
         private void setTable() {
-            //DataTable table = null;
-            //if (nameSelectCmb.Text.Equals("")) {
-            //    table = b.SearchUsers(new Dictionary<string, object>());
-            //} else {
-            //    table = b.SearchUsers(new Dictionary<string, object>() { { "Name", nameSelectCmb.Text } });
-            //}
-            //usersTable.DataSource = table;
-            //usersTable.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            //usersTable.Refresh();
+            DataTable table = null;
+            if (nameSelectCmb.Text.Equals("")) {
+                table = b.SearchUsers(new Dictionary<string, object>());
+            } else {
+                table = b.SearchUsers(new Dictionary<string, object>() { { "Name", nameSelectCmb.Text } });
+            }
+            usersTable.DataSource = table;
+            usersTable.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            usersTable.Refresh();
         }
 
         private void btnSearch_Click(object sender, EventArgs e) {
-            //setTable();
+            setTable();
         }
 
         private void UserHome_FormClosed(object sender, FormClosedEventArgs e) {
@@ -43,17 +43,17 @@ namespace ClientSide {
         }
 
         private void btnAdvancS_Click(object sender, EventArgs e) {
-            //AdvancedSearch ads = new AdvancedSearch(b);
-            //ads.Show();
+            AdvancedSearch ads = new AdvancedSearch(b);
+            ads.Show();
         }
 
         private void usersTable_MouseDoubleClick(object sender, MouseEventArgs e) {
-            //int id = Convert.ToInt32(usersTable.SelectedRows[0].Cells[0].Value);
-            //MagicUser user;
-            //if ((user = b.getUser(id)) != null) {
-            //    Update u = new Update(user, b);
-            //    u.Show();
-            //}
+            int id = Convert.ToInt32(usersTable.SelectedRows[0].Cells[0].Value);
+            MagicUser user;
+            if ((user = b.getUser(id)) != null) {
+                Update u = new Update(user, b);
+                u.Show();
+            }
         }
     }
 }

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ServerSide {
+namespace ClientSide {
     class ImageHandler {
 
         public static byte[] readImage(string filePath) {

@@ -36,12 +36,17 @@ namespace ClientSide {
                 sw.Start();
                 string[] localIP = GetLocalIP().Split('.');
                 string ipBase = localIP[0] + "." + localIP[1] + "." + localIP[2] + ".";
-                for (int i = 1; i < 255; i++) {
-                    string ip = ipBase + i.ToString();
-                    Ping p = new Ping();
-                    p.PingCompleted += new PingCompletedEventHandler(p_PingCompleted);
-                    countdown.AddCount();
-                    p.SendAsync(ip, 50, ip);
+                if (!ipBase.Equals("127.0.0.")) {
+                    for (int i = 1; i < 255; i++) {
+                        string ip = ipBase + i.ToString();
+                        Ping p = new Ping();
+                        p.PingCompleted += new PingCompletedEventHandler(p_PingCompleted);
+                        countdown.AddCount();
+                        p.SendAsync(ip, 50, ip);
+                    }
+                } else {
+                    hosts.Add("127.0.0.1");
+                    upCount++;
                 }
                 countdown.Signal();
                 countdown.Wait();

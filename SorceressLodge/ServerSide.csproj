@@ -49,7 +49,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Backend.cs" />
     <Compile Include="Connection.cs" />
     <Compile Include="FileHandler.cs" />
     <Compile Include="Login.cs">
@@ -59,7 +58,6 @@
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
     <Compile Include="LoginBackend.cs" />
-    <Compile Include="ImageHandler.cs" />
     <Compile Include="Main.cs">
       <SubType>Form</SubType>
     </Compile>

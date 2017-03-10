@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using SorceressLibs;
 
-namespace ServerSide {
+namespace ClientSide {
     public class Backend {
 
         private List<MagicUser> users;
@@ -18,10 +18,20 @@ namespace ServerSide {
             None = 0, Novice, Adept, Master
         }
 
-        public Backend() {
-            conn = new Connection();
-            users = conn.ReadMagicUsers();
+        public Backend(Connection c) {
+            conn = c;
+            users = (List<MagicUser>)conn.Comm(new object[] { "ReadMagicUsers" });
         }
+
+        public void reRead() {
+            users = (List<MagicUser>)conn.Comm(new object[] { "ReadMagicUsers" });
+        }
+
+        public void Exit() {
+            conn.Shutdown();
+            Environment.Exit(0);
+        }
+
 
         public DataTable SearchUsers(Dictionary<string, object> searchTerms) {
             DataTable table = new DataTable("magicusers");
@@ -133,7 +143,6 @@ namespace ServerSide {
 
         public List<string> getNames() {
             List<string> names = new List<string>();
-
             foreach (MagicUser user in users) {
                 names.Add(user.Name + " " + user.Surname);
             }
@@ -166,15 +175,15 @@ namespace ServerSide {
         }
 
         public List<MagicType> getTypes() {
-            return conn.ReadTypes();
+            return (List<MagicType>)conn.Comm(new object[] { "ReadTypes" });
         }
 
         public bool DeleteUser(int id) {
-            return conn.Delete(id);
+            return (bool)conn.Comm(new object[] { "Delete", id });
         }
 
         public bool InsertUser(MagicUser user) {
-            return conn.Insert(user);
+            return (bool)conn.Comm(new object[] { "Insert", user });
         }
     }
 }

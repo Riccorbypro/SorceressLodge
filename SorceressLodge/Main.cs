@@ -38,7 +38,9 @@ namespace ServerSide {
                 SetTextCallback d = new SetTextCallback(AppendWorker);
                 Invoke(d, new object[] { s });
             } else {
-                logBox.AppendText(s + "\n");
+                try {
+                    logBox.AppendText(s + "\n");
+                } catch (Exception) { }
             }
         }
 
